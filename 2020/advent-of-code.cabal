@@ -1,0 +1,28 @@
+name:                advent-of-code
+version:             0.1.0.0
+homepage:            https://gitlab.com/slotThe/aoc-2020-haskell
+license:             AGPL-3
+author:              Solid
+maintainer:          Solid <soliditsallgood@mailbox.org>
+copyright:           2020  Solid
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+executable advent-of-code
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  ghc-options:         -O2
+                       -Wall
+                       -Wcompat
+                       -Wincomplete-record-updates
+                       -Wincomplete-uni-patterns
+                       -Wredundant-constraints
+  default-extensions:  OverloadedStrings, ScopedTypeVariables, BlockArguments
+  other-modules:       Prelude
+                     , Day1
+  build-depends:       base-prelude
+                     , base-noprelude
+                     , unordered-containers
+                     , text
