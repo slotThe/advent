@@ -19,9 +19,14 @@ executable advent-of-code
                        -Wincomplete-record-updates
                        -Wincomplete-uni-patterns
                        -Wredundant-constraints
-  default-extensions:  OverloadedStrings, ScopedTypeVariables, BlockArguments
+  default-extensions:  OverloadedStrings
+                     , ScopedTypeVariables
+                     , BlockArguments
+                     , NamedFieldPuns
+                     , DuplicateRecordFields
   other-modules:       Prelude
                      , Day1
+                     , Day2
   build-depends:       base-prelude
                      , base-noprelude
                      , unordered-containers

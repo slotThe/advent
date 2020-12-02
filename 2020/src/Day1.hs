@@ -6,7 +6,6 @@ module Day1
 import qualified Data.HashMap.Strict as HMap
 import qualified Data.Text           as T
 import qualified Data.Text.IO        as T
-import qualified Data.Text.Read      as T
 
 {- There is the fun one-liner
 
@@ -39,7 +38,7 @@ day1Two = T.interact go
    @2020 - n@.  If that's the case, multiply them together.
 -}
 hmWith :: Int -> [Int] -> Maybe Int
-hmWith n xs = maybe Nothing (Just . uncurry (*)) (listToMaybe hmap)
+hmWith n xs = uncurry (*) <$> listToMaybe hmap
   where
     hmap     :: [(Int, Int)]
         = toList . filterHM $ fromList [(x, 2020 - n - x) | x <- xs]
@@ -47,7 +46,7 @@ hmWith n xs = maybe Nothing (Just . uncurry (*)) (listToMaybe hmap)
         = \hm -> HMap.filterWithKey (\_ v -> v `HMap.member` hm) hm
 
 badlyParseInput :: Text -> [Int]
-badlyParseInput = map (fst . fromRight (0, "") . T.decimal) . T.lines
+badlyParseInput = map badlyParseInt . T.lines
 
 showOutput :: Maybe Int -> Text
 showOutput = maybe "Nothing :(" tshow
