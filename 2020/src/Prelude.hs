@@ -1,16 +1,25 @@
 module Prelude
     ( module Exports
     , HashMap
-    , Text
+
+    -- * Better {from,to}List
     , fromList
     , toList
+
+    -- * Text!
+    , Text
     , tshow
-    , breakOnDrop
-    , badlyParseInt
     , textToChar
     , lines
     , unlines
     , interact
+    , replace
+    , splitOn
+    , breakOnDrop
+
+    -- * Util
+    , badlyParseInt
+    , rightToMaybe
     ) where
 
 import BasePrelude as Exports hiding (interact, lines, toList, unlines)
@@ -44,3 +53,14 @@ unlines = T.unlines
 
 interact :: (Text -> Text) -> IO ()
 interact = T.interact
+
+splitOn :: Text -> Text -> [Text]
+splitOn = T.splitOn
+
+replace :: Text -> Text -> Text -> Text
+replace = T.replace
+
+rightToMaybe :: Either a b -> Maybe b
+rightToMaybe = \case
+    Right r -> Just r
+    _       -> Nothing

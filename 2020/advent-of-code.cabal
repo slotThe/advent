@@ -25,11 +25,17 @@ executable advent-of-code
                      , NamedFieldPuns
                      , DuplicateRecordFields
                      , BangPatterns
+                     , TupleSections
+                     , TypeApplications
+                     , LambdaCase
   other-modules:       Prelude
                      , Day1
                      , Day2
                      , Day3
+                     , Day4
   build-depends:       base-prelude
                      , base-noprelude
                      , unordered-containers
                      , text
+                     , attoparsec
+                     , permute
