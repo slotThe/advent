@@ -9,6 +9,7 @@ module Prelude
     -- * Text!
     , Text
     , tshow
+    , tread
     , textToChar
     , lines
     , unlines
@@ -16,6 +17,7 @@ module Prelude
     , replace
     , splitOn
     , breakOnDrop
+    , tryShow
 
     -- * Util
     , badlyParseInt
@@ -34,6 +36,9 @@ import GHC.Exts (fromList, toList)
 
 tshow :: Show a => a -> Text
 tshow = T.pack . show
+
+tread :: Read a => Text -> a
+tread = read . T.unpack
 
 breakOnDrop :: Text -> Text -> (Text, Text)
 breakOnDrop = (fmap (T.drop 1) .) . T.breakOn
@@ -64,3 +69,6 @@ rightToMaybe :: Either a b -> Maybe b
 rightToMaybe = \case
     Right r -> Just r
     _       -> Nothing
+
+tryShow :: Show a => Maybe a -> Text
+tryShow = maybe "Nothing :(" tshow
