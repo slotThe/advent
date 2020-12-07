@@ -2,6 +2,7 @@ module Prelude
     ( module Exports
     , HashMap
     , HashSet
+    , ByteString
 
     -- * Better {from,to}List
     , fromList
@@ -25,15 +26,18 @@ module Prelude
     , rightToMaybe
     , nubUnstable
     , sum'
+    , (!?)
     ) where
 
 import BasePrelude as Exports hiding (interact, lines, toList, unlines)
 
-import qualified Data.HashSet   as HSet
-import qualified Data.Text      as T
-import qualified Data.Text.IO   as T
-import qualified Data.Text.Read as T
+import qualified Data.HashMap.Strict as HMap
+import qualified Data.HashSet        as HSet
+import qualified Data.Text           as T
+import qualified Data.Text.IO        as T
+import qualified Data.Text.Read      as T
 
+import Data.ByteString (ByteString)
 import Data.HashMap.Strict (HashMap)
 import Data.HashSet (HashSet)
 import Data.Hashable (Hashable)
@@ -87,3 +91,7 @@ nubUnstable = HSet.toList . HSet.fromList
 sum' :: (Num a, Foldable t) => t a -> a
 sum' = foldl' (+) 0
 {-# INLINE sum' #-}
+
+(!?) :: (Eq k, Hashable k) => HashMap k v -> k -> Maybe v
+(!?) hm k = HMap.lookup k hm
+{-# INLINE (!?) #-}

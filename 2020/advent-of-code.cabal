@@ -35,10 +35,12 @@ executable advent-of-code
                      , Day4
                      , Day5
                      , Day6
+                     , Day7
   build-depends:       base-prelude
                      , base-noprelude
                      , unordered-containers
                      , text
+                     , bytestring
                      , attoparsec
                      , permute
                      , hashable
