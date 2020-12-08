@@ -36,6 +36,7 @@ executable advent-of-code
                      , Day5
                      , Day6
                      , Day7
+                     , Day8
   build-depends:       base-prelude
                      , base-noprelude
                      , unordered-containers
@@ -44,3 +45,4 @@ executable advent-of-code
                      , attoparsec
                      , permute
                      , hashable
+                     , vector
