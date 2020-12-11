@@ -10,6 +10,7 @@ import Day7
 import Day8
 import Day9
 import Day10
+import Day11
 
 main :: IO ()
-main = day10Two
+main = day11Two
