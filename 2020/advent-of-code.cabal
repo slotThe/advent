@@ -28,6 +28,8 @@ executable advent-of-code
                      , TupleSections
                      , TypeApplications
                      , LambdaCase
+                     , OverloadedLabels
+                     , DeriveGeneric
   other-modules:       Prelude
                      , Day1
                      , Day2
@@ -40,6 +42,7 @@ executable advent-of-code
                      , Day9
                      , Day10
                      , Day11
+                     , Day12
   build-depends:       base-prelude
                      , base-noprelude
                      , unordered-containers
@@ -49,3 +52,6 @@ executable advent-of-code
                      , permute
                      , hashable
                      , vector
+                     , transformers
+                     , lens
+                     , generic-lens
