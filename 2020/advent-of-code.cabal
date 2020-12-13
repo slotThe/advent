@@ -30,6 +30,7 @@ executable advent-of-code
                      , LambdaCase
                      , OverloadedLabels
                      , DeriveGeneric
+                     , ViewPatterns
   other-modules:       Prelude
                      , Day1
                      , Day2
@@ -43,6 +44,7 @@ executable advent-of-code
                      , Day10
                      , Day11
                      , Day12
+                     , Day13
   build-depends:       base-prelude
                      , base-noprelude
                      , unordered-containers
@@ -55,3 +57,4 @@ executable advent-of-code
                      , transformers
                      , lens
                      , generic-lens
+                     , arithmoi
