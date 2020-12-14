@@ -28,6 +28,7 @@ module Prelude
     , nubUnstable
     , sum'
     , (!?)
+    , (.:)
     ) where
 
 import BasePrelude as Exports hiding (interact, lines, toList, unlines)
@@ -110,3 +111,8 @@ sum' = foldl' (+) 0
 (!?) :: (Eq k, Hashable k) => HashMap k v -> k -> Maybe v
 (!?) hm k = HMap.lookup k hm
 {-# INLINE (!?) #-}
+
+infixr 8 .:
+(.:) :: (c -> d) -> (a -> b -> c) -> (a -> b -> d)
+(.:) = (.) . (.)
+{-# INLINE (.:) #-}
