@@ -46,6 +46,7 @@ executable advent-of-code
                      , Day12
                      , Day13
                      , Day14
+                     , Day15
   build-depends:       base-prelude
                      , base-noprelude
                      , unordered-containers

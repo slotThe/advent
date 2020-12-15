@@ -1,4 +1,8 @@
-module Main where
+{-# OPTIONS_GHC -Wno-unused-imports #-}
+
+module Main
+    ( main  -- :: IO ()
+    ) where
 
 import Day1
 import Day2
@@ -14,6 +18,7 @@ import Day11
 import Day12
 import Day13
 import Day14
+import Day15
 
 main :: IO ()
-main = day14Two
+main = day15Two
