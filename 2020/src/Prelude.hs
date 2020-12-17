@@ -29,6 +29,7 @@ module Prelude
     , sum'
     , (!?)
     , (.:)
+    , converge
     ) where
 
 import BasePrelude as Exports hiding (interact, lines, toList, unlines)
@@ -116,3 +117,8 @@ infixr 8 .:
 (.:) :: (c -> d) -> (a -> b -> c) -> (a -> b -> d)
 (.:) = (.) . (.)
 {-# INLINE (.:) #-}
+
+converge :: Eq a => (a -> a) -> a -> a
+converge f x = if x == x' then x else converge f x'
+  where x' = f x
+{-# INLINE converge #-}
