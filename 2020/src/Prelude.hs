@@ -4,6 +4,7 @@ module Prelude
     , HashSet
     , ByteString
     , Vector
+    , Hashable
 
     -- * Better {from,to}List
     , fromList

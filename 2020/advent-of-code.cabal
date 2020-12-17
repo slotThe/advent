@@ -30,6 +30,7 @@ executable advent-of-code
                      , LambdaCase
                      , OverloadedLabels
                      , DeriveGeneric
+                     , DerivingStrategies
                      , ViewPatterns
   other-modules:       Prelude
                      , Day1
@@ -48,6 +49,7 @@ executable advent-of-code
                      , Day14
                      , Day15
                      , Day16
+                     , Day17
   build-depends:       base-prelude
                      , base-noprelude
                      , unordered-containers
