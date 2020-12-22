@@ -32,6 +32,7 @@ executable advent-of-code
                      , DeriveGeneric
                      , DerivingStrategies
                      , ViewPatterns
+                     , MultiWayIf
   other-modules:       Prelude
                      , Day1
                      , Day2
@@ -54,6 +55,7 @@ executable advent-of-code
                      , Day19
                      , Day20
                      , Day21
+                     , Day22
   build-depends:       base-prelude
                      , base-noprelude
                      , unordered-containers
@@ -67,3 +69,4 @@ executable advent-of-code
                      , lens
                      , generic-lens
                      , arithmoi
+                     , containers
