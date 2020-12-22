@@ -28,6 +28,7 @@ module Prelude
     , rightToMaybe
     , nubUnstable
     , sum'
+    , product'
     , (!?)
     , (.:)
     , converge
@@ -109,6 +110,11 @@ nubUnstable = HSet.toList . HSet.fromList
 sum' :: (Num a, Foldable t) => t a -> a
 sum' = foldl' (+) 0
 {-# INLINE sum' #-}
+
+-- | Proper product
+product' :: (Num a, Foldable t) => t a -> a
+product' = foldl' (*) 1
+{-# INLINE product' #-}
 
 (!?) :: (Eq k, Hashable k) => HashMap k v -> k -> Maybe v
 (!?) hm k = HMap.lookup k hm
