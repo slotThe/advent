@@ -26,6 +26,7 @@ import Day19
 import Day20
 import Day21
 import Day22
+import Day23
 
 main :: IO ()
-main = day22Two
+main = day23Two
