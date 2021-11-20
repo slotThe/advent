@@ -1,0 +1,56 @@
+name:                haskell
+version:             0.1.0
+synopsis:            Haskell Solution for (some) AOC 2021 questions
+license:             AGPL-3
+author:              Solid
+maintainer:          soliditsallgood@mailbox.org
+
+default-extensions:
+  - InstanceSigs
+  - GeneralizedNewtypeDeriving
+  - DerivingStrategies
+  - OverloadedStrings
+  - NamedFieldPuns
+  - ScopedTypeVariables
+  - LambdaCase
+  - BlockArguments
+  - TypeApplications
+  - MultiWayIf
+  - TupleSections
+  - ViewPatterns
+
+ghc-options:
+  -O2
+  -Wall
+  -Wcompat
+  -Wincomplete-record-updates
+  -Wincomplete-uni-patterns
+  -Wredundant-constraints
+  -Widentities
+  -Wmissing-local-signatures
+  -Wmissing-export-lists
+  -Wmissed-specialisations
+
+dependencies:
+  - base
+  - base-prelude
+  - containers
+  - unordered-containers
+  - text
+  - bytestring
+  - attoparsec
+  - hashable
+  - vector
+  - transformers
+  - lens
+  - generic-lens
+  - arithmoi
+
+library:
+  source-dirs: src/
+
+executables:
+  aoc-2021-haskell:
+    source-dirs: src
+    main: Main.hs
+    dependencies: haskell

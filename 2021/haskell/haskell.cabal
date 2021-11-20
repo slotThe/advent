@@ -1,0 +1,90 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.5.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: a250a0d1cc6e64e7dbd7afa95a139398e300fccd61f3ee141ed51627fa3ce9b3
+
+name:           haskell
+version:        0.1.0
+synopsis:       Haskell Solution for (some) AOC 2021 questions
+author:         Solid
+maintainer:     soliditsallgood@mailbox.org
+license:        AGPL-3
+license-file:   LICENSE
+build-type:     Simple
+
+library
+  exposed-modules:
+      Main
+  other-modules:
+      Paths_haskell
+  hs-source-dirs:
+      src/
+  default-extensions:
+      InstanceSigs
+      GeneralizedNewtypeDeriving
+      DerivingStrategies
+      OverloadedStrings
+      NamedFieldPuns
+      ScopedTypeVariables
+      LambdaCase
+      BlockArguments
+      TypeApplications
+      MultiWayIf
+      TupleSections
+      ViewPatterns
+  ghc-options: -O2 -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -Widentities -Wmissing-local-signatures -Wmissing-export-lists -Wmissed-specialisations
+  build-depends:
+      arithmoi
+    , attoparsec
+    , base
+    , base-prelude
+    , bytestring
+    , containers
+    , generic-lens
+    , hashable
+    , lens
+    , text
+    , transformers
+    , unordered-containers
+    , vector
+  default-language: Haskell2010
+
+executable aoc-2021-haskell
+  main-is: Main.hs
+  other-modules:
+      Paths_haskell
+  hs-source-dirs:
+      src
+  default-extensions:
+      InstanceSigs
+      GeneralizedNewtypeDeriving
+      DerivingStrategies
+      OverloadedStrings
+      NamedFieldPuns
+      ScopedTypeVariables
+      LambdaCase
+      BlockArguments
+      TypeApplications
+      MultiWayIf
+      TupleSections
+      ViewPatterns
+  ghc-options: -O2 -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -Widentities -Wmissing-local-signatures -Wmissing-export-lists -Wmissed-specialisations
+  build-depends:
+      arithmoi
+    , attoparsec
+    , base
+    , base-prelude
+    , bytestring
+    , containers
+    , generic-lens
+    , hashable
+    , haskell
+    , lens
+    , text
+    , transformers
+    , unordered-containers
+    , vector
+  default-language: Haskell2010
