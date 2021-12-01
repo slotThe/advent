@@ -3,7 +3,7 @@
 With a bit of luck, less than 50% of the entries will be in Haskell this
 year!
 
-  - Day 1  :
+  - Day 1  : emacs-lisp; just `eval-buffer` on `elisp/day1.el` :)
   - Day 2  :
   - Day 3  :
   - Day 4  :
