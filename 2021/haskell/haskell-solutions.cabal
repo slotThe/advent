@@ -3,10 +3,8 @@ cabal-version: 1.12
 -- This file has been generated from package.yaml by hpack version 0.34.5.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: a250a0d1cc6e64e7dbd7afa95a139398e300fccd61f3ee141ed51627fa3ce9b3
 
-name:           haskell
+name:           haskell-solutions
 version:        0.1.0
 synopsis:       Haskell Solution for (some) AOC 2021 questions
 author:         Solid
@@ -17,9 +15,9 @@ build-type:     Simple
 
 library
   exposed-modules:
-      Main
+      Day2
   other-modules:
-      Paths_haskell
+      Paths_haskell_solutions
   hs-source-dirs:
       src/
   default-extensions:
@@ -35,6 +33,7 @@ library
       MultiWayIf
       TupleSections
       ViewPatterns
+      NoImplicitPrelude
   ghc-options: -O2 -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -Widentities -Wmissing-local-signatures -Wmissing-export-lists -Wmissed-specialisations
   build-depends:
       arithmoi
@@ -55,9 +54,9 @@ library
 executable aoc-2021-haskell
   main-is: Main.hs
   other-modules:
-      Paths_haskell
+      Paths_haskell_solutions
   hs-source-dirs:
-      src
+      app
   default-extensions:
       InstanceSigs
       GeneralizedNewtypeDeriving
@@ -71,6 +70,7 @@ executable aoc-2021-haskell
       MultiWayIf
       TupleSections
       ViewPatterns
+      NoImplicitPrelude
   ghc-options: -O2 -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -Widentities -Wmissing-local-signatures -Wmissing-export-lists -Wmissed-specialisations
   build-depends:
       arithmoi
@@ -81,7 +81,7 @@ executable aoc-2021-haskell
     , containers
     , generic-lens
     , hashable
-    , haskell
+    , haskell-solutions
     , lens
     , text
     , transformers
