@@ -16,6 +16,7 @@ build-type:     Simple
 library
   exposed-modules:
       Day2
+      Util
   other-modules:
       Paths_haskell_solutions
   hs-source-dirs:
