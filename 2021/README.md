@@ -6,7 +6,7 @@ year!
   - Day 1  : [emacs-lisp][Day 1]; just `eval-buffer` on `elisp/day1.el` :)
   - Day 2  : [Haskell][Day 2] and [Clojure][Day 2']
   - Day 3  : [Clojure][Day 3]
-  - Day 4  :
+  - Day 4  : [Clojure][Day 4]
   - Day 5  :
   - Day 6  :
   - Day 7  :
@@ -32,3 +32,4 @@ year!
 [Day 2]: ./haskell/src/Day2.hs
 [Day 2']: ./clojure-solutions/src/clojure_solutions/day2.clj
 [Day 3]: ./clojure-solutions/src/clojure_solutions/day3.clj
+[Day 4]: ./clojure-solutions/src/clojure_solutions/day4.clj
