@@ -7,7 +7,7 @@ year!
   - Day 2  : [Haskell][Day 2] and [Clojure][Day 2']
   - Day 3  : [Clojure][Day 3]
   - Day 4  : [Clojure][Day 4]
-  - Day 5  :
+  - Day 5  : [Clojure][Day 5]
   - Day 6  :
   - Day 7  :
   - Day 8  :
@@ -33,3 +33,4 @@ year!
 [Day 2']: ./clojure-solutions/src/clojure_solutions/day2.clj
 [Day 3]: ./clojure-solutions/src/clojure_solutions/day3.clj
 [Day 4]: ./clojure-solutions/src/clojure_solutions/day4.clj
+[Day 5]: ./clojure-solutions/src/clojure_solutions/day5.clj

@@ -2,7 +2,9 @@
   (:gen-class)
   (:require [clojure-solutions.day2 :as day2]
             [clojure-solutions.day3 :as day3]
-            [clojure-solutions.day4 :as day4]))
+            [clojure-solutions.day4 :as day4]
+            [clojure-solutions.day5 :as day5]
+            ))
 
 (defn -main [& args]
   (println "Day Two:")
@@ -15,4 +17,7 @@
 
   (println "Day Four:")
   (day4/day4)
+
+  (println "Day Five:")
+  (day5/day5)
   )
