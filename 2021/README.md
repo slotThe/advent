@@ -8,7 +8,7 @@ year!
   - Day 3  : [Clojure][Day 3]
   - Day 4  : [Clojure][Day 4]
   - Day 5  : [Clojure][Day 5]
-  - Day 6  :
+  - Day 6  : [Clojure][Day 6]
   - Day 7  :
   - Day 8  :
   - Day 9  :
@@ -34,3 +34,4 @@ year!
 [Day 3]: ./clojure-solutions/src/clojure_solutions/day3.clj
 [Day 4]: ./clojure-solutions/src/clojure_solutions/day4.clj
 [Day 5]: ./clojure-solutions/src/clojure_solutions/day5.clj
+[Day 6]: ./clojure-solutions/src/clojure_solutions/day6.clj
