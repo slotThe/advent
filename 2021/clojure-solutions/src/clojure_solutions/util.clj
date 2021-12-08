@@ -20,6 +20,13 @@
 (defn elem [x xs]
   (some #{x} xs))
 
+(defn permutations [[h & t :as coll]]
+  (if (nil? t)
+    [coll]
+    (for [head coll
+          tail (permutations (disj (set coll) head))]
+      (cons head tail))))
+
 ;;; Parsing
 
 (defn words [s]
