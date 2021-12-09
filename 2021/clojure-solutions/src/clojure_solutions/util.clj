@@ -1,13 +1,22 @@
 (ns clojure-solutions.util
   (:require [clojure.string :as str]))
 
-;;; Converting
+;;; Parsing
 
-(defn str-to-coll-base [b s]
-  (map #(Character/digit % b) s))
+(defn str-to-coll-base
+  "Convert a string into a collection, reading every character in the
+  given base; e.g, \"12312094\" -> '(1 2 3 1 2 0 9 4) in base 10."
+  [b s]
+  (map #(Character/digit ^char % ^int b) s))
 
-(defn coll-to-base [b xs]
-  (BigInteger. (apply str xs) b))
+(defn coll-to-base
+  "Convert a collection a number in the given base; e.g.,
+  '(1 2 3 1 2 0 9 4) -> `12312094' in base 10."
+  [b xs]
+  (BigInteger. ^String (apply str xs) ^int b))
+
+(defn words [s]
+  (str/split s #" "))
 
 ;;; Stuff that should be in clojure.core
 
@@ -48,8 +57,3 @@
                                          (f i j el))
                                        row))
                        mat)))
-
-;;; Parsing
-
-(defn words [s]
-  (str/split s #" "))
