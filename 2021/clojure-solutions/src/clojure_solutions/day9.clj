@@ -28,8 +28,9 @@
           0
           (get-sinks mat)))
 
-(defn- basins
-  "For a given matrix, find all basins."
+(defn- basin-for
+  "For a given matrix `mat', find the basin associated to `el', which
+  should be a sink."
   [mat el]
   (letfn
       ((go [seen [n [i j]]]
@@ -49,7 +50,7 @@
 ;; => 821560
 (defn- part2 [mat]
   (->> (get-sinks mat)
-       (map #(count (basins mat %)))
+       (map #(count (basin-for mat %)))
        (sort >)
        (take 3)
        (reduce *)))
