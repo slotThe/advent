@@ -27,6 +27,28 @@
           tail (permutations (disj (set coll) head))]
       (cons head tail))))
 
+;;; Matrix manipulation
+
+(defn- mat-ix
+  "Return the element at index (i, j).  Returns `nil' if index is
+  out-of-bounds."
+  [m [i j]]
+  (let [rows (count m)
+        cols (count (first m))]
+    (when (and (< -1 i rows) (< -1 j cols))
+      (nth (nth m i) j))))
+
+(defn map-matrix
+  "Map a function f(i, j, el) over all element of a matrix with
+  indices."
+  [mat f]
+  (apply concat
+         (keep-indexed (fn [i row]
+                         (keep-indexed (fn [j el]
+                                         (f i j el))
+                                       row))
+                       mat)))
+
 ;;; Parsing
 
 (defn words [s]
