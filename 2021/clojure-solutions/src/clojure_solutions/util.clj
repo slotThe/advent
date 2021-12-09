@@ -29,7 +29,7 @@
 
 ;;; Matrix manipulation
 
-(defn- mat-ix
+(defn mat-ix
   "Return the element at index (i, j).  Returns `nil' if index is
   out-of-bounds."
   [m [i j]]
