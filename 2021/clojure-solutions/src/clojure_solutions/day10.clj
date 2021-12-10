@@ -1,5 +1,6 @@
 (ns clojure-solutions.day10
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str])
+  (:use [clojure-solutions.util] :reload))
 
 (defn- valid?
   "Check if a given sequence of parentheses is valid; if not, return
@@ -25,7 +26,7 @@
 (defn- part1 [m]
   (let [score {\) 3, \] 57, \} 1197, \> 25137}]
     (->> m
-         (filter (fn [{:keys [fail]}] (some? fail)))
+         (filter #(elem :fail (keys %)))
          (mapcat vals)
          (map score)
          sum)))
@@ -35,7 +36,7 @@
   (let [p-score {\) 1, \] 2, \} 3, \> 4}
         score #(reduce (fn [acc x] (+ (* acc 5) (p-score x))) 0 %)]
     (->> m
-         (filter (fn [{:keys [partial]}] (some? partial)))
+         (filter #(elem :partial (keys %)))
          (mapcat vals)
          (map score)
          sort
