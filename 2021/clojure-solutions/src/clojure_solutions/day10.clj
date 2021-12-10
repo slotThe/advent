@@ -12,9 +12,9 @@
               (let [closing-x ({\{ \}, \[ \], \( \), \< \>} x)]
                 (cond
                   ;; Group ends -> remove both parens.
-                  (= c x)           (go cs xs)
+                  (= c x)           (recur cs xs)
                   ;; new group begins -> add the closing delimiter to `closing'.
-                  (some? closing-x) (go (cons closing-x closing) xs)
+                  (some? closing-x) (recur (cons closing-x closing) xs)
                   ;; No group began and no group ended -> wrong closing paren.
                   (some? x)         {:fail x}
                   ;; End of string -> return partial results
