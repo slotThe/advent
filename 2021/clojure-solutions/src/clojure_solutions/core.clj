@@ -9,6 +9,7 @@
             [clojure-solutions.day8 :as day8]
             [clojure-solutions.day9 :as day9]
             [clojure-solutions.day10 :as day10]
+            [clojure-solutions.day11 :as day11]
             ))
 
 (defn -main [& args]
@@ -40,4 +41,7 @@
 
   (println "Day Ten:")
   (day10/day10)
+
+  (println "Day Eleven:")
+  (day11/day11)
   )

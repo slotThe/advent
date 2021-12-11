@@ -36,6 +36,22 @@
           tail (permutations (disj (set coll) head))]
       (cons head tail))))
 
+(defn converge
+  "Apply a function `f' until it converges."
+  [f xs]
+  (let [xss (f xs)]
+    (if (= xss xs) xs (recur f xss))))
+
+(defn map-val
+  "Map over the values of a given map."
+  [f hmap]
+  (into {} (map (fn [[k v]] {k (f v)})) hmap))
+
+(defn filter-val
+  "Filter a map by applying `f' to its values."
+  [f hmap]
+  (filter #(f (val %)) hmap))
+
 ;;; Matrix manipulation
 
 (defn mat-ix
