@@ -48,9 +48,9 @@
       (nth (nth m i) j))))
 
 (defn map-matrix
-  "Map a function f(i, j, el) over all element of a matrix with
+  "Map a function f(i, j, el) over all elements of a matrix with
   indices."
-  [mat f]
+  [f mat]
   (apply concat
          (keep-indexed (fn [i row]
                          (keep-indexed (fn [j el]

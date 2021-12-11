@@ -15,12 +15,12 @@
    [(inc i) j] [i (inc j)]])
 
 (defn- get-sinks [mat]
-  (map-matrix mat
-              (fn [i j el]
+  (map-matrix (fn [i j el]
                 (when (every? #(< el %)             ; is a sink?
                               (keep #(mat-ix mat %) ; get values of neighbours
                                     (neighbours i j)))
-                  [el [i j]]))))    ; return sink value and indices
+                  [el [i j]]))     ; return sink value and indices
+              mat))
 
 ;; => 631
 (defn- part1 [mat]
