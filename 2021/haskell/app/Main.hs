@@ -1,10 +1,12 @@
 import BasePrelude
 
-import Day2 (day2)
+import Day2  (day2)
+import Day12 (day12)
 
 main :: IO ()
 main = do
-  day 2 day2
+  day 2  day2
+  day 12 day12
 
 day :: (Show a, Show b) => Int -> IO (a, b) -> IO ()
 day (show -> n) res = do

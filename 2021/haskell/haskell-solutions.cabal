@@ -15,6 +15,7 @@ build-type:     Simple
 
 library
   exposed-modules:
+      Day12
       Day2
       Util
   other-modules:
