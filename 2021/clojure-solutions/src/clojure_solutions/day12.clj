@@ -17,13 +17,9 @@
 (defn- small-cave? [kw]
   (= (name kw) (str/lower-case (name kw))))
 
-(defn- small-cave-twice
-  "Return the first small cave that appears twice in the list, if any.
-  The consistency assumption here is that we will never have several
-  small caves appear twice."
-  [path]
+(defn- small-cave-twice [path]
   (let [small-path (filter small-cave? path)]
-    (ffirst (filter-val #(= 2 %) (frequencies small-path)))))
+    (not= (count small-path) (count (set small-path)))))
 
 (defn- solve [keep connections]
   (letfn ((go [path kw]
@@ -49,8 +45,8 @@
            ;; doesn't happen again.  Otherwise, just let everything
            ;; through.
            (not (and (small-cave-twice path)
-                     (and (small-cave? x)
-                          (elem x path)))))
+                     (small-cave? x)
+                     (elem x path))))
          xs))
 
 (defn day12 []
