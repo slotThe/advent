@@ -49,8 +49,9 @@
 
 (defn filter-val
   "Filter a map by applying `f' to its values."
-  [f hmap]
-  (filter #(f (val %)) hmap))
+  ([f]      (filter #(f (val %))))
+  ([f hmap] (filter #(f (val %)) hmap))
+  )
 
 ;;; Matrix manipulation
 
