@@ -3,16 +3,14 @@
   (:use [clojure-solutions.util] :reload))
 
 (defn- parse []
-  (letfn [(parse-xy [a]
-            ((fn [[xy _eq & n]]         ; "x=123" or "y=123"
-               [xy (coll-to-base 10 n)])
-             (drop-while #(and (not= % \x) (not= % \y))
-                         a)))]
+  (letfn [(parse-fold [fold]            ; "blahblah x=123" or "blahblah x=123"
+            (let [[xy _eq & n] (drop-while #(and (not= % \x) (not= % \y)) fold)]
+              [xy (coll-to-base 10 n)]))]
     (->> (slurp "./input/day13.txt")
          (#(str/split % #"\n\n"))       ; split points from folds
          (map str/split-lines)          ; split points and folds into singletons
          ((fn [[points folds]]
-            {:folds (map parse-xy folds)
+            {:folds (map parse-fold folds)
              :dots  (set (map #(read-string (str/join ["[" % "]"])) ; read as vector
                               points))})))))
 
@@ -24,7 +22,7 @@
               \x (if (> x a) [(- a (- x a)) y            ] [x y])
               \y (if (> y a) [x             (- a (- y a))] [x y])))]
     (reduce (fn [acc f]
-              (into #{} (map #(do-fold f %) acc)))
+              (reduce #(conj %1 (do-fold f %2)) #{} acc))
             dots
             folds)))
 
