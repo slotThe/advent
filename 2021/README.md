@@ -15,7 +15,7 @@ year!
   - Day 10 : [Clojure][Day 10]
   - Day 11 : [Clojure][Day 11]
   - Day 12 : [Clojure][Day 12] and [Haskell][Day 12']
-  - Day 13 :
+  - Day 13 : [Clojure][Day 13]
   - Day 14 :
   - Day 15 :
   - Day 16 :
@@ -42,3 +42,4 @@ year!
 [Day 11]: ./clojure-solutions/src/clojure_solutions/day11.clj
 [Day 12]: ./clojure-solutions/src/clojure_solutions/day12.clj
 [Day 12']: ./haskell/src/Day12.hs
+[Day 13]: ./clojure-solutions/src/clojure_solutions/day13.clj
