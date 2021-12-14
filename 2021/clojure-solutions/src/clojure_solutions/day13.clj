@@ -7,7 +7,7 @@
             (let [[xy _eq & n] (drop-while #(and (not= % \x) (not= % \y)) fold)]
               [xy (coll-to-base 10 n)]))]
     (->> (slurp "./input/day13.txt")
-         (#(str/split % #"\n\n"))       ; split points from folds
+         split-groups                   ; split points from folds
          (map str/split-lines)          ; split points and folds into singletons
          ((fn [[points folds]]
             {:folds (map parse-fold folds)

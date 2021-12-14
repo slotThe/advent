@@ -8,7 +8,7 @@
        (map #(map read-string %))))
 
 (defn- parse []
-  (let [[nums & bs] (str/split (slurp "./input/day4.txt") #"\n\n")
+  (let [[nums & bs] (split-groups (slurp "./input/day4.txt"))
         draws (map read-string (str/split nums #","))
         boards (map (comp read-board , #(map words %) , str/split-lines)
                     bs)]

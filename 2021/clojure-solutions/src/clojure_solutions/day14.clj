@@ -4,7 +4,7 @@
 
 (defn- parse []
   (->> (slurp "./input/day14.txt")
-       (#(str/split % #"\n\n"))
+       split-groups
        ((fn [[sample polymers]]
           {:sample (map-from-coll-with + #(hash-map % 1) (partition 2 1 sample))
            :polymers (map-from-coll

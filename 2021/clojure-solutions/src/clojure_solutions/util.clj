@@ -18,6 +18,9 @@
 (defn words [s]
   (str/split s #" "))
 
+(defn split-groups [s]
+  (str/split s #"\n\n"))
+
 ;;; Stuff that should be in clojure.core
 
 (defn sum [xs]
