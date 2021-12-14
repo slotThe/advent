@@ -6,13 +6,16 @@
   (->> (slurp "./input/day14.txt")
        split-groups
        ((fn [[sample polymers]]
-          {:sample (map-from-coll-with + #(hash-map % 1) (partition 2 1 sample))
+          {:sample sample
            :polymers (map-from-coll
                       #(let [[[_ a b]] (re-seq #"(\w+) -> (\w)" %)]
                          {(vec a) (first (vec b))})
                       (str/split-lines polymers))}))))
 
-(defn- simulate [sample polymers]
+(defn- simulate
+  "Simulate polymer construction.  Returns every step at once as an
+  infinite list."
+  [sample polymers]
   (iterate
    #(reduce (fn [acc [[a c :as k] v]]
               (let [b (polymers k)
@@ -26,7 +29,8 @@
                         updater)))
             {}
             %)
-   sample))
+   ;; Create frequency map of pairs as a starting point.
+   (map-from-coll-with + #(hash-map % 1) (partition 2 1 sample))))
 
 (defn- solve [step]
   (->> step
