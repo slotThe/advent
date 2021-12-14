@@ -50,8 +50,22 @@
 (defn filter-val
   "Filter a map by applying `f' to its values."
   ([f]      (filter #(f (val %))))
-  ([f hmap] (filter #(f (val %)) hmap))
-  )
+  ([f hmap] (filter #(f (val %)) hmap)))
+
+(defn map-from-coll-with
+  "Turn a collection into a map.  First map `g' over every element to
+  produce a map and then merge the resulting maps, applying `f' in case
+  of duplicate keys.  For example:
+
+    (map-from-coll-with + #(hash-map % 1) [1 2 3 1]) ≡ {1 2, 3 1, 2 1}."
+  [f g coll]
+  (apply merge-with f (map g coll)))
+
+(defn map-from-coll
+  "Like `map-from-coll-with', but ignore the second value in case of a
+  conflict."
+  [g coll]
+  (map-from-coll-with (fn [a _] a) g coll))
 
 ;;; Matrix manipulation
 
