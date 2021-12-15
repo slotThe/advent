@@ -13,6 +13,7 @@
             [clojure-solutions.day12 :as day12]
             [clojure-solutions.day13 :as day13]
             [clojure-solutions.day14 :as day14]
+            [clojure-solutions.day15 :as day15]
             ))
 
 (defn -main [& args]
@@ -56,4 +57,7 @@
 
   (println "Day Forteen:")
   (day14/day14)
+
+  (println "Day Fifteen:")
+  (day15/day15)
   )
