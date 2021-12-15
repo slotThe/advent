@@ -1,9 +1,8 @@
 (ns clojure-solutions.day15
   (:require [clojure.string :as str]
-            [clojure.data.priority-map :refer [priority-map]])
-  (:use [clojure-solutions.util]
-        [clojure.walk]
-        :reload))
+            [clojure.data.priority-map :refer [priority-map]]
+            [clojure.walk :refer [walk]])
+  (:use [clojure-solutions.util] :reload))
 
 (defn- parse []
   (->> (slurp "./input/day15.txt")
@@ -32,27 +31,27 @@
   performance."
   [start more]
   (letfn [(mincost [cost cost*]
-            (fn [cc] (if cc           ; if value exists, take the minimum
+            (fn [cc] (if cc          ; if value exists, take the minimum
                        (min cc (+ cost cost*))
                        (+ cost cost*))))]
     (loop [all-costs  {}
            seen       #{}
            looking-at (priority-map start 0)]
-        (if (empty? looking-at)      ; no more points to look at -> STOP
-          all-costs
-          (let [[u cost-u] (peek looking-at)
-                tail (or (pop looking-at) (priority-map))]
-            (if (seen u)        ;  check for seen in case `more' doesn't
-              (recur all-costs seen tail)
-              (recur (assoc all-costs u cost-u) ; final cost is minimal
-                     (conj seen u)
-                     (reduce (fn [acc [n cost-n]]
-                               ;; Remember only the minimal cost of a neighbour.
-                               (update acc n (mincost cost-u cost-n)))
-                             tail
-                             (more u seen)))))))))
+      (if (empty? looking-at)        ; no more points to look at -> STOP
+        all-costs
+        (let [[u cost-u] (peek looking-at)
+              tail (pop looking-at)]
+          (if (seen u)               ;  check for seen in case `more' doesn't
+            (recur all-costs seen tail)
+            (recur (assoc all-costs u cost-u) ; final, minimal, cost of a point
+                   (conj seen u)
+                   (reduce (fn [acc [n cost-n]]
+                             ;; Remember only the minimal cost of a neighbour.
+                             (update acc n (mincost cost-u cost-n)))
+                           tail
+                           (more u seen)))))))))
 
-(defn widen [grid size dir times]
+(defn- widen [grid size dir times]
   (letfn [(go [mult]
               (reduce (fn [acc [[r c] v]]
                         (assoc acc
