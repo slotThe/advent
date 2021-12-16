@@ -19,6 +19,7 @@ default-extensions:
   - TupleSections
   - ViewPatterns
   - NoImplicitPrelude
+  - StrictData
 
 ghc-options:
   -O2
@@ -37,15 +38,6 @@ dependencies:
   - base-prelude
   - containers
   - unordered-containers
-  - text
-  - bytestring
-  - attoparsec
-  - hashable
-  - vector
-  - transformers
-  - lens
-  - generic-lens
-  - arithmoi
 
 library:
   source-dirs: src/

@@ -3,6 +3,8 @@ cabal-version: 1.12
 -- This file has been generated from package.yaml by hpack version 0.34.5.
 --
 -- see: https://github.com/sol/hpack
+--
+-- hash: 27351d2e4168c9a6d7051e4517efd3c86fd5f3e9828e54efe538bb12cae10a07
 
 name:           haskell-solutions
 version:        0.1.0
@@ -16,6 +18,7 @@ build-type:     Simple
 library
   exposed-modules:
       Day12
+      Day16
       Day2
       Util
   other-modules:
@@ -36,21 +39,13 @@ library
       TupleSections
       ViewPatterns
       NoImplicitPrelude
+      StrictData
   ghc-options: -O2 -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -Widentities -Wmissing-local-signatures -Wmissing-export-lists -Wmissed-specialisations
   build-depends:
-      arithmoi
-    , attoparsec
-    , base
+      base
     , base-prelude
-    , bytestring
     , containers
-    , generic-lens
-    , hashable
-    , lens
-    , text
-    , transformers
     , unordered-containers
-    , vector
   default-language: Haskell2010
 
 executable aoc-2021-haskell
@@ -73,20 +68,12 @@ executable aoc-2021-haskell
       TupleSections
       ViewPatterns
       NoImplicitPrelude
+      StrictData
   ghc-options: -O2 -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -Widentities -Wmissing-local-signatures -Wmissing-export-lists -Wmissed-specialisations
   build-depends:
-      arithmoi
-    , attoparsec
-    , base
+      base
     , base-prelude
-    , bytestring
     , containers
-    , generic-lens
-    , hashable
     , haskell-solutions
-    , lens
-    , text
-    , transformers
     , unordered-containers
-    , vector
   default-language: Haskell2010
