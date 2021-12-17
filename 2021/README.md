@@ -19,7 +19,7 @@ year!
   - Day 14 : [Clojure][Day 14]
   - Day 15 : [Clojure][Day 15]
   - Day 16 : [Haskell][Day 16]
-  - Day 17 :
+  - Day 17 : [Clojure][Day 17]
   - Day 18 :
   - Day 19 :
   - Day 20 :
@@ -46,3 +46,4 @@ year!
 [Day 14]: ./clojure-solutions/src/clojure_solutions/day14.clj
 [Day 15]: ./clojure-solutions/src/clojure_solutions/day15.clj
 [Day 16]: ./haskell/src/Day16.hs
+[Day 17]: ./clojure-solutions/src/clojure_solutions/day17.clj
