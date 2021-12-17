@@ -54,7 +54,8 @@
 ;; velocity by 1 until we hit y-velocity ≡ 0 at the highest point.  We
 ;; then stay at the highest spot for one step and, when the y-velocity
 ;; gets decreased to -1, start moving again.  After that we go down in
-;; the same fashion, meaning when will reach (x, -y₁) with a velocity of
-;; succ(y₁) and (x', 0) with one of exactly y₁.  This puts us into the
-;; last allowed row after that jump.  This is also why we can't use -y₁
-;; as an initial velocity; we'd jump succ(y₁) fields from 0 and miss!
+;; the same fashion, meaning when will depart from (x, -y₁) with a
+;; velocity of succ(y₁) and from (x', 0) with one of exactly y₁.  This
+;; puts us into the last allowed row after that jump.  This is also why
+;; we can't use -y₁ as an initial velocity; we'd jump succ(y₁) fields
+;; from 0 and miss!
