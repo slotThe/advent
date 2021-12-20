@@ -21,6 +21,24 @@
 (defn split-groups [s]
   (str/split s #"\n\n"))
 
+;;; Pretty printing
+
+(defn plot-set
+  "Plot a set of points of the form [x y]; ASCII style."
+  [s]
+  (let [[xmax ymax] (reduce (fn [[x-max y-max] [x y]]
+                              [(max x-max x) (max y-max y)])
+                            s)
+        [xmin ymin] (reduce (fn [[x-min y-min] [x y]]
+                              [(min x-min x) (min y-min y)])
+                            s)]
+    (map (fn [line] (str/join
+                     (map (fn [[a b]] (if (s [a b]) "█" " "))
+                          line)))
+         (map (fn [y] (map #(vector % y)
+                           (range xmin (inc xmax))))
+              (range ymin (inc ymax))))))
+
 ;;; Stuff that should be in clojure.core
 
 (defn sum [xs]

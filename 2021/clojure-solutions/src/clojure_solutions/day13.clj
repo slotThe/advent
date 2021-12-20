@@ -26,20 +26,6 @@
             dots
             folds)))
 
-(defn- plot-set
-  "Plot a set of points of the form [x y] that are in the positive
-  quadrant.  ASCII style."
-  [s]
-  (let [[xm ym] (reduce (fn [[x-max y-max] [x y]]
-                          [(max x-max x) (max y-max y)])
-                        s)]
-    (map (fn [line] (str/join
-                     (map (fn [[a b]] (if (s [b a]) "█" " "))
-                          line)))
-         (map (fn [a] (map #(vector a %)
-                           (range 0 (inc xm))))
-              (range 0 (inc ym))))))
-
 (defn day13 []
   (let [{:keys [folds dots]} (parse)]
     (println (count (solve (take 1 folds) dots))) ; => 607
