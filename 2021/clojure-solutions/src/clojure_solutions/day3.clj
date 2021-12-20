@@ -15,9 +15,8 @@
 
 ;; 3959450
 (defn one []
-  (let [nums (parse)
-        n (/ (count nums) 2)
-        gamma (freqs nums >)
+  (let [nums    (parse)
+        gamma   (freqs nums >)
         epsilon (freqs [gamma] =)]      ; funky negation :^)
     (* (coll-to-base 2 gamma) (coll-to-base 2 epsilon))))
 

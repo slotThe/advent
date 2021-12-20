@@ -69,9 +69,9 @@
     x))
 
 (defn day18 []
-  (let [prep-fish (comp reduce-fish z/vector-zip vector)]
-    (let [input (parse)]
-      (println (magnitude (reduce prep-fish input))) ; => 4072
-      (println (apply max                            ; => 4483
-                      (for [x input, y input]
-                        (magnitude (prep-fish x y))))))))
+  (let [prep-fish (comp reduce-fish z/vector-zip vector)
+        input     (parse)]
+    (println (magnitude (reduce prep-fish input))) ; => 4072
+    (println (apply max                            ; => 4483
+                    (for [x input, y input]
+                      (magnitude (prep-fish x y)))))))

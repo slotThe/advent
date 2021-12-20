@@ -34,7 +34,7 @@
             :else (recur [new-x new-y] [new-xvel new-yvel] (max new-y max-y))))))
 
 (defn day17 []
-  (let [{[x1 x2] :x, [y1 y2] :y} (parse)
+  (let [{[_ x2] :x, [y1 _] :y} (parse)
         max-height (quot (* (dec (- y1)) (- y1)) 2) ; See Note [Max Height]
         successes (filter :max-y
                           (for [x-vel (range 0  (inc x2))

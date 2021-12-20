@@ -22,7 +22,7 @@
   "Filter for the lengths of the unique numbers."
   []
   ;; => 237
-  (letfn ((filter-line [[signals output]]
+  (letfn ((filter-line [[_ output]]
             (filter #(#{2 3 4 7} (count %)) output)))
     (count (mapcat filter-line (parse)))))
 

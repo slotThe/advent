@@ -51,7 +51,7 @@
                            tail
                            (more u seen)))))))))
 
-(defn- widen [grid size dir times]
+(defn- widen [grid size dir]
   (letfn [(go [mult]
               (reduce (fn [acc [[r c] v]]
                         (assoc acc
@@ -69,8 +69,8 @@
         dim5 (* 5 dim)
         big-grid (walk #(apply merge %) ; outer
                        #(apply merge %) ; inner
-                       (map (fn [g] (widen g dim :right 5))
-                            (widen grid dim :down 5)))
+                       (map (fn [g] (widen g dim :right))
+                            (widen grid dim :down)))
         costs (dijkstra [0 0]
                         (fn [p seen]
                           (map (fn [p*] [p* (big-grid p*)])
