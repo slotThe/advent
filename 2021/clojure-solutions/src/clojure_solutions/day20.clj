@@ -14,7 +14,7 @@
                   (map-matrix (fn [i j el] {[j i] el}))
                   (apply merge))})))
 
-(defn- around [i j]
+(defn- around [[i j]]
   (for [x [-1 0 1], y [-1 0 1]]
     [(+ i y) (+ j x)]))
 
@@ -38,18 +38,18 @@
     (map first                          ; get rid of iteration counter
          (iterate
           (fn [[g n]]
-            (let [keys-g (keys g)
-                  default (if (and (even? n) special-even?) 1 0)]
-              (letfn [(lookup [x y]
-                        (->> (around x y)
-                             (map #(get g % default)) ; look up state of neighbours
-                             (coll-to-base 2)         ; into decimal number for lookup
-                             enhancement))]           ; look up up new state
-                [(persistent!
-                  (reduce (fn [acc [x y]] (assoc! acc [x y] (lookup x y)))
-                          (transient {})
-                          (concat keys-g (grow keys-g))))
-                 (inc n)])))
+            (let [keys-g  (keys g)
+                  default (if (and (even? n) special-even?) 1 0)
+                  lookup  (fn [point]
+                            (->> (around point)
+                                 (map #(get g % default)) ; look up state of neighbours
+                                 (coll-to-base 2)         ; into decimal number for lookup
+                                 enhancement))]           ; look up up new state
+              [(persistent!
+                (reduce (fn [acc point] (assoc! acc point (lookup point)))
+                        (transient {})
+                        (concat keys-g (grow keys-g))))
+               (inc n)]))
           [grid 1]))))
 
 (defn day20 []
