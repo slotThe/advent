@@ -11,25 +11,20 @@
   [n]
   (inc (mod (dec n) 10)))
 
-(defn- steps [[p1 p2]]
+(defn- part1 [[p1 p2] target]
   (letfn [(inc-die [x]
-            (if (= x 99)
-              [100 1 2]
+            (if (= x (dec target))
+              [target 1 2]
               [(inc x) (+ 2 x) (+ 3 x)]))]
-    (map (partial take 3)                           ; get rid of dice
-         (iterate
-          (fn [[[pos score] next-turn rolls [x1 x2 x3]]]
-            (let [new-pos   (move (+ pos x1 x2 x3)) ; move forward
-                  new-score (+ new-pos score)]
-              [next-turn [new-pos new-score] (+ rolls 3) (inc-die x3)]))
-          [[p1 0] [p2 0] 0 [1 2 3]]))))
-
-(defn- part1 [input]
-  (reduce (fn [_ [[_ s1] [_ s2] rolls]]
-            (cond (<= 1000 s1) (reduced (* s2 rolls))
-                  (<= 1000 s2) (reduced (* s1 rolls))
-                  :else        :continue))
-          (steps input)))
+    (loop [[pos score] [p1 0]
+           next-turn   [p2 0]
+           rolls       0
+           [x1 x2 x3]  [1 2 3]]
+      (let [new-pos   (move (+ pos x1 x2 x3)) ; move forward
+            new-score (+ new-pos score)]
+        (if (<= target new-score)
+          (* (second next-turn) (+ rolls 3))  ; score of loser * #rolls
+          (recur next-turn [new-pos new-score] (+ rolls 3) (inc-die x3)))))))
 
 (def part2
   (let [freqs (frequencies (for [x [1 2 3], y [1 2 3], z [1 2 3]]
@@ -52,6 +47,6 @@
 
 (defn day21 []
   (let [[p1 p2] (parse)]
-    (println (part1 [p1 p2]))                   ; => 556206
+    (println (part1 [p1 p2] 1000))              ; => 556206
     (println (apply max (part2 [p1 0] [p2 0]))) ; => 630797200227453
     ))
