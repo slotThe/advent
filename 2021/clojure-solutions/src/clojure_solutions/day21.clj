@@ -33,24 +33,22 @@
 
 (def part2
   (let [freqs (frequencies (for [x [1 2 3], y [1 2 3], z [1 2 3]]
-                             (+ x y z)))
-        go (fn [[turn score] next-turn]
-             (declare part2)      ; hack so I can call the parent function
-             (reduce (fn [[a b] [c d]] [(+ a c) (+ b d)]) ; add up results
-                     [0 0]
-                     (for [[roll multiplier] freqs
-                           :let [new-turn  (move (+ turn roll))
-                                 new-score (+ score new-turn)]]
-                       (if (>= new-score 21) ; check if current turns wins
-                         [multiplier 0]
-                         ;; Otherwise, check the next turn and flip the
-                         ;; result (it's `next-turn`s turn, next turn :)
-                         ((fn [[next this]]
-                            [(* multiplier this) (* multiplier next)])
-                          ;; Call `part2` here and not `go` so we
-                          ;; actually benefit from the memoisation.
-                          (part2 next-turn [new-turn new-score]))))))]
-    (memoize go)))
+                             (+ x y z)))]
+    (memoize
+     (fn [[turn score] next-turn]
+       (reduce (fn [[a b] [c d]] [(+ a c) (+ b d)])     ; add up results
+               [0 0]
+               (for [[roll multiplier] freqs
+                     :let [new-turn (move (+ turn roll))
+                           new-score (+ score new-turn)]]
+                 (if (>= new-score 21)     ; check if current turns wins
+                   [multiplier 0]
+                   ;; Otherwise, check the next turn and flip the
+                   ;; result (it's `next-turn`s turn, next turn :)
+                   ((fn [[next this]]
+                      [(* multiplier this) (* multiplier next)])
+                    ;; Call `part2` to benefit from the memoisation.
+                    (part2 next-turn [new-turn new-score])))))))))
 
 (defn day21 []
   (let [[p1 p2] (parse)]
