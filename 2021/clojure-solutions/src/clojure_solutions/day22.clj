@@ -41,26 +41,25 @@
               (concat includes (keep #(intersect cuboid %) excludes)))
    :excludes (concat excludes (keep #(intersect cuboid %) includes))})
 
-(defn- lit-up
-  "How many cubes are lit up?"
-  [{:keys [includes excludes]}]
-  (letfn [(vol [[x1 x2 y1 y2 z1 z2]]
-            (* (inc (- x2 x1))
-               (inc (- y2 y1))
-               (inc (- z2 z1))))]
-    (- (sum (map vol includes))
-       (sum (map vol excludes)))))
+(defn- solve [cubes]
+  (letfn [(lit-up [{:keys [includes excludes]}]
+            (letfn [(vol [[x1 x2 y1 y2 z1 z2]]
+                      (* (inc (- x2 x1))
+                         (inc (- y2 y1))
+                         (inc (- z2 z1))))]
+              (- (sum (map vol includes))
+                 (sum (map vol excludes)))))]
+    (->> cubes
+         (reduce include-exclude
+                 {:includes [] :excludes []})
+         lit-up)))
 
 (defn day22 []
   (let [input (parse)
         restrict (keep (fn [[on-off cuboid]]
                          (when-let [isect (intersect [-50 50 -50 50 -50 50] cuboid)]
                            [on-off isect]))
-                       input)
-        solve (fn [cubes]
-                (lit-up (reduce include-exclude
-                                {:includes [] :excludes []}
-                                cubes)))]
+                       input)]
     (println (solve restrict))          ; => 581108
     (println (solve input))             ; => 1325473814582641
     ))

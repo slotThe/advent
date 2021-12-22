@@ -24,7 +24,7 @@ year!
   - Day 19 :
   - Day 20 : [Clojure][Day 20]
   - Day 21 : [Clojure][Day 21]
-  - Day 22 :
+  - Day 22 : [Clojure][Day 22]
   - Day 23 :
   - Day 24 :
 
@@ -50,3 +50,4 @@ year!
 [Day 18]: ./clojure-solutions/src/clojure_solutions/day18.clj
 [Day 20]: ./clojure-solutions/src/clojure_solutions/day20.clj
 [Day 21]: ./clojure-solutions/src/clojure_solutions/day21.clj
+[Day 22]: ./clojure-solutions/src/clojure_solutions/day22.clj
