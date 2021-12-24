@@ -26,7 +26,7 @@ year!
   - Day 21 : [Clojure][Day 21]
   - Day 22 : [Clojure][Day 22]
   - Day 23 : [By hand!][Day 23]
-  - Day 24 :
+  - Day 24 : [Clojure][Day 24]
 
 [Day 1]: ./elisp/day1.el
 [Day 2]: ./haskell/src/Day2.hs
@@ -52,3 +52,4 @@ year!
 [Day 21]: ./clojure-solutions/src/clojure_solutions/day21.clj
 [Day 22]: ./clojure-solutions/src/clojure_solutions/day22.clj
 [Day 23]: ./day23.txt
+[Day 24]: ./clojure-solutions/src/clojure_solutions/day24.clj
