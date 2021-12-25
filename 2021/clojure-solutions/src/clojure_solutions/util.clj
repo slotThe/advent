@@ -63,6 +63,13 @@
   (let [xss (f xs)]
     (if (= xss xs) xs (recur f xss))))
 
+(defn converge-when
+  "Apply a function `f' until it converges and count how long that takes."
+  ([f xs]   (converge-when f xs 0))
+  ([f xs n]
+   (let [xss (f xs), m (inc n)]
+     (if (= xss xs) [m xs] (recur f xss m)))))
+
 (defn map-val
   "Map over the values of a given map."
   [f hmap]
