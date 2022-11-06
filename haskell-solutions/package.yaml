@@ -1,0 +1,47 @@
+name:                haskell-solutions
+version:             0.1.0
+synopsis:            Haskell Solution for (some) AOC 2022 questions
+license:             AGPL-3
+author:              Tony Zorman
+maintainer:          soliditsallgood@mailbox.org
+
+default-extensions:
+  - InstanceSigs
+  - GeneralizedNewtypeDeriving
+  - DerivingStrategies
+  - OverloadedStrings
+  - NamedFieldPuns
+  - ScopedTypeVariables
+  - LambdaCase
+  - BlockArguments
+  - TypeApplications
+  - MultiWayIf
+  - TupleSections
+  - ViewPatterns
+  - NoImplicitPrelude
+  - StrictData
+
+ghc-options:
+  -Weverything
+  -Wno-implicit-prelude
+  -Wno-missing-import-lists
+  -Wno-unused-packages
+  -Wno-missing-safe-haskell-mode
+  -Wno-all-missed-specialisations
+  -Wno-unsafe
+  -O2
+
+dependencies:
+  - base
+  - base-prelude
+  - containers
+  - unordered-containers
+
+library:
+  source-dirs: src/
+
+executables:
+  aoc-2022-haskell:
+    source-dirs: app
+    main: Main.hs
+    dependencies: haskell-solutions

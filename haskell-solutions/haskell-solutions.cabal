@@ -1,0 +1,76 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: d2f2dd45369d17616c5bc02c2f9774314e2dd5213092934d81894ab0335bef2d
+
+name:           haskell-solutions
+version:        0.1.0
+synopsis:       Haskell Solution for (some) AOC 2022 questions
+author:         Tony Zorman
+maintainer:     soliditsallgood@mailbox.org
+license:        AGPL-3
+license-file:   LICENSE
+build-type:     Simple
+
+library
+  exposed-modules:
+      Util
+  other-modules:
+      Paths_haskell_solutions
+  hs-source-dirs:
+      src/
+  default-extensions:
+      InstanceSigs
+      GeneralizedNewtypeDeriving
+      DerivingStrategies
+      OverloadedStrings
+      NamedFieldPuns
+      ScopedTypeVariables
+      LambdaCase
+      BlockArguments
+      TypeApplications
+      MultiWayIf
+      TupleSections
+      ViewPatterns
+      NoImplicitPrelude
+      StrictData
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -O2
+  build-depends:
+      base
+    , base-prelude
+    , containers
+    , unordered-containers
+  default-language: Haskell2010
+
+executable aoc-2022-haskell
+  main-is: Main.hs
+  other-modules:
+      Paths_haskell_solutions
+  hs-source-dirs:
+      app
+  default-extensions:
+      InstanceSigs
+      GeneralizedNewtypeDeriving
+      DerivingStrategies
+      OverloadedStrings
+      NamedFieldPuns
+      ScopedTypeVariables
+      LambdaCase
+      BlockArguments
+      TypeApplications
+      MultiWayIf
+      TupleSections
+      ViewPatterns
+      NoImplicitPrelude
+      StrictData
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -O2
+  build-depends:
+      base
+    , base-prelude
+    , containers
+    , haskell-solutions
+    , unordered-containers
+  default-language: Haskell2010
