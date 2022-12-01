@@ -1,12 +1,13 @@
-import BasePrelude
+import Day1
+import Util
 
 main :: IO ()
-main = print "hi!"
+main = day 1 day1
 
 day :: (Show a, Show b) => Int -> IO (a, b) -> IO ()
 day (show -> n) res = do
   (one, two) <- res
-  putStrLn $ "--- Day " <> n <> " ---"
-  putStrLn $ "Part One: " <> show one
-  putStrLn $ "Part Two: " <> show two
+  putStrLn $ "!!! Day " <> n <> " !!!"
+  putStrLn $ "First  Task: " <> show one
+  putStrLn $ "Second Task: " <> show two
   putStrLn ""
