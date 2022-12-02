@@ -9,5 +9,5 @@
        (map #(map read-string %))
        (map sum)))
 
-(defn- get-nth-most-wanted [n]
+(defn get-nth-most-wanted [n]
   (sum (take n (sort > (parse)))))
