@@ -1,7 +1,7 @@
 # Advent of Code 2022
 
   - Day 1  : [Rust][day1:rust], [Clojure][day1:clojure], and [Haskell][day1:haskell]
-  - Day 2  :
+  - Day 2  : [Rust][day2:rust], [Clojure][day2:clojure]
   - Day 3  :
   - Day 4  :
   - Day 5  :
@@ -29,3 +29,5 @@
 [day1:rust]: ./rust-solutions/src/day1.rs
 [day1:clojure]: ./clojure-solutions/src/clojure_solutions/day1.clj
 [day1:haskell]: ./haskell-solutions/src/Day1.hs
+[day2:rust]: ./rust-solutions/src/day2.rs
+[day2:clojure]: ./clojure-solutions/src/clojure_solutions/day2.clj
