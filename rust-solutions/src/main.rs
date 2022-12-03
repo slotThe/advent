@@ -10,7 +10,7 @@ fn main() {
         day1::get_nth_most_wanted(3),
     );
     print_day(2, day2::day2(util::Part::One), day2::day2(util::Part::Two));
-    println!("{:?}", day3::parse());
+    print_day(3, day3::day3(util::Part::One), day3::day3(util::Part::Two));
 }
 
 fn print_day<A, B>(num: usize, one: A, two: B)
