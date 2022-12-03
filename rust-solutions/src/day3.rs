@@ -8,32 +8,28 @@ pub fn day3(p: Part) -> usize {
     }
 }
 
-fn get_input() -> String {
-    std::fs::read_to_string("./input/day3.txt").unwrap()
+fn get_input() -> Vec<String> {
+    std::fs::read_to_string("./input/day3.txt")
+        .unwrap()
+        .lines()
+        .map(|s| s.to_string())
+        .collect()
 }
 
 fn solve<F>(parse: F) -> usize
 where
     F: Fn() -> Vec<Vec<String>>,
 {
-    let string_to_set = |s: &String| -> HashSet<char> {
-        let mut hs = HashSet::new();
-        s.chars().for_each(|c| {
-            hs.insert(c);
-        });
-        hs
-    };
-
     parse()
         .iter()
-        .map(|v| intersect_hashsets(v.iter().map(string_to_set)))
+        .map(|v| intersect_hashsets(v.iter().map(|s| s.chars().collect())))
         .map(|hs| value(*hs.iter().next().unwrap())) // ????
         .sum()
 }
 
 fn parse1() -> Vec<Vec<String>> {
     get_input()
-        .lines()
+        .iter()
         .map(|s| {
             let split = s.len() / 2;
             vec![s[0..split].to_string(), s[split..].to_string()]
@@ -43,33 +39,25 @@ fn parse1() -> Vec<Vec<String>> {
 
 fn parse2() -> Vec<Vec<String>> {
     get_input()
-        .lines()
-        .map(|s| s.to_string())
-        .collect::<Vec<String>>()
         .chunks(3)
-        .map(|x| x.to_vec())
+        .map(|x| x.iter().map(|s| s.to_string()).collect())
         .collect()
 }
 
 // How is this so hard/not built into the HashSet module?
-fn intersect_hashsets<I>(mut hash_sets: I) -> HashSet<char>
+fn intersect_hashsets<I>(hash_sets: I) -> HashSet<char>
 where
     I: Iterator<Item = HashSet<char>>,
 {
-    if let Some(first) = hash_sets.next() {
-        hash_sets.fold(first, |acc, el| {
-            acc.intersection(&el).copied().collect() // uff²
-        })
-    } else {
-        HashSet::new()
-    }
+    hash_sets
+        .reduce(|acc, el| acc.intersection(&el).copied().collect()) // uff²
+        .unwrap()
 }
 
 fn value(c: char) -> usize {
-    let ascii = c as usize;
-    if (97..=122).contains(&ascii) {
-        ascii - 96
-    } else {
-        ascii - 38
+    match c {
+        'a'..='z' => c as usize - 'a' as usize + 1,
+        'A'..='Z' => c as usize - 'A' as usize + 27,
+        _ => unreachable!(),
     }
 }
