@@ -1,7 +1,4 @@
-pub enum Part {
-    One,
-    Two,
-}
+use crate::util::*;
 
 pub fn day2(p: Part) -> usize {
     match p {
