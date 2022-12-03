@@ -1,8 +1,11 @@
 import Day1
+import Day3
 import Util
 
 main :: IO ()
-main = day 1 day1
+main = do
+  day 1 day1
+  day 3 day3
 
 day :: (Show a, Show b) => Int -> IO (a, b) -> IO ()
 day (show -> n) res = do
