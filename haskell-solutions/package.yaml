@@ -20,6 +20,7 @@ default-extensions:
   - ViewPatterns
   - NoImplicitPrelude
   - StrictData
+  - GADTs
 
 ghc-options:
   -Weverything
