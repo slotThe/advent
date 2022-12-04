@@ -6,6 +6,12 @@
 (defn- parse []
   (str/split-lines (slurp "./input/day3.txt")))
 
+(defn- value [c]
+  (let [ascii (int c)]
+    (cond
+      (<= 97 ascii 122) (- ascii 96)
+      (<= 65 ascii 90 ) (- ascii 38))))
+
 (defn- solve [fun]
   (->> (parse)                           ; ["AA" "acD" …]
        fun                               ; [[[\A \A] …] [[\c \Z \a] …] …]
@@ -13,12 +19,6 @@
        (map #(apply set/intersection %)) ; [#{\A} #{\Z} …]
        (map (comp value first))          ; (+ 27 52 …)
        sum))
-
-(defn- value [c]
-  (let [ascii (int c)]
-    (cond
-      (<= 97 ascii 122) (- ascii 96)
-      (<= 65 ascii 90 ) (- ascii 38))))
 
 (defn day3 [part]
   (case part
