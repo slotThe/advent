@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a964010afd08d786242ae66f173b13844d8272c04ad6196a76e07f1894c85bf8
+-- hash: 75d168d34f8d1e07a9f3e466e0b367e37967f431c0773759a2157d70a74fb350
 
 name:           haskell-solutions
 version:        0.1.0
@@ -20,6 +20,7 @@ library
       Day1
       Day3
       Day4
+      Day5
       Util
   other-modules:
       Paths_haskell_solutions
@@ -43,7 +44,8 @@ library
       GADTs
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -O2
   build-depends:
-      base
+      array
+    , base
     , base-prelude
     , containers
     , text
@@ -74,7 +76,8 @@ executable aoc-2022-haskell
       GADTs
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -O2
   build-depends:
-      base
+      array
+    , base
     , base-prelude
     , containers
     , haskell-solutions

@@ -1,16 +1,8 @@
-{-# OPTIONS_GHC -Wno-orphans #-}
 {-# LANGUAGE RecordWildCards #-}
 module Day4 (day4) where
 
-import Data.Kind (Type)
 import Text.ParserCombinators.ReadP
 import Util
-
--- | We want to use @"string"@ as a parser with @OverloadedStrings@
--- instead of having to write @string "string"@—make it so.
-instance a ~ String => IsString (ReadP a) where
-  fromString :: String -> ReadP a
-  fromString = string
 
 type RangePair :: Type
 data RangePair = RangePair
@@ -39,8 +31,4 @@ parse :: String -> Maybe RangePair
 parse = fmap fst . listToMaybe . readP_to_S pRangePair
  where
   pRangePair :: ReadP RangePair
-  pRangePair =
-    RangePair <$> (num <* "-") <*> (num <* ",") <*> (num <* "-") <*> (num <* eof)
-
-  num :: ReadP Int
-  num = read <$> munch1 isDigit
+  pRangePair = RangePair <$> (pNum <* "-") <*> (pNum <* ",") <*> (pNum <* "-") <*> (pNum <* eof)

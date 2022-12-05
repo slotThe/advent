@@ -38,6 +38,7 @@ dependencies:
   - containers
   - unordered-containers
   - text
+  - array
 
 library:
   source-dirs: src/
