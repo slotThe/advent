@@ -5,7 +5,7 @@
   - Day 3  : [Clojure][day3:clojure], [Rust][day3:rust], [Haskell][day3:haskell]
   - Day 4  : [Rust][day4:rust], [Clojure][day4:clojure], [Haskell][day4:haskell]
   - Day 5  : [Haskell][day5:haskell], [Clojure][day5:clojure]
-  - Day 6  : [Haskell][day6:haskell], [Clojure][day6:clojure]
+  - Day 6  : [Haskell][day6:haskell], [Clojure][day6:clojure], [Rust][day6:rust]
   - Day 7  :
   - Day 8  :
   - Day 9  :
@@ -41,3 +41,4 @@
 [day5:clojure]: ./clojure-solutions/src/clojure_solutions/day5.clj
 [day6:haskell]: ./haskell-solutions/src/Day6.hs
 [day6:clojure]: ./clojure-solutions/src/clojure_solutions/day6.clj
+[day6:rust]: ./rust-solutions/src/day6.rs

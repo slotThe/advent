@@ -2,6 +2,7 @@ pub mod day1;
 pub mod day2;
 pub mod day3;
 pub mod day4;
+pub mod day6;
 pub mod util;
 
 fn main() {
@@ -13,6 +14,7 @@ fn main() {
     print_day(2, day2::day2(util::Part::One), day2::day2(util::Part::Two));
     print_day(3, day3::day3(util::Part::One), day3::day3(util::Part::Two));
     print_day(4, day4::day4(util::Part::One), day4::day4(util::Part::Two));
+    print_day(6, day6::day6(util::Part::One), day6::day6(util::Part::Two));
 }
 
 fn print_day<A, B>(num: usize, one: A, two: B)
