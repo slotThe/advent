@@ -1,4 +1,5 @@
-(ns clojure-solutions.day4)
+(ns clojure-solutions.day4
+  (:require [clojure.string :as str]))
 
 (defn- completely-overlap [{[e11 e12] :elf1, [e21 e22] :elf2}]
   (or (and (<= e21 e11) (<= e12 e22))
