@@ -4,7 +4,7 @@ import Util
 
 day6 :: IO (Int, Int)
 day6 = do
-  f <- readFile "./puzzle-input/day6.txt"
+  f <- readFile "../inputs/day6.txt"
   pure (getStartOfMarker 4 f, getStartOfMarker 14 f)
 
 getStartOfMarker :: Int -> String -> Int

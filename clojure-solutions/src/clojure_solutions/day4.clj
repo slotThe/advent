@@ -9,7 +9,7 @@
   (not (or (< e12 e21) (< e22 e11))))
 
 (defn- parse []
-  (->> (slurp "./input/day4.txt")
+  (->> (slurp "../inputs/day4.txt")
        str/split-lines
        (map #(re-find #"(\d+)-(\d+),(\d+)-(\d+)" %))
        (map #(drop 1 %))                ; Drop whole match

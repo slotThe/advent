@@ -9,7 +9,7 @@ pub fn day3(p: Part) -> usize {
 }
 
 fn get_input() -> Vec<String> {
-    std::fs::read_to_string("./input/day3.txt")
+    std::fs::read_to_string("../inputs/day3.txt")
         .unwrap()
         .lines()
         .map(|s| s.to_string())

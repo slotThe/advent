@@ -7,7 +7,7 @@ import Util
 
 day1 :: IO (Int, Int)
 day1 = do
-  f <- T.readFile "puzzle-input/day1.txt"
+  f <- T.readFile "../inputs/day1.txt"
   pure (getNthMostWanted 1 f, getNthMostWanted 3 f)
 
 getNthMostWanted :: Int -> Text -> Int

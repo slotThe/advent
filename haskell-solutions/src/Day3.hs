@@ -5,7 +5,7 @@ import Util
 
 day3 :: IO (Int, Int)
 day3 = do
-  f <- lines <$> readFile "puzzle-input/day3.txt"
+  f <- lines <$> readFile "../inputs/day3.txt"
   pure (solve (map splitInTwo) f, solve (chunksOf 3) f)
  where
   splitInTwo :: [a] -> [[a]]

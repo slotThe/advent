@@ -20,7 +20,7 @@
                :to   (dec (read-string to))}))))
 
 (defn- parse []
-  (->> (slurp "./input/day5.txt")
+  (->> (slurp "../inputs/day5.txt")
        split-groups
        ((fn [[crates moves]]
           {:crates (parse-crates crates)

@@ -77,7 +77,7 @@ where
     A: Copy,
 {
     parse(
-        std::fs::read_to_string("./input/day2.txt").unwrap(),
+        std::fs::read_to_string("../inputs/day2.txt").unwrap(),
         parse_me,
     )
     .iter()

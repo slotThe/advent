@@ -30,7 +30,7 @@
              cand))))
 
 (defn- solve [get-weapon]
-  (->> (slurp "./input/day2.txt")
+  (->> (slurp "../inputs/day2.txt")
        str/split-lines
        (map #(map keyword (str/split % #" ")))
        (map (fn [[op me]]

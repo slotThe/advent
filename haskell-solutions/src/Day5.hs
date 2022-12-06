@@ -17,7 +17,7 @@ day5 = do
 parse :: IO ([String], [Move])
 parse = do
   (crates, instructions) <- bimap lines lines . breakOn "\n\n"
-                        <$> readFile "puzzle-input/day5.txt"
+                        <$> readFile "../inputs/day5.txt"
   pure (pCrates crates, pIns instructions)
  where
   pCrates :: [String] -> [String]

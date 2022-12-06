@@ -14,7 +14,7 @@ data RangePair = RangePair
 
 day4 :: IO (Int, Int)
 day4 = do
-  inp <- mapMaybe parse . lines <$> readFile "puzzle-input/day4.txt"
+  inp <- mapMaybe parse . lines <$> readFile "../inputs/day4.txt"
   let solve :: (RangePair -> Bool) -> Int
       solve by = length (filter by inp)
   pure (solve completelyOverlap, solve overlap)

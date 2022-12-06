@@ -3,7 +3,7 @@
   (:use [clojure-solutions.util] :reload))
 
 (defn- parse []
-  (->> (slurp "./input/day1.txt")
+  (->> (slurp "../inputs/day1.txt")
        split-groups
        (map str/split-lines)
        (map #(map read-string %))

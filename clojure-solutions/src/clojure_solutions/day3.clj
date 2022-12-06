@@ -4,7 +4,7 @@
   (:use [clojure-solutions.util] :reload))
 
 (defn- parse []
-  (str/split-lines (slurp "./input/day3.txt")))
+  (str/split-lines (slurp "../inputs/day3.txt")))
 
 (defn- value [c]
   (let [ascii (int c)]

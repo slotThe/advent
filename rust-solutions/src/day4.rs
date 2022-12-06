@@ -50,7 +50,7 @@ fn solve<F>(filter_by: F) -> usize
 where
     F: Fn(&RangePair) -> bool,
 {
-    std::fs::read_to_string("./input/day4.txt").map_or(0, |f| {
+    std::fs::read_to_string("../inputs/day4.txt").map_or(0, |f| {
         f.lines()
             .map(|s| s.parse().expect("parse line"))
             .filter(filter_by)

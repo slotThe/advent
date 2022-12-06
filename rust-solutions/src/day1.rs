@@ -7,7 +7,7 @@ pub fn get_nth_most_wanted(n: usize) -> i64 {
 }
 
 fn get_input() -> Result<Vec<i64>> {
-    input_from_lines(std::fs::read_to_string("./input/day1.txt")?)
+    input_from_lines(std::fs::read_to_string("../inputs/day1.txt")?)
 }
 
 fn input_from_lines(input: String) -> Result<Vec<i64>> {

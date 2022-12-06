@@ -9,7 +9,7 @@ pub fn day6(p: Part) -> usize {
 }
 
 fn solve(n: usize) -> usize {
-    let inp: Vec<char> = std::fs::read_to_string("./input/day6.txt")
+    let inp: Vec<char> = std::fs::read_to_string("../inputs/day6.txt")
         .unwrap()
         .chars()
         .collect();
