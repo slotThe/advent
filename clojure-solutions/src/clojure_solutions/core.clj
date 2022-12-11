@@ -8,6 +8,7 @@
             [clojure-solutions.day6 :as day6]
             [clojure-solutions.day7 :as day7]
             [clojure-solutions.day9 :as day9]
+            [clojure-solutions.day10 :as day10]))
 
 (defn- print-day [day one two]
   (println "!!! Day" day "!!!")
@@ -24,3 +25,4 @@
   (print-day 6 (day6/day6 :one) (day6/day6 :two))
   (print-day 7 (day7/day7 :one) (day7/day7 :two))
   (print-day 9 (day9/day9 :one) (day9/day9 :two))
+  (print-day 10 (day10/day10 :one) (day10/day10 :two)))
