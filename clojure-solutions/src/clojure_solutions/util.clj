@@ -1,6 +1,9 @@
 (ns clojure-solutions.util
   (:require [clojure.string :as str]))
 
+(defn signum ^long [^double d]
+  (long (Math/signum d)))
+
 ;;; Parsing
 
 (defn str-to-coll-base
