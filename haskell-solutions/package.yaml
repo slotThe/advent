@@ -21,6 +21,10 @@ default-extensions:
   - NoImplicitPrelude
   - StrictData
   - GADTs
+  - ImportQualifiedPost
+  - StandaloneKindSignatures
+  - OverloadedLabels
+  - DeriveGeneric
 
 ghc-options:
   -Weverything
@@ -39,6 +43,8 @@ dependencies:
   - unordered-containers
   - text
   - array
+  - lens
+  - generic-lens
 
 library:
   source-dirs: src/

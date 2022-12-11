@@ -10,7 +10,7 @@
   - Day 8  : [Haskell][day8:haskell]
   - Day 9  : [Clojure][day9:clojure]
   - Day 10 : [Clojure][day10:clojure]
-  - Day 11 :
+  - Day 11 : [Haskell][day11:haskell]
   - Day 12 :
   - Day 13 :
   - Day 14 :
@@ -47,3 +47,4 @@
 [day8:haskell]: ./haskell-solutions/src/Day8.hs
 [day9:clojure]: ./clojure-solutions/src/clojure_solutions/day9.clj
 [day10:clojure]: ./clojure-solutions/src/clojure_solutions/day10.clj
+[day11:haskell]: ./haskell-solutions/src/Day11.hs

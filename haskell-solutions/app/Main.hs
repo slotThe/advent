@@ -5,6 +5,7 @@ import Day5
 import Day6
 import Day7
 import Day8
+import Day11
 import Util
 
 main :: IO ()
@@ -16,6 +17,7 @@ main = do
   day 6 day6
   day 7 day7
   day 8 day8
+  day 11 day11
 
 day :: (Show a, Show b) => Int -> IO (a, b) -> IO ()
 day (show -> n) res = do

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 442aded1672aab9ed073cb6257e01c9ce37b5ac674947e654d696949490797d6
+-- hash: 14a1f9e2cd81e931ae9259d54493c93b80b276d8626f7c2ecaea3180925dcf57
 
 name:           haskell-solutions
 version:        0.1.0
@@ -18,11 +18,13 @@ build-type:     Simple
 library
   exposed-modules:
       Day1
+      Day11
       Day3
       Day4
       Day5
       Day6
       Day7
+      Day8
       Util
   other-modules:
       Paths_haskell_solutions
@@ -44,12 +46,18 @@ library
       NoImplicitPrelude
       StrictData
       GADTs
+      ImportQualifiedPost
+      StandaloneKindSignatures
+      OverloadedLabels
+      DeriveGeneric
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -O2
   build-depends:
       array
     , base
     , base-prelude
     , containers
+    , generic-lens
+    , lens
     , text
     , unordered-containers
   default-language: Haskell2010
@@ -76,13 +84,19 @@ executable aoc-2022-haskell
       NoImplicitPrelude
       StrictData
       GADTs
+      ImportQualifiedPost
+      StandaloneKindSignatures
+      OverloadedLabels
+      DeriveGeneric
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -O2
   build-depends:
       array
     , base
     , base-prelude
     , containers
+    , generic-lens
     , haskell-solutions
+    , lens
     , text
     , unordered-containers
   default-language: Haskell2010
