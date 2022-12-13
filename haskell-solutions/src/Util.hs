@@ -8,6 +8,7 @@ module Util
     , dropEnd
     , breakOn
     , pNum
+    , pInput
     ) where
 
 import BasePrelude
@@ -32,6 +33,9 @@ breakOn :: Eq a => [a] -> [a] -> ([a], [a])
 breakOn needle haystack | needle `isPrefixOf` haystack = ([], haystack)
 breakOn _      []       = ([], [])
 breakOn needle (x:xs)   = first (x:) $ breakOn needle xs
+
+pInput :: ReadP p -> String -> p
+pInput p = fst . head . readP_to_S p
 
 pNum :: Read a => ReadP a
 pNum = read <$> munch1 isDigit

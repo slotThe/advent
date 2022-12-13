@@ -25,8 +25,7 @@ day7 = do
   pure (one, two)
 
 parse :: IO [Ins]
-parse = mapMaybe (fmap fst . listToMaybe . readP_to_S pIns)
-      . lines <$> readFile "../inputs/day7.txt"
+parse = map (pInput pIns) . lines <$> readFile "../inputs/day7.txt"
 
 pIns :: ReadP Ins
 pIns = ("$ cd " *> (Cd <$> munch1 (pure True)))

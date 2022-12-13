@@ -23,13 +23,10 @@ parse = do
   pCrates :: [String] -> [String]
   pCrates = map (filter (/= ' '))
           . transpose
-          . mapMaybe (doParse (pLine <* eof)) . dropEnd 1
+          . map (pInput (pLine <* eof)) . dropEnd 1
 
   pIns :: [String] -> [Move]
-  pIns = mapMaybe (doParse pMove) . drop 2
-
-  doParse :: ReadP p -> String -> Maybe p
-  doParse p = fmap fst . listToMaybe . reverse . readP_to_S p
+  pIns = map (pInput pMove) . drop 2
 
 pLine :: ReadP String
 pLine = choice [ "[" *> satisfy isUpper <* "]"  -- actual crate

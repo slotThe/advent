@@ -32,7 +32,7 @@ solve1 = sum . zipWith points [1..] . map (uncurry compare)
   points n o = if o == LT then n else 0
 
 parse1 :: [String] -> [(Packet, Packet)]
-parse1 = map ((\[x,y] -> (x, y)) . map pInput) . chunksOf 2
+parse1 = map ((\[x,y] -> (x, y)) . map (pInput pPacket)) . chunksOf 2
 
 -----------------------------------------------------------------------
 
@@ -46,12 +46,9 @@ solve2 packets =
  where sortedPackets = sort packets
 
 parse2 :: [String] -> [Packet]
-parse2 = ([divide2, divide6] <>) . map pInput
+parse2 = ([divide2, divide6] <>) . map (pInput pPacket)
 
 -----------------------------------------------------------------------
 
 pPacket :: ReadP Packet
 pPacket = (El <$> pNum) <++ (List <$> between "[" "]" (pPacket `sepBy` ","))
-
-pInput :: String -> Packet
-pInput = fst . head . readP_to_S pPacket

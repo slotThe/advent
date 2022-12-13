@@ -63,7 +63,7 @@ parse = readFile "../inputs/day11.txt"
 
 pMonkeys :: String -> Map Int Monkey
 pMonkeys = Map.fromList . zip [0 ..]
-         . map (fst . last . readP_to_S go . T.unpack)
+         . map (pInput go . T.unpack)
          . T.splitOn "\n\n" . T.pack
  where
   go :: ReadP Monkey
