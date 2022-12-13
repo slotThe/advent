@@ -11,10 +11,9 @@ data Packet = List [Packet] | El Int
 instance Ord Packet where
   compare :: Packet -> Packet -> Ordering
   compare (El a)   (El b)   = compare a b
+  compare (List a) (List b) = compare a b
   compare a@El{}   lb       = compare (List [a]) lb
   compare la       b@El{}   = compare la (List [b])
-  compare (List a) (List b) =
-    foldr (<>) (compare (length a) (length b)) (zipWith compare a b)
 
 day13 :: IO (Int, Maybe Int)
 day13 = do
