@@ -1,9 +1,6 @@
 (ns clojure-solutions.util
   (:require [clojure.string :as str]))
 
-(defn signum ^long [^double d]
-  (long (Math/signum d)))
-
 ;;; Parsing
 
 (defn str-to-coll-base
@@ -43,6 +40,9 @@
               (range ymin (inc ymax))))))
 
 ;;; Stuff that should be in clojure.core
+
+(defn signum ^long [^double d]
+  (long (Math/signum d)))
 
 (defn sum [xs]
   (reduce + xs))
