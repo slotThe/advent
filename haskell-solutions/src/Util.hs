@@ -7,6 +7,7 @@ module Util
     , chunksOf
     , dropEnd
     , breakOn
+    , rightToMaybe
     , pNum
     , pInput
     ) where
@@ -33,6 +34,9 @@ breakOn :: Eq a => [a] -> [a] -> ([a], [a])
 breakOn needle haystack | needle `isPrefixOf` haystack = ([], haystack)
 breakOn _      []       = ([], [])
 breakOn needle (x:xs)   = first (x:) $ breakOn needle xs
+
+rightToMaybe :: Either a b -> Maybe b
+rightToMaybe = either (const Nothing) Just
 
 pInput :: ReadP p -> String -> p
 pInput p = fst . head . readP_to_S p

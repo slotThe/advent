@@ -25,6 +25,7 @@ default-extensions:
   - StandaloneKindSignatures
   - OverloadedLabels
   - DeriveGeneric
+  - BangPatterns
 
 ghc-options:
   -Weverything

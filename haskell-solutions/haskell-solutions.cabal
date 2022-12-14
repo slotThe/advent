@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9af53a95625fe85ca17775b4bef35b9ea5506cd799c8a3316d388eb2852a7a0f
+-- hash: 03799b2a4557ade53f85ac437dc03d00f645aacc1b720cce9af44f63d9ef9644
 
 name:           haskell-solutions
 version:        0.1.0
@@ -20,6 +20,7 @@ library
       Day1
       Day11
       Day13
+      Day14
       Day3
       Day4
       Day5
@@ -51,6 +52,7 @@ library
       StandaloneKindSignatures
       OverloadedLabels
       DeriveGeneric
+      BangPatterns
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -O2
   build-depends:
       array
@@ -89,6 +91,7 @@ executable aoc-2022-haskell
       StandaloneKindSignatures
       OverloadedLabels
       DeriveGeneric
+      BangPatterns
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -O2
   build-depends:
       array
