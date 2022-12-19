@@ -1,7 +1,5 @@
 (ns clojure-solutions.day18
-  (:require [clojure.string :as str]
-            [clojure.set :as set]
-            [clojure.data.priority-map :refer [priority-map]])
+  (:require [clojure.string :as str])
   (:use [clojure-solutions.util] :reload))
 
 (defn- parse []
@@ -16,7 +14,7 @@
           [[(inc x) y z] [x (inc y) z] [x y (inc z)]
            [(dec x) y z] [x (dec y) z] [x y (dec z)]]))
 
-(defn- find-bounds [hs]
+(defn- bounding-box [hs]
   (letfn [(go [op]
               (reduce (fn [[lx ly lz] [x y z]]
                         [(op lx x) (op ly y) (op lz z)])
@@ -32,17 +30,21 @@
                      (<= lz k hz)))
               pt))
 
+(defn- fill [start more]
+  (loop [remaining [start]
+         seen #{}]
+    (if (empty? remaining)
+      seen
+      (let [looking-at (peek remaining)]
+        (recur (apply conj (pop remaining) (more looking-at seen))
+               (conj seen looking-at))))))
+
 (defn day18 [p]
   (let [rocks (parse)
-        [l h] (find-bounds rocks)]
-    (case p
-      :one (count
-            (mapcat (partial neighbours #(not (contains? rocks %)))
-                    rocks))
-      :two (->> (dijkstra l (fn [p seen]
-                              (map (fn [n] [n 1])
-                                   (air-neighbours rocks seen l h p))))
-                keys
-                (into #{})
-                (mapcat (partial neighbours #(contains? rocks %)))
-                count))))
+        [l h] (bounding-box rocks)]
+    (count
+     (case p
+       :one (mapcat (partial neighbours #(not (contains? rocks %)))
+                    rocks)
+       :two (mapcat (partial neighbours #(contains? rocks %))
+                    (fill l #(air-neighbours rocks %2 l h %1)))))))

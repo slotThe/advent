@@ -1,5 +1,6 @@
 (ns clojure-solutions.util
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.data.priority-map :refer [priority-map]]))
 
 ;;; Parsing
 

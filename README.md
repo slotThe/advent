@@ -17,7 +17,7 @@
   - Day 15 :
   - Day 16 :
   - Day 17 :
-  - Day 18 :
+  - Day 18 : [Clojure][day18:clojure]
   - Day 19 :
   - Day 20 :
   - Day 21 :
@@ -53,3 +53,4 @@
 [day13:clojure]: ./clojure-solutions/src/clojure_solutions/day13.clj
 [day14:clojure]: ./clojure-solutions/src/clojure_solutions/day14.clj
 [day14:haskell]: ./haskell-solutions/src/Day14.hs
+[day18:clojure]: ./clojure-solutions/src/clojure_solutions/day18.clj

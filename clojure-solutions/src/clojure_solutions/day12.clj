@@ -1,7 +1,6 @@
 (ns clojure-solutions.day12
   (:require [clojure.string :as str]
-            [clojure.set :refer [map-invert]]
-            [clojure.data.priority-map :refer [priority-map]])
+            [clojure.set :refer [map-invert]])
   (:use [clojure-solutions.util] :reload))
 
 (defn- parse []
