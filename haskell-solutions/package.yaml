@@ -26,6 +26,7 @@ default-extensions:
   - OverloadedLabels
   - DeriveGeneric
   - BangPatterns
+  - DeriveFunctor
 
 ghc-options:
   -Weverything
