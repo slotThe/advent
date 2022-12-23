@@ -67,12 +67,19 @@
   (let [xss (f xs)]
     (if (= xss xs) xs (recur f xss))))
 
+(defn converge-by
+  "Apply the function `f' until it converges.
+  Before doing so, apply the function `g' to the previous and current
+  result.  Like `converge-when', count how long that takes."
+  ([g f xs]   (converge-by g f xs 0))
+  ([g f xs n]
+   (let [xss (f xs), m (inc n)]
+     (if (= (g xss) (g xs)) [m xs] (recur g f xss m)))))
+
 (defn converge-when
   "Apply a function `f' until it converges and count how long that takes."
-  ([f xs]   (converge-when f xs 0))
-  ([f xs n]
-   (let [xss (f xs), m (inc n)]
-     (if (= xss xs) [m xs] (recur f xss m)))))
+  [f xs]
+  (converge-by identity f xs 0))
 
 (defn map-val
   "Map over the values of a given map."
@@ -123,7 +130,7 @@
 
 ;;; Algorithms
 
-(defn- dijkstra
+(defn dijkstra
   "Dijkstra's shortest path algorithm.
 
   The given `more' function is a function of two arguments that computes

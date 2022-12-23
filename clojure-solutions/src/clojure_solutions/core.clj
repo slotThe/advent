@@ -12,7 +12,8 @@
             [clojure-solutions.day12 :as day12]
             [clojure-solutions.day13 :as day13]
             [clojure-solutions.day14 :as day14]
-            [clojure-solutions.day18 :as day18]))
+            [clojure-solutions.day18 :as day18]
+            [clojure-solutions.day23 :as day23]))
 
 (defn- print-day [day one two]
   (println "!!! Day" day "!!!")
@@ -33,4 +34,5 @@
   (print-day 12 (day12/day12 :one) (day12/day12 :two))
   (print-day 13 (day13/day13 :one) (day13/day13 :two))
   (print-day 14 (day14/day14 :one) (day14/day14 :two))
-  (print-day 18 (day18/day18 :one) (day18/day18 :two)))
+  (print-day 18 (day18/day18 :one) (day18/day18 :two))
+  (print-day 23 (day23/day23 :one) (day23/day23 :two)))
