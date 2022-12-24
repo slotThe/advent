@@ -1,4 +1,5 @@
 import Day1
+import Day2
 import Day3
 import Day4
 import Day5
@@ -15,6 +16,7 @@ import Util
 main :: IO ()
 main = do
   day 1 day1
+  day 2 day2
   day 3 day3
   day 4 day4
   day 5 day5
