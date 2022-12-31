@@ -159,3 +159,17 @@
                              (update acc n (mincost cost-u cost-n)))
                            tail
                            (more u seen)))))))))
+
+(defn flood-fill
+  "A simple flood-fill.
+  The argument `start' is the starting position and `more' is a function
+  taking two arguments: the position to find neighbours for, and the set
+  of already visited nodes."
+  [start more]
+  (loop [remaining [start]
+         seen #{}]
+    (if (empty? remaining)
+      seen
+      (let [looking-at (peek remaining)]
+        (recur (apply conj (pop remaining) (more looking-at seen))
+               (conj seen looking-at))))))
