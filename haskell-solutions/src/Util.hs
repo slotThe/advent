@@ -2,6 +2,7 @@
 module Util
     ( module BasePrelude
     , Type
+    , both
     , word1
     , fromBase2
     , chunksOf
@@ -15,6 +16,9 @@ module Util
 import BasePrelude
 import Data.Kind (Type)
 import Text.ParserCombinators.ReadP
+
+both :: Bifunctor p => (c -> d) -> p c c -> p d d
+both f = bimap f f
 
 word1 :: String -> (String, String)
 word1 = second (drop 1) . break isSpace

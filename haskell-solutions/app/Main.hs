@@ -10,6 +10,7 @@ import Day11
 import Day13
 import Day14
 import Day16
+import Day20
 import Day21
 import Day24
 import Util
@@ -28,6 +29,7 @@ main = do
   day 13 day13
   day 14 day14
   day 16 day16
+  day 20 day20
   day 21 day21
   day 24 day24
 

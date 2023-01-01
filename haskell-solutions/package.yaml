@@ -45,6 +45,8 @@ dependencies:
   - unordered-containers
   - text
   - array
+  - vector
+  - primitive
   - lens
   - generic-lens
 

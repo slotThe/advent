@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.35.0.
+-- This file has been generated from package.yaml by hpack version 0.35.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5014f8725fe399bc32d496098777ba711c5e064b0a888dcffa1009b0390e4ea7
+-- hash: 601313390aae02b52ac528f077b1f868972eda5ed586e0d4dadf89b6b3ffa769
 
 name:           haskell-solutions
 version:        0.1.0
@@ -23,6 +23,7 @@ library
       Day14
       Day16
       Day2
+      Day20
       Day21
       Day24
       Day3
@@ -66,8 +67,10 @@ library
     , containers
     , generic-lens
     , lens
+    , primitive
     , text
     , unordered-containers
+    , vector
   default-language: Haskell2010
 
 executable aoc-2022-haskell
@@ -107,6 +110,8 @@ executable aoc-2022-haskell
     , generic-lens
     , haskell-solutions
     , lens
+    , primitive
     , text
     , unordered-containers
+    , vector
   default-language: Haskell2010
