@@ -16,6 +16,7 @@
             [clojure-solutions.day17 :as day17]
             [clojure-solutions.day18 :as day18]
             [clojure-solutions.day19 :as day19]
+            [clojure-solutions.day22 :as day22]
             [clojure-solutions.day23 :as day23]
             [clojure-solutions.day25 :as day25]))
 
@@ -42,5 +43,6 @@
   (print-day 17 (day17/day17 :one) (day17/day17 :two))
   (print-day 18 (day18/day18 :one) (day18/day18 :two))
   (print-day 19 (day19/day19 :one) (day19/day19 :two))
+  (print-day 22 (day22/day22 :one) "I don't even")
   (print-day 23 (day23/day23 :one) (day23/day23 :two))
   (print-day 25 (day25/day25) "Merry Christmas!"))

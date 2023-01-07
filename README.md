@@ -21,7 +21,7 @@
   - Day 19 : [Clojure][day19:clojure]
   - Day 20 : [Haskell][day20:haskell]
   - Day 21 : [Haskell][day21:haskell]
-  - Day 22 :
+  - Day 22 : [Clojure][day22:clojure] (part one)
   - Day 23 : [Clojure][day23:clojure]
   - Day 24 : [Haskell][day24:haskell]
   - Day 25 : [Clojure][day25:clojure]
@@ -61,6 +61,7 @@
 [day19:clojure]: ./clojure-solutions/src/clojure_solutions/day19.clj
 [day20:haskell]: ./haskell-solutions/src/Day20.hs
 [day21:haskell]: ./haskell-solutions/src/Day21.hs
+[day22:clojure]: ./clojure-solutions/src/clojure_solutions/day22.clj
 [day23:clojure]: ./clojure-solutions/src/clojure_solutions/day23.clj
 [day24:haskell]: ./haskell-solutions/src/Day24.hs
 [day25:clojure]: ./clojure-solutions/src/clojure_solutions/day25.clj
