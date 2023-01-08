@@ -41,5 +41,5 @@
 
 (defn day2 [kw]
   (case kw
-    :one (solve (fn [a b] b))
+    :one (solve (fn [_ b] b))
     :two (solve transform)))

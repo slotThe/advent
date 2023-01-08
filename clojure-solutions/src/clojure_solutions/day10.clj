@@ -6,7 +6,7 @@
   (->> (slurp "../inputs/day10.txt")
        str/split-lines
        (map (fn [ins]
-              (let [[i a] (words ins)]
+              (let [[_ a] (words ins)]
                 (if a [:add (read-string a)] :noop))))))
 
 (defn- simulate [inp]

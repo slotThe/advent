@@ -36,12 +36,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mining step
 
-(defn- kw->kw ^clojure.lang.Keyword [^clojure.lang.Keyword kw ^String suf]
+(defn- kw->kw ^clojure.lang.Keyword
   "Create a new keyword from 'kw' with 'suf' appended to it."
+  [^clojure.lang.Keyword kw ^String suf]
   (keyword (str/join [(name kw) suf])))
 
-(defn- mine ^State [^State state]
+(defn- mine ^State
   "Update the 'state' with all the new rocks we mined."
+  [^State state]
   (reduce (fn [s k] (update s k (partial + (get s (kw->kw k "-bots")))))
           state
           [:ore :clay :obsidian :geode]))
@@ -61,7 +63,7 @@
   from having to think of creative ways of pruning :)"
   ^State
   [^Blueprint {:keys [ore-bot clay-bot obsidian-bot geode-bot] :as blueprint}
-   ^State {:keys [ore-bots ore clay-bots clay obsidian-bots obsidian geode] :as s}]
+   ^State {:keys [ore-bots ore clay-bots clay obsidian-bots obsidian] :as s}]
   (letfn [(update-state [^clojure.lang.Keyword kw]
             "Update the state for the given keyword."
             (let [kws (get blueprint (kw->kw kw "-bot"))]

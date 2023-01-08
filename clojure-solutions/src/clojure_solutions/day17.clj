@@ -17,7 +17,7 @@
    [[[0 0] [0 -1] [1 0] [1 -1]] 1]])
 
 (defn- neighbours [rocks [x y] seen]
-  (filter (fn [[a b :as p]]
+  (filter (fn [[a _ :as p]]
             (and (<= 0 a 6)
                  (not (contains? rocks p))
                  (not (contains? seen  p))))

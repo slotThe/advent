@@ -29,7 +29,7 @@
         :W [(inc x) y]))))
 
 (defn- propose-move [scan dirs [x y]]
-  (let [neighs (keys (neighbours (fn [[k v]] (contains? scan v))
+  (let [neighs (keys (neighbours (fn [[_ v]] (contains? scan v))
                                  [x y]))
         move-to (first (keep (partial propose-spot neighs [x y]) dirs))]
     [[x y] (cond (nil? neighs)   [x y]

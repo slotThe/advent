@@ -32,13 +32,14 @@
     (when (>= d 0)
       [(- sx d) (+ sx d)])))
 
-(defn- kill-overlapping [boxes]
+(defn- kill-overlapping
   "Remove all overlapping boxes."
+  [boxes]
   (reduce (fn [[[ax ay] & as] [bx by]]
             (cond
               (nil? ax)        [[bx by]]
               (<= bx (inc ay)) (conj as [ax (max ay by)])
-              :otherwise       (conj as [ax ay] [bx by])))
+              :else            (conj as [ax ay] [bx by])))
           []
           (sort boxes)))
 
@@ -58,7 +59,7 @@
               (first
                (for [y (range 0 (inc ymax))
                      :let [xs (first
-                               (map (fn [[a b]] (when (> a 0) [0 a]))
+                               (map (fn [[a _]] (when (> a 0) [0 a]))
                                     (mk-box y)))]
                      :when (some? xs)]
                  [y xs])))))))

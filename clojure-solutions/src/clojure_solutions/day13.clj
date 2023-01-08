@@ -34,6 +34,6 @@
                 (concat [[[2]]] [[[6]]])                   ; ( [[2]] [[6]] [3] [[4] 5] … )
                 (sort cmp)                                 ; ( [] [[]] … )
                 (map vector (iterate inc 1))               ; ( [1 []] [2 [[]]] … )
-                (filter (fn [[a b]] (or (= b [[2]])        ; ( [n [[2]]] [m [[6]]]
+                (filter (fn [[_ b]] (or (= b [[2]])        ; ( [n [[2]]] [m [[6]]]
                                         (= b [[6]]))))
-                (reduce (fn [acc [a b]] (* acc a)) 1)))))
+                (reduce (fn [acc [a _]] (* acc a)) 1)))))

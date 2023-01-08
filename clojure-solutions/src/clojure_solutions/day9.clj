@@ -24,7 +24,7 @@
       (and (<= ax 1) (<= ay 1)) [tx ty]                     ; directly adjacent
       (> ax ay)                 [(- hx (signum dx)), hy]    ; horizontally estranged
       (> ay ax)                 [hx, (- hy (signum dy))]    ; vertically estranged
-      true                      [(- hx (signum dx)),        ; diagonally estranged
+      :else                     [(- hx (signum dx)),        ; diagonally estranged
                                  (- hy (signum dy))])))
 
 (defn- simulate [ms]

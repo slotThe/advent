@@ -54,7 +54,7 @@
 (defn elem [x xs]
   (some #{x} xs))
 
-(defn permutations [[h & t :as coll]]
+(defn permutations [[_ & t :as coll]]
   (if (nil? t)
     [coll]
     (for [head coll

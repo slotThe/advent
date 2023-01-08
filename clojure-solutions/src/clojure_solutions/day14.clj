@@ -1,7 +1,6 @@
 (ns clojure-solutions.day14
   (:require [clojure.string :as str]
-            [clojure.set :as set])
-  (:use [clojure-solutions.util] :reload))
+            [clojure.set :as set]))
 
 (defn- parse []
   (letfn [(line [[[a b] [c d]]]

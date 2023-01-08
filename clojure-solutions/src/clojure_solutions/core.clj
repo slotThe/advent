@@ -26,7 +26,7 @@
   (println "Second Task:" two)
   (println))
 
-(defn -main [& args]
+(defn -main [& _]
   (print-day 1 (day1/get-nth-most-wanted 1) (day1/get-nth-most-wanted 3))
   (print-day 2 (day2/day2 :one) (day2/day2 :two))
   (print-day 3 (day3/day3 :one) (day3/day3 :two))

@@ -19,12 +19,12 @@
            [(dec i) j] [i (dec j)]]))
 
 (defn- get-starts [c landscape]
-  (keys (filter (fn [[k v]] (= v c)) landscape)))
+  (keys (filter (fn [[_ v]] (= v c)) landscape)))
 
 (defn- char->int [c]
   (int (cond (= c \S) \a
              (= c \E) \z
-             true     c)))
+             :else    c)))
 
 (defn day12 [p]
   (let [grid (parse)
