@@ -1,5 +1,6 @@
 (ns clojure-solutions.day18
-  (:require [clojure.string :as str])
+  (:require [clojure.string :as str]
+            [clojure-solutions.coords :as coords])
   (:use [clojure-solutions.util] :reload))
 
 (defn- parse []
@@ -14,13 +15,6 @@
           [[(inc x) y z] [x (inc y) z] [x y (inc z)]
            [(dec x) y z] [x (dec y) z] [x y (dec z)]]))
 
-(defn- bounding-box [hs]
-  (letfn [(go [op]
-              (reduce (fn [[lx ly lz] [x y z]]
-                        [(op lx x) (op ly y) (op lz z)])
-                      hs))]
-    [(map dec (go min)) (map inc (go max))]))
-
 (defn- air-neighbours [rocks seen [lx ly lz] [hx hy hz] pt]
   (neighbours (fn [[n m k]]
                 (and (not (contains? rocks [n m k]))
@@ -32,7 +26,7 @@
 
 (defn day18 [p]
   (let [rocks (parse)
-        [l h] (bounding-box rocks)]
+        [l h] (coords/bounding-box rocks)]
     (count
      (case p
        :one (mapcat (partial neighbours #(not (contains? rocks %)))

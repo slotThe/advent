@@ -36,12 +36,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mining step
 
-(defn- kw->kw ^clojure.lang.Keyword
+(defn- kw->kw
   "Create a new keyword from 'kw' with 'suf' appended to it."
   [^clojure.lang.Keyword kw ^String suf]
   (keyword (str/join [(name kw) suf])))
 
-(defn- mine ^State
+(defn- mine
   "Update the 'state' with all the new rocks we mined."
   [^State state]
   (reduce (fn [s k] (update s k (partial + (get s (kw->kw k "-bots")))))
@@ -61,7 +61,6 @@
   other bots.  Why does this work?  I don't know; found it out through
   trial and error.  It's probably a fault with my input, but it keeps me
   from having to think of creative ways of pruning :)"
-  ^State
   [^Blueprint {:keys [ore-bot clay-bot obsidian-bot geode-bot] :as blueprint}
    ^State {:keys [ore-bots ore clay-bots clay obsidian-bots obsidian] :as s}]
   (letfn [(update-state [^clojure.lang.Keyword kw]
