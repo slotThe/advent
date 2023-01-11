@@ -1,32 +1,29 @@
 (ns clojure-solutions.day23
-  (:require [clojure.string :as str])
+  (:require [clojure.string :as str]
+            [clojure-solutions.coords :as coords])
   (:use [clojure-solutions.util] :reload))
 
 (defn- parse []
   (->> (slurp "../inputs/day23.txt")
        str/split-lines
-       (map-matrix (fn [i j el]
-                     (when (= el \#) [j i])))
+       (coords/seq->map (filter-val (partial = \#)))
+       keys
        (into #{})))
 
-(defn- neighbours [f [x y]]
+(defn- neighbours [f pt]
   (filter f
-          {:NW [(dec x) (dec y)] :N [x (dec y)] :NE [(inc x) (dec y)]
-           :W  [(dec x)      y ]                :E  [(inc x)      y ]
-           :SW [(dec x) (inc y)] :S [x (inc y)] :SE [(inc x) (inc y)]}))
+          (into {} (map vector
+                        [:NW :N :NE :W :E :SW :S :SE]
+                        (coords/neighbours8 pt)))))
 
-(defn- propose-spot [neighs [x y] dir]
+(defn- propose-spot [neighs pt dir]
   (let [s (case dir
             :N #{:N :NE :NW}
             :S #{:S :SE :SW}
-            :E #{:W :NW :SW}
-            :W #{:E :NE :SE})]
+            :W #{:W :NW :SW}
+            :E #{:E :NE :SE})]
     (when (not-any? s neighs)
-      (case dir
-        :N [x (dec y)]
-        :S [x (inc y)]
-        :E [(dec x) y]
-        :W [(inc x) y]))))
+      (coords/move dir pt))))
 
 (defn- propose-move [scan dirs [x y]]
   (let [neighs (keys (neighbours (fn [[_ v]] (contains? scan v))
@@ -48,22 +45,14 @@
           persistent!)
      (concat (rest dirs) [(first dirs)])]))
 
-(defn- bounding-box [hs]
-  (letfn [(go [op]
-              (reduce (fn [[lx ly] [x y]]
-                        [(op lx x) (op ly y)])
-                      hs))]
-    [(map dec (go min)) (map inc (go max))]))
-
 (defn day23 [p]
   (let [input (parse)
-        dirs [:N :S :E :W]
+        dirs [:N :S :W :E]
         round10 (first (nth (iterate round [input dirs]) 10))
-        [[lx ly] [hx hy]] (bounding-box round10)]
+        [[lx ly] [hx hy]] (coords/bounding-box round10)]
     (case p
       :one (sum (for [x (range (inc lx) hx)
                       y (range (inc ly) hy)
                       :when (not (contains? round10 [x y]))]
                   1))
-      :two (first
-            (converge-by first round [input dirs])))))
+      :two (first (converge-by first round [input dirs])))))

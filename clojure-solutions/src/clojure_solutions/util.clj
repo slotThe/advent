@@ -87,7 +87,8 @@
   (into {} (map (fn [[k v]] {k (f v)})) hmap))
 
 (defn filter-val
-  "Filter a map by applying `f' to its values."
+  "Filter a map by applying `f' to its values.
+  Returns a transducer if no collection is provided."
   ([f]      (filter #(f (val %))))
   ([f hmap] (filter #(f (val %)) hmap)))
 
