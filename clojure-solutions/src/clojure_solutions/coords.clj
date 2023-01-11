@@ -2,9 +2,16 @@
   (:require [clojure.string :as str]
             [clojure-solutions.util :as util]))
 
+(import (clojure.lang MapEntry))
+
 ;; 2d (and more, if applicable) coordinates
 ;;
 ;; x grows to the *right* and y grows *down*.
+
+(def north [0 -1])
+(def south [0  1])
+(def west  [-1 0])
+(def east  [1  0])
 
 (defn below [[x y]] [x (inc y)])
 (defn above [[x y]] [x (dec y)])
@@ -18,10 +25,20 @@
   [(- x1 x2) (- y1 y2)])
 
 (defn seq->map
-  ([xs]
-   (into {} (util/map-matrix (fn [i j el] [[j i] el]) xs)))
-  ([xf xs]
-   (into {} xf (util/map-matrix (fn [i j el] [[j i] el]) xs))))
+  "Turn a given sequence into a coordinate map.
+  Optionally, takes a transducer that operates on map entries and
+  forwards it to 'into'."
+  ([xs]    (into {}    (util/map-matrix (fn [i j el] (MapEntry. [j i] el)) xs)))
+  ([xf xs] (into {} xf (util/map-matrix (fn [i j el] (MapEntry. [j i] el)) xs))))
+
+(defn turn
+  "Turn left or right."
+  [dir looking]
+  (let [dirs [north west south east]
+        pos  (.indexOf dirs looking)]
+    (case dir
+      :L (nth dirs (mod (inc pos) 4))
+      :R (nth dirs (mod (dec pos) 4)))))
 
 (defn move [kw pt]
   (case kw
