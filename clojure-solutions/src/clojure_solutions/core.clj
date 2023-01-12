@@ -7,6 +7,7 @@
             [clojure-solutions.day5 :as day5]
             [clojure-solutions.day6 :as day6]
             [clojure-solutions.day7 :as day7]
+            [clojure-solutions.day8 :as day8]
             [clojure-solutions.day9 :as day9]
             [clojure-solutions.day10 :as day10]
             [clojure-solutions.day12 :as day12]
@@ -34,6 +35,7 @@
   (print-day 5 (day5/day5 :one) (day5/day5 :two))
   (print-day 6 (day6/day6 :one) (day6/day6 :two))
   (print-day 7 (day7/day7 :one) (day7/day7 :two))
+  (print-day 8 (day8/day8 :one) (day8/day8 :two))
   (print-day 9 (day9/day9 :one) (day9/day9 :two))
   (print-day 10 (day10/day10 :one) (day10/day10 :two))
   (print-day 12 (day12/day12 :one) (day12/day12 :two))

@@ -61,6 +61,9 @@
           tail (permutations (disj (set coll) head))]
       (cons head tail))))
 
+(defn tails [xs]
+    (reductions (fn [x _] (rest x)) xs xs))
+
 (defn converge
   "Apply a function `f' until it converges."
   [f xs]
