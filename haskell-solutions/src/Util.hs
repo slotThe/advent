@@ -2,6 +2,7 @@
 module Util
     ( module BasePrelude
     , Type
+    , Dim4(..)
     , both
     , word1
     , fromBase2
@@ -13,15 +14,23 @@ module Util
     , pInput
     , bfs
     , bfsOn
+    , nubInt
+    , nubIntOn
+    , nubOrd
+    , nubOrdOn
     ) where
 
-import BasePrelude
+import BasePrelude hiding (left, right)
+import Data.Containers.ListUtils (nubInt, nubIntOn, nubOrd, nubOrdOn)
 import Data.Kind (Type)
-import Text.ParserCombinators.ReadP
+import Data.Sequence (Seq, ViewL (..), (|>))
 import qualified Data.Sequence as Seq
-import Data.Sequence (Seq, ViewL(..), (|>))
-import qualified Data.Set as Set
 import Data.Set (Set)
+import qualified Data.Set as Set
+import Text.ParserCombinators.ReadP
+
+type Dim4 :: Type
+data Dim4 = U | R | D | L deriving stock (Show, Read, Eq, Ord)
 
 both :: Bifunctor p => (c -> d) -> p c c -> p d d
 both f = bimap f f

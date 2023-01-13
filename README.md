@@ -8,7 +8,7 @@
   - Day 6  : [Haskell][day6:haskell], [Clojure][day6:clojure], [Rust][day6:rust]
   - Day 7  : [Clojure][day7:clojure], [Haskell][day7:haskell]
   - Day 8  : [Haskell][day8:haskell], [Clojure][day8:clojure]
-  - Day 9  : [Clojure][day9:clojure]
+  - Day 9  : [Clojure][day9:clojure], [Haskell][day9:haskell]
   - Day 10 : [Clojure][day10:clojure]
   - Day 11 : [Haskell][day11:haskell]
   - Day 12 : [Clojure][day12:clojure], [Haskell][day12:haskell]
@@ -47,6 +47,7 @@
 [day7:haskell]: ./haskell-solutions/src/Day7.hs
 [day8:clojure]: ./clojure-solutions/src/clojure_solutions/day8.clj
 [day8:haskell]: ./haskell-solutions/src/Day8.hs
+[day9:haskell]: ./haskell-solutions/src/Day9.hs
 [day9:clojure]: ./clojure-solutions/src/clojure_solutions/day9.clj
 [day10:clojure]: ./clojure-solutions/src/clojure_solutions/day10.clj
 [day11:haskell]: ./haskell-solutions/src/Day11.hs

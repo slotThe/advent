@@ -34,6 +34,7 @@ library
       Day6
       Day7
       Day8
+      Day9
       Util
   other-modules:
       Paths_haskell_solutions
