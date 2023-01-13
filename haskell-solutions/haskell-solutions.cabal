@@ -17,6 +17,7 @@ build-type:     Simple
 
 library
   exposed-modules:
+      Coords
       Day1
       Day11
       Day13
