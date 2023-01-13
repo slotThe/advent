@@ -11,11 +11,17 @@ module Util
     , rightToMaybe
     , pNum
     , pInput
+    , bfs
+    , bfsOn
     ) where
 
 import BasePrelude
 import Data.Kind (Type)
 import Text.ParserCombinators.ReadP
+import qualified Data.Sequence as Seq
+import Data.Sequence (Seq, ViewL(..), (|>))
+import qualified Data.Set as Set
+import Data.Set (Set)
 
 both :: Bifunctor p => (c -> d) -> p c c -> p d d
 both f = bimap f f
@@ -53,3 +59,18 @@ pNum = read <$> munch1 isDigit
 instance a ~ String => IsString (ReadP a) where
   fromString :: String -> ReadP a
   fromString = string
+
+bfs :: forall a. Ord a => [a] -> (a -> [a]) -> [a]
+bfs = bfsOn id
+
+bfsOn :: forall a b. Ord b => (a -> b) -> [a] -> (a -> [a]) -> [a]
+bfsOn trans start neighs = go mempty (fromList start)
+ where
+  go :: Set b -> Seq a -> [a]
+  go !seen queue = case Seq.viewl queue of
+    EmptyL    -> []
+    a :< rest -> if a' `Set.member` seen
+                 then go seen rest
+                 else a : go (a' `Set.insert` seen)
+                             (foldl' (|>) rest (neighs a))
+     where a' = trans a
