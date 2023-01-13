@@ -36,6 +36,7 @@ ghc-options:
   -Wno-missing-safe-haskell-mode
   -Wno-all-missed-specialisations
   -Wno-unsafe
+  -Wno-prepositive-qualified-module
   -O2
 
 dependencies:

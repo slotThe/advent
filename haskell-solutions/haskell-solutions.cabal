@@ -60,7 +60,7 @@ library
       DeriveGeneric
       BangPatterns
       DeriveFunctor
-  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -O2
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
   build-depends:
       array
     , base
@@ -102,7 +102,7 @@ executable aoc-2022-haskell
       DeriveGeneric
       BangPatterns
       DeriveFunctor
-  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -O2
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
   build-depends:
       array
     , base
