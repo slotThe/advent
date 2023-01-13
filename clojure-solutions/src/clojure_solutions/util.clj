@@ -137,8 +137,9 @@
 (defn dijkstra
   "Dijkstra's shortest path algorithm.
 
-  The given `more' function is a function of two arguments that computes
-  the neighbours and their costs for each index.  It gets the index to
+  `start' is either a single, or a sequence of starting positions.  The
+  given `more' function is a function of two arguments that computes the
+  neighbours and their costs for each index.  It gets the index to
   compute the neighbours for, as well as the already seen points.  This
   allows for filtering while computing the neighbours, which may improve
   performance."
@@ -149,7 +150,9 @@
                        (+ cost cost*))))]
     (loop [all-costs  {}
            seen       #{}
-           looking-at (priority-map start 0)]
+           looking-at (if (seq? start)
+                        (apply priority-map (mapcat vector start (repeat 0)))
+                        (priority-map start 0))]
       (if (empty? looking-at)        ; no more points to look at -> STOP
         all-costs
         (let [[u cost-u] (peek looking-at)

@@ -30,7 +30,7 @@
                    :one \S
                    :two \a)
         goal (get (map-invert land) \E)]
-    (letfn [(solve [start]
+    (letfn [(shortest-path [start]
               (dijkstra start
                         (fn [p seen]
                           (map (fn [n] [n 1])
@@ -38,6 +38,6 @@
       (->> land
            (filter-val (partial = start-at)) ; look for all starting positions
            keys                              ; get coordinates
-           (map solve)                       ; compute map of shortest paths
-           (keep #(get % goal))              ; shortest path to goal for each starting pos
-           (apply min)))))
+           shortest-path                     ; compute map of shortest paths
+           (#(get % goal))                   ; shortest path to goal for each starting pos
+           ))))
