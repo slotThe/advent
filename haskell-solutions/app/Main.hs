@@ -7,6 +7,7 @@ import Day6
 import Day7
 import Day8
 import Day11
+import Day12
 import Day13
 import Day14
 import Day16
@@ -27,6 +28,7 @@ main = do
   day 8 day8
   day 11 day11
   day 13 day13
+  day 12 day12
   day 14 day14
   day 16 day16
   day 20 day20
