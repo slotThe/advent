@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 601313390aae02b52ac528f077b1f868972eda5ed586e0d4dadf89b6b3ffa769
+-- hash: bffb1e40603bf701df48bcf58f05bee668a00c5396d58636273a473423f9a8d3
 
 name:           haskell-solutions
 version:        0.1.0
@@ -41,27 +41,17 @@ library
   hs-source-dirs:
       src/
   default-extensions:
-      InstanceSigs
-      GeneralizedNewtypeDeriving
+      GHC2021
+      StrictData
       DerivingStrategies
       OverloadedStrings
-      NamedFieldPuns
-      ScopedTypeVariables
       LambdaCase
       BlockArguments
-      TypeApplications
       MultiWayIf
-      TupleSections
       ViewPatterns
       NoImplicitPrelude
-      StrictData
       GADTs
-      ImportQualifiedPost
-      StandaloneKindSignatures
       OverloadedLabels
-      DeriveGeneric
-      BangPatterns
-      DeriveFunctor
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
   build-depends:
       array
@@ -83,27 +73,17 @@ executable aoc-2022-haskell
   hs-source-dirs:
       app
   default-extensions:
-      InstanceSigs
-      GeneralizedNewtypeDeriving
+      GHC2021
+      StrictData
       DerivingStrategies
       OverloadedStrings
-      NamedFieldPuns
-      ScopedTypeVariables
       LambdaCase
       BlockArguments
-      TypeApplications
       MultiWayIf
-      TupleSections
       ViewPatterns
       NoImplicitPrelude
-      StrictData
       GADTs
-      ImportQualifiedPost
-      StandaloneKindSignatures
       OverloadedLabels
-      DeriveGeneric
-      BangPatterns
-      DeriveFunctor
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
   build-depends:
       array

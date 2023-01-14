@@ -6,27 +6,17 @@ author:              Tony Zorman
 maintainer:          soliditsallgood@mailbox.org
 
 default-extensions:
-  - InstanceSigs
-  - GeneralizedNewtypeDeriving
+  - GHC2021
+  - StrictData
   - DerivingStrategies
   - OverloadedStrings
-  - NamedFieldPuns
-  - ScopedTypeVariables
   - LambdaCase
   - BlockArguments
-  - TypeApplications
   - MultiWayIf
-  - TupleSections
   - ViewPatterns
   - NoImplicitPrelude
-  - StrictData
   - GADTs
-  - ImportQualifiedPost
-  - StandaloneKindSignatures
   - OverloadedLabels
-  - DeriveGeneric
-  - BangPatterns
-  - DeriveFunctor
 
 ghc-options:
   -Weverything
