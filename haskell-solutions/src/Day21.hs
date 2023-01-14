@@ -4,7 +4,7 @@ module Day21 (day21) where
 import Data.Map.Strict (Map)
 import Data.Map.Strict qualified as Map
 import Text.ParserCombinators.ReadP
-import Util hiding (Op)
+import Util hiding (Op, Dim4(..))
 
 day21 :: IO (Int, Int)
 day21 = do
