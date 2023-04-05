@@ -1,5 +1,4 @@
-use crate::util::*;
-use std::str::FromStr;
+use std::{fmt::Debug, str::FromStr};
 
 #[derive(Debug)]
 pub enum Ins {
@@ -21,6 +20,22 @@ impl FromStr for Ins {
     }
 }
 
+pub fn day10() -> (i32, String) {
+    let steps: Vec<i32> = simulate(
+        std::fs::read_to_string("../inputs/day10.txt")
+            .unwrap()
+            .lines()
+            .map(|s| s.parse().unwrap())
+            .collect(),
+    );
+    (
+        (20..=220)
+            .step_by(40)
+            .fold(0, |acc, ix| acc + steps[ix - 1] * ix as i32),
+        part2(steps),
+    )
+}
+
 fn simulate(inp: Vec<Ins>) -> Vec<i32> {
     let mut res: Vec<i32> = vec![1];
     for ins in inp {
@@ -36,42 +51,21 @@ fn simulate(inp: Vec<Ins>) -> Vec<i32> {
     res
 }
 
-pub fn day10(p: Part) {
-    let v: Vec<i32> = std::fs::read_to_string("../inputs/day10.txt")
-        .ok()
-        .unwrap()
-        .lines()
-        .map(|s| s.parse().ok())
-        .collect::<Option<_>>()
-        .map(simulate)
-        .unwrap();
-    match p {
-        Part::One => println!(
-            "{}",
-            (20..221)
-                .step_by(40)
-                .fold(0, |acc, ix| acc + v[ix - 1] * ix as i32),
-        ),
-        Part::Two => {
-            let res: Vec<&str> = v
-                .iter()
-                .enumerate()
-                .map(|(i, val)| {
-                    let pos = (i % 40) as i32;
-                    if val - 1 <= pos && pos <= val + 1 {
-                        "█"
-                    } else {
-                        " "
-                    }
-                })
-                .collect();
-            // This will have to do for now.
-            for i in 0..(res.len() / 40) {
-                for j in 0..39 {
-                    print!("{} ", res[j + 40 * i]);
-                }
-                println!();
+fn part2(inp: Vec<i32>) -> String {
+    let res: Vec<&str> = inp
+        .iter()
+        .enumerate()
+        .map(|(i, val)| {
+            let pos = (i % 40) as i32;
+            if val - 1 <= pos && pos <= val + 1 {
+                "█"
+            } else {
+                " "
             }
-        }
-    }
+        })
+        .collect();
+    (0..res.len() / 40)
+        .map(|i| (0..39).map(|j| res[j + 40 * i].to_string()).collect())
+        .intersperse("\n".to_string())
+        .collect()
 }

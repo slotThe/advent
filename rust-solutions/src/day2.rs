@@ -1,10 +1,8 @@
-use crate::util::*;
-
-pub fn day2(p: Part) -> usize {
-    match p {
-        Part::One => get_score(parse_weapon, |_, me| *me),
-        Part::Two => get_score(parse_game_result, pick_result),
-    }
+pub fn day2() -> (usize, usize) {
+    (
+        get_score(parse_weapon, |_, me| *me),
+        get_score(parse_game_result, pick_result),
+    )
 }
 
 #[derive(PartialEq, Clone, Copy, Debug)]

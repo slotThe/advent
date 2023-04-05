@@ -15,15 +15,11 @@ pub struct Move {
     to: u32,
 }
 
-pub fn day5(p: Part) -> Option<String> {
-    match p {
-        Part::One => solve(|s| s),
-        Part::Two => solve(|s| s.rev()),
-    }
-    .map(|s| s.concat())
+pub fn day5() -> (Option<String>, Option<String>) {
+    (solve(|s| s), solve(|s| s.rev()))
 }
 
-pub fn solve<Out, Fun>(tamper: Fun) -> Option<Vec<String>>
+pub fn solve<Out, Fun>(tamper: Fun) -> Option<String>
 where
     // XXX: I don't know why a more generic Iterator does not work here.
     Fun: Fn(std::vec::IntoIter<String>) -> Out,
@@ -44,7 +40,8 @@ where
         crates
             .iter()
             .map(|stack| stack[stack.len() - 1].clone())
-            .collect()
+            .collect::<Vec<_>>()
+            .concat()
     })
 }
 

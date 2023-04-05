@@ -16,20 +16,19 @@ pub enum Ins {
     Ignore,
 }
 
-pub fn day7(p: Part) -> Option<u128> {
-    let fs = std::fs::read_to_string("../inputs/day7.txt")
-        .ok()
-        .map(|res| simulate(res.lines().flat_map(|s| parse(s, p_input)).collect()))?;
-    match p {
-        Part::One => Some(fs.into_values().filter(|v| *v <= 100_000).sum()),
-        Part::Two => {
-            let need = 30_000_000
-                - (70_000_000
-                    - fs.get(&vec!["/".to_string()])
-                        .expect("The root directory should be indexed."));
-            Some(fs.into_values().filter(|v| *v >= need).min().unwrap())
-        }
-    }
+pub fn day7() -> (u128, u128) {
+    let fs = std::fs::read_to_string("../inputs/day7.txt").map_or(HashMap::new(), |res| {
+        simulate(res.lines().flat_map(|s| parse(s, p_input)).collect())
+    });
+    let one = fs.clone().into_values().filter(|v| *v <= 100_000).sum();
+    let two = {
+        let need = 30_000_000
+            - (70_000_000
+                - fs.get(&vec!["/".to_string()])
+                    .expect("The root directory should be indexed."));
+        fs.into_values().filter(|v| *v >= need).min().unwrap()
+    };
+    (one, two)
 }
 
 fn p_input(inp: &str) -> IResult<&str, Ins> {

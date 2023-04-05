@@ -1,11 +1,7 @@
-use crate::util::*;
 use std::collections::HashSet;
 
-pub fn day3(p: Part) -> usize {
-    match p {
-        Part::One => solve(parse1),
-        Part::Two => solve(parse2),
-    }
+pub fn day3() -> (usize, usize) {
+    (solve(parse1), solve(parse2))
 }
 
 fn get_input() -> Vec<String> {

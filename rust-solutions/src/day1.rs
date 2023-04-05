@@ -1,9 +1,13 @@
 use anyhow::{Context, Result};
 
-pub fn get_nth_most_wanted(n: usize) -> i64 {
-    let mut input = get_input().unwrap();
+pub fn day1() -> (Result<i64>, Result<i64>) {
+    (get_nth_most_wanted(1), get_nth_most_wanted(3))
+}
+
+fn get_nth_most_wanted(n: usize) -> Result<i64> {
+    let mut input = get_input()?;
     input.sort_by(|a, b| b.cmp(a));
-    input.into_iter().take(n).sum()
+    Ok(input.into_iter().take(n).sum())
 }
 
 fn get_input() -> Result<Vec<i64>> {

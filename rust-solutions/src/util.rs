@@ -1,9 +1,15 @@
 use anyhow::Result;
 use nom::{combinator::all_consuming, Finish};
 
-pub enum Part {
-    One,
-    Two,
+pub trait OkOk {
+    type Output;
+    fn okok(self) -> Self::Output;
+}
+impl<A, B> OkOk for (Result<A>, Result<B>) {
+    type Output = (Option<A>, Option<B>);
+    fn okok(self) -> Self::Output {
+        (self.0.ok(), self.1.ok())
+    }
 }
 
 pub fn parse<'a, R, F>(inp: &'a str, parser: F) -> Result<R, nom::error::Error<&'a str>>

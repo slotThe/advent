@@ -1,11 +1,7 @@
-use crate::util::*;
 use std::collections::HashSet;
 
-pub fn day6(p: Part) -> usize {
-    match p {
-        Part::One => solve(4),
-        Part::Two => solve(14),
-    }
+pub fn day6() -> (usize, usize) {
+    (solve(4), solve(14))
 }
 
 fn solve(n: usize) -> usize {

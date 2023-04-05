@@ -1,4 +1,3 @@
-use crate::util::*;
 use lazy_static::lazy_static;
 use regex::Regex;
 use std::{num::ParseIntError, str::FromStr};
@@ -39,11 +38,11 @@ impl RangePair {
     }
 }
 
-pub fn day4(p: Part) -> usize {
-    match p {
-        Part::One => solve(|rp| rp.completely_overlap()),
-        Part::Two => solve(|rp| rp.overlap()),
-    }
+pub fn day4() -> (usize, usize) {
+    (
+        solve(|rp| rp.completely_overlap()),
+        solve(|rp| rp.overlap()),
+    )
 }
 
 fn solve<F>(filter_by: F) -> usize
