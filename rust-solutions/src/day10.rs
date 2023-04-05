@@ -64,8 +64,10 @@ fn part2(inp: Vec<i32>) -> String {
             }
         })
         .collect();
-    (0..res.len() / 40)
-        .map(|i| (0..39).map(|j| res[j + 40 * i].to_string()).collect())
-        .intersperse("\n".to_string())
-        .collect()
+    "\n".to_string()
+        + (0..res.len() / 40)
+            .map(|i| (0..39).map(|j| res[j + 40 * i].to_string()).collect())
+            .intersperse("\n".to_string())
+            .collect::<String>()
+            .as_ref()
 }
