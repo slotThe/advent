@@ -2,3 +2,4 @@
 target/
 *.lock
 .nrepl-port
+.clj-kondo
