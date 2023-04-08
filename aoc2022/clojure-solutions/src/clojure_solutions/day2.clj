@@ -1,6 +1,6 @@
 (ns clojure-solutions.day2
   (:require [clojure.string :as str])
-  (:use [clojure-solutions.util] :reload))
+  (:use [clojure-aoc-util.util] :reload))
 
 (defn- game-result [op me]
   (case [op me]

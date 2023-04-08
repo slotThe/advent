@@ -1,6 +1,30 @@
-(ns clojure-solutions.util
+(ns clojure-aoc-util.util
   (:require [clojure.string :as str]
             [clojure.data.priority-map :refer [priority-map]]))
+
+;;; Pretty printing
+
+(defn print-day [day one two]
+  (println "!!! Day" day "!!!")
+  (println "First  Task:" one)
+  (println "Second Task:" two)
+  (println))
+
+(defn plot-set
+  "Plot a set of points of the form [x y]; ASCII style."
+  [s]
+  (let [[xmax ymax] (reduce (fn [[x-max y-max] [x y]]
+                              [(max x-max x) (max y-max y)])
+                            s)
+        [xmin ymin] (reduce (fn [[x-min y-min] [x y]]
+                              [(min x-min x) (min y-min y)])
+                            s)]
+    (map (fn [line] (str/join
+                     (map (fn [[a b]] (if (s [a b]) "█" " "))
+                          line)))
+         (map (fn [y] (map #(vector % y)
+                           (range xmin (inc xmax))))
+              (range ymin (inc ymax))))))
 
 ;;; Parsing
 
@@ -22,25 +46,29 @@
 (defn split-groups [s]
   (str/split s #"\n\n"))
 
-;;; Pretty printing
+;;; Matrix manipulation
 
-(defn plot-set
-  "Plot a set of points of the form [x y]; ASCII style."
-  [s]
-  (let [[xmax ymax] (reduce (fn [[x-max y-max] [x y]]
-                              [(max x-max x) (max y-max y)])
-                            s)
-        [xmin ymin] (reduce (fn [[x-min y-min] [x y]]
-                              [(min x-min x) (min y-min y)])
-                            s)]
-    (map (fn [line] (str/join
-                     (map (fn [[a b]] (if (s [a b]) "█" " "))
-                          line)))
-         (map (fn [y] (map #(vector % y)
-                           (range xmin (inc xmax))))
-              (range ymin (inc ymax))))))
+(defn mat-ix
+  "Return the element at index (i, j).  Returns `nil' if index is
+  out-of-bounds."
+  [m [i j]]
+  (let [rows (count m)
+        cols (count (first m))]
+    (when (and (< -1 i rows) (< -1 j cols))
+      (nth (nth m i) j))))
 
-;;; Stuff that should be in clojure.core
+(defn map-matrix
+  "Map a function f(i, j, el) over all elements of a matrix with
+  indices."
+  [f mat]
+  (apply concat
+         (keep-indexed (fn [i row]
+                         (keep-indexed (fn [j el]
+                                         (f i j el))
+                                       row))
+                       mat)))
+
+;;; Random util
 
 (defn signum ^long [^double d]
   (long (Math/signum d)))
@@ -110,28 +138,6 @@
   [g coll]
   (map-from-coll-with (fn [a _] a) g coll))
 
-;;; Matrix manipulation
-
-(defn mat-ix
-  "Return the element at index (i, j).  Returns `nil' if index is
-  out-of-bounds."
-  [m [i j]]
-  (let [rows (count m)
-        cols (count (first m))]
-    (when (and (< -1 i rows) (< -1 j cols))
-      (nth (nth m i) j))))
-
-(defn map-matrix
-  "Map a function f(i, j, el) over all elements of a matrix with
-  indices."
-  [f mat]
-  (apply concat
-         (keep-indexed (fn [i row]
-                         (keep-indexed (fn [j el]
-                                         (f i j el))
-                                       row))
-                       mat)))
-
 ;;; Algorithms
 
 (defn dijkstra
@@ -180,3 +186,17 @@
       (let [looking-at (peek remaining)]
         (recur (apply conj (pop remaining) (more looking-at seen))
                (conj seen looking-at))))))
+
+(defn binary-search
+  "https://byorgey.wordpress.com/2023/01/01/competitive-programming-in-haskell-better-binary-search/"
+  ([mid pred lo hi]
+   (loop [l lo, r hi]
+     (if-let [m (mid l r)]
+       (if (pred m)
+         (recur l m)
+         (recur m r))
+       [l r])))
+  ([pred ^long l ^long r]
+   (binary-search #(when (> (- %2 %1) 1)
+                     (quot (+ %1 %2) 2))
+                  pred l r)))

@@ -1,6 +1,6 @@
-(ns clojure-solutions.coords
+(ns clojure-aoc-util.coords
   (:require [clojure.string :as str]
-            [clojure-solutions.util :as util]))
+            [clojure-aoc-util.util :as util]))
 
 (import (clojure.lang MapEntry))
 

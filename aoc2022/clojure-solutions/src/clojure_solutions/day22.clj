@@ -1,8 +1,8 @@
 (ns clojure-solutions.day22
   (:require [clojure.string :as str]
             [clojure.core.match :refer [match]]
-            [clojure-solutions.coords :as coords])
-  (:use [clojure-solutions.util] :reload))
+            [clojure-aoc-util.coords :as coords])
+  (:use [clojure-aoc-util.util] :reload))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Parsing

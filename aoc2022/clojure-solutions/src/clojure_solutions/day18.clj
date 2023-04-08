@@ -1,7 +1,7 @@
 (ns clojure-solutions.day18
   (:require [clojure.string :as str]
-            [clojure-solutions.coords :as coords])
-  (:use [clojure-solutions.util] :reload))
+            [clojure-aoc-util.coords :as coords])
+  (:use [clojure-aoc-util.util] :reload))
 
 (defn- parse []
   (->> (slurp "../inputs/day18.txt")

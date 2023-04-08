@@ -1,7 +1,7 @@
 (ns clojure-solutions.day16
   (:require [clojure.string :as str]
             [clojure.set :as set])
-  (:use [clojure-solutions.util] :reload))
+  (:use [clojure-aoc-util.util] :reload))
 
 (defn- parse []
   (let [valves (->> (slurp "../inputs/day16.txt")

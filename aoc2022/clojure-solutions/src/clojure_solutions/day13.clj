@@ -1,7 +1,7 @@
 (ns clojure-solutions.day13
   (:require [clojure.string :as str]
             [clojure.core.match :refer [match]])
-  (:use [clojure-solutions.util] :reload))
+  (:use [clojure-aoc-util.util] :reload))
 
 (defn- parse []
   (->> (slurp "../inputs/day13.txt")

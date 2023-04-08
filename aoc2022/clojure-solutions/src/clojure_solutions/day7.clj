@@ -1,6 +1,6 @@
 (ns clojure-solutions.day7
   (:require [clojure.string :as str])
-  (:use [clojure-solutions.util] :reload))
+  (:use [clojure-aoc-util.util] :reload))
 
 (defn- parse []
   (letfn [(dir-or-file [[type name]]

@@ -1,6 +1,6 @@
 (ns clojure-solutions.day17
   (:require [clojure.string :as str])
-  (:use [clojure-solutions.util] :reload))
+  (:use [clojure-aoc-util.util] :reload))
 
 (def jets
   (vec (map #(case %

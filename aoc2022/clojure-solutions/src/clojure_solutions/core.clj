@@ -20,13 +20,8 @@
             [clojure-solutions.day19 :as day19]
             [clojure-solutions.day22 :as day22]
             [clojure-solutions.day23 :as day23]
-            [clojure-solutions.day25 :as day25]))
-
-(defn- print-day [day one two]
-  (println "!!! Day" day "!!!")
-  (println "First  Task:" one)
-  (println "Second Task:" two)
-  (println))
+            [clojure-solutions.day25 :as day25])
+  (:use [clojure-aoc-util.util] :reload))
 
 (defn -main [& _]
   (print-day 1 (day1/get-nth-most-wanted 1) (day1/get-nth-most-wanted 3))

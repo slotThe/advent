@@ -3,3 +3,4 @@ target/
 *.lock
 .nrepl-port
 .clj-kondo
+pom.xml

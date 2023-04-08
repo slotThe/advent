@@ -1,6 +1,6 @@
 (ns clojure-solutions.day10
   (:require [clojure.string :as str])
-  (:use [clojure-solutions.util] :reload))
+  (:use [clojure-aoc-util.util] :reload))
 
 (defn- parse []
   (->> (slurp "../inputs/day10.txt")

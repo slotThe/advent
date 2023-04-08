@@ -1,7 +1,7 @@
 (ns clojure-solutions.day3
   (:require [clojure.string :as str]
             [clojure.set    :as set])
-  (:use [clojure-solutions.util] :reload))
+  (:use [clojure-aoc-util.util] :reload))
 
 (defn- parse []
   (str/split-lines (slurp "../inputs/day3.txt")))

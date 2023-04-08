@@ -1,6 +1,6 @@
 (ns clojure-solutions.day25
   (:require [clojure.string :as str])
-  (:use [clojure-solutions.util] :reload))
+  (:use [clojure-aoc-util.util] :reload))
 
 (defn- from-snafu [xs]
   (let [lookup {\2 2, \1 1, \0 0, \- -1, \= -2}]

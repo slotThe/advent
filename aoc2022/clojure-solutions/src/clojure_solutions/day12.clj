@@ -1,8 +1,8 @@
 (ns clojure-solutions.day12
-  (:require [clojure-solutions.coords :as coords]
+  (:require [clojure-aoc-util.coords :as coords]
             [clojure.string :as str]
             [clojure.set :refer [map-invert]])
-  (:use [clojure-solutions.util] :reload))
+  (:use [clojure-aoc-util.util] :reload))
 
 (defn- parse []
   (str/split-lines (slurp "../inputs/day12.txt")))
