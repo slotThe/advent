@@ -1,12 +1,18 @@
 use anyhow::Result;
 use nom::{combinator::all_consuming, Finish};
 
+///////////////////////////////////////////////////////////////////////
+// Parsing
+
 pub fn parse<'a, R, F>(inp: &'a str, parser: F) -> Result<R, nom::error::Error<&'a str>>
 where
     F: Fn(&'a str) -> nom::IResult<&'a str, R>,
 {
     all_consuming(parser)(inp).finish().map(|(_, r)| r)
 }
+
+///////////////////////////////////////////////////////////////////////
+// Matrix util
 
 pub fn transpose<El: Clone>(xxs: Vec<Vec<El>>) -> Vec<Vec<El>> {
     transpose_with(|v| v, xxs)
@@ -20,6 +26,19 @@ where
         .map(|i| xxs.iter().map(|row| row[i].clone()).collect())
         .map(f)
         .collect()
+}
+
+///////////////////////////////////////////////////////////////////////
+// Pretty printing
+
+pub fn print_day<A, B>(num: usize, solutions: (A, B))
+where
+    A: AdventString,
+    B: AdventString,
+{
+    println!("!!! Day {num} !!!");
+    println!("First  task: {}", solutions.0.pp());
+    println!("Second task: {}\n", solutions.1.pp());
 }
 
 pub trait AdventString {

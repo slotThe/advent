@@ -1,4 +1,3 @@
-use crate::util::*;
 use anyhow::Result;
 use nom::{
     branch::alt,
@@ -8,6 +7,7 @@ use nom::{
     sequence::{delimited, preceded, tuple},
     IResult,
 };
+use rust_aoc_util::{parse, transpose_with};
 
 pub struct Move {
     muv: u32,

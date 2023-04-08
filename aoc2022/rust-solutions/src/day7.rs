@@ -1,6 +1,3 @@
-use std::collections::HashMap;
-
-use crate::util::*;
 use nom::{
     branch::alt,
     bytes::complete::tag,
@@ -8,6 +5,8 @@ use nom::{
     sequence::{preceded, terminated},
     IResult,
 };
+use rust_aoc_util::parse;
+use std::collections::HashMap;
 
 #[derive(Debug)]
 pub enum Ins {
