@@ -1,0 +1,48 @@
+name:                haskell-aoc-util
+version:             0.1.0.0
+synopsis:            Haskell utility things for advent of code problems
+homepage:            https://github.com/slotThe/advent
+license:             AGPL-3
+license-file:        LICENSE
+author:              Tony Zorman
+maintainer:          tonyzorman@mailbox.org
+copyright:           2023 Tony Zorman
+build-type:          Simple
+cabal-version:       >=1.10
+
+library
+  exposed-modules:     Coords
+                       Util
+  hs-source-dirs:      src
+  default-extensions:  GHC2021
+                       StrictData
+                       DerivingStrategies
+                       OverloadedStrings
+                       LambdaCase
+                       BlockArguments
+                       MultiWayIf
+                       ViewPatterns
+                       NoImplicitPrelude
+                       GADTs
+                       OverloadedLabels
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+  ghc-options:         -Weverything
+                       -Wno-implicit-prelude
+                       -Wno-missing-import-lists
+                       -Wno-unused-packages
+                       -Wno-missing-safe-haskell-mode
+                       -Wno-all-missed-specialisations
+                       -Wno-unsafe
+                       -Wno-prepositive-qualified-module
+                       -O2
+  build-depends:       array
+                     , base
+                     , base-prelude
+                     , containers
+                     , generic-lens
+                     , lens
+                     , primitive
+                     , text
+                     , unordered-containers
+                     , vector

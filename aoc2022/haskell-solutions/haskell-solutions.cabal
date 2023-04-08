@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bffb1e40603bf701df48bcf58f05bee668a00c5396d58636273a473423f9a8d3
+-- hash: 5b3b5dba83c37acf50aadb38aa1fc09ce0c52b0780a267b771978adca328ccdd
 
 name:           haskell-solutions
 version:        0.1.0
@@ -17,7 +17,6 @@ build-type:     Simple
 
 library
   exposed-modules:
-      Coords
       Day1
       Day11
       Day12
@@ -35,7 +34,6 @@ library
       Day7
       Day8
       Day9
-      Util
   other-modules:
       Paths_haskell_solutions
   hs-source-dirs:
@@ -59,6 +57,7 @@ library
     , base-prelude
     , containers
     , generic-lens
+    , haskell-aoc-util
     , lens
     , primitive
     , text
@@ -91,6 +90,7 @@ executable aoc-2022-haskell
     , base-prelude
     , containers
     , generic-lens
+    , haskell-aoc-util
     , haskell-solutions
     , lens
     , primitive

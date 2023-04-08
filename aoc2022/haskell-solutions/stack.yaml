@@ -2,3 +2,6 @@ resolver: lts-20.16
 
 packages:
   - .
+
+extra-deps:
+  - ../../util/haskell-aoc-util/
