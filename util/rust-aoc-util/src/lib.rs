@@ -1,4 +1,5 @@
 pub mod coord;
+pub mod fun;
 
 use anyhow::Result;
 use nom::{combinator::all_consuming, Finish};
