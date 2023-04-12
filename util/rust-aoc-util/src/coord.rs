@@ -1,3 +1,5 @@
+use itertools::Itertools;
+
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub enum Dir {
   North,
@@ -33,6 +35,14 @@ impl Coord {
       Dir::South => self.y += 1,
     }
   }
+}
+
+pub fn from_pair(p: (i32, i32)) -> Coord { Coord { x: p.0, y: p.1 } }
+
+/// 2D coordinate indexing. Coordinates are required to be non-negative;
+/// this is not checked.
+pub fn range(c1: Coord, c2: Coord) -> impl Iterator<Item = (usize, usize)> {
+  (c1.x as usize..=c2.x as usize).cartesian_product(c1.y as usize..=c2.y as usize)
 }
 
 pub const ORIGIN: Coord = Coord { x: 0, y: 0 };

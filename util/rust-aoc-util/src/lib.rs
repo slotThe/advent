@@ -2,7 +2,7 @@ pub mod coord;
 pub mod fun;
 
 use anyhow::Result;
-use nom::{combinator::all_consuming, Finish};
+use nom::{combinator::all_consuming, Finish, IResult};
 
 ///////////////////////////////////////////////////////////////////////
 // Parsing
@@ -12,6 +12,11 @@ where
   F: Fn(&'a str) -> nom::IResult<&'a str, R>,
 {
   all_consuming(parser)(inp).finish().map(|(_, r)| r)
+}
+
+// Lift a value into the parser context; like `pure` in Haskell.
+pub fn pure<'a, T: 'a + Clone>(t: T) -> impl Fn(&'a str) -> IResult<&'a str, T> {
+  move |i| Ok((i, t.clone()))
 }
 
 ///////////////////////////////////////////////////////////////////////
