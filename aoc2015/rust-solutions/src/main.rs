@@ -10,6 +10,7 @@ pub mod day4;
 pub mod day5;
 pub mod day6;
 pub mod day7;
+pub mod day8;
 
 fn main() -> Result<()> {
   print_day(1, day1::day1()?);
@@ -19,5 +20,6 @@ fn main() -> Result<()> {
   print_day(5, day5::day5()?);
   print_day(6, day6::day6()?);
   print_day(7, day7::day7()?);
+  print_day(8, day8::day8()?);
   Ok(())
 }
