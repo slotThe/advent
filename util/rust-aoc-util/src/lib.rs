@@ -2,7 +2,8 @@ pub mod coord;
 pub mod fun;
 
 use anyhow::Result;
-use nom::{combinator::all_consuming, Finish, IResult};
+use nom::{bytes::complete::tag, character::complete::multispace0,
+          combinator::all_consuming, sequence::delimited, Finish, IResult};
 
 ///////////////////////////////////////////////////////////////////////
 // Parsing
@@ -17,6 +18,10 @@ where
 // Lift a value into the parser context; like `pure` in Haskell.
 pub fn pure<'a, T: 'a + Clone>(t: T) -> impl Fn(&'a str) -> IResult<&'a str, T> {
   move |i| Ok((i, t.clone()))
+}
+
+pub fn wtag<'a>(s: &'a str) -> impl FnMut(&'a str) -> IResult<&'a str, &'a str> {
+  delimited(multispace0, tag(s), multispace0)
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -82,6 +87,10 @@ impl AdventString for String {
 }
 
 impl AdventString for i32 {
+  fn pp(&self) -> String { self.to_string() }
+}
+
+impl AdventString for u16 {
   fn pp(&self) -> String { self.to_string() }
 }
 
