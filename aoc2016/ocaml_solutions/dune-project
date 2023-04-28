@@ -1,0 +1,23 @@
+(lang dune 3.7)
+
+(name ocaml_solutions)
+
+(generate_opam_files true)
+
+(source
+ (github slotThe/advent))
+
+(authors "Tony Zorman")
+
+(maintainers "Tony Zorman")
+
+(license LICENSE)
+
+(documentation https://url/to/documentation)
+
+(package
+ (name ocaml_solutions)
+ (synopsis "OCaml solutions for advent of code 2016")
+ (depends core stdio ocaml dune))
+
+; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project

@@ -189,6 +189,12 @@ This was me basically learning Haskell.
 [2020:day24:haskell]: ./aoc2020/src/Day24.hs
 [2020:day25:haskell]: ./aoc2020/src/Day25.hs
 
+## 2016
+
+  - Day 1  : [OCaml][2016:day1:ocaml]
+
+[2016:day1:ocaml]: ./aoc2016/ocaml_solutions/lib/day1.ml
+
 ## 2015
 
   - Day 1  : [Rust][2015:day1:rust]
