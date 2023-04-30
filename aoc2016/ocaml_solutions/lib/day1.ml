@@ -1,30 +1,5 @@
 open Core
-
-(* General utility *)
-
-let (--) s t = List.init (t - s + 1) ~f:(fun i -> i + s)
-
-let string_of_option to_str o = match o with
-  | None   -> "None"
-  | Some i -> String.concat ~sep:" " ["Some"; to_str i]
-
-(* Coordinates *)
-
-module Coord = struct
-  type dir1D = L | R
-
-  let turn d (y, x) = match d with
-    | L -> (-x,  y)
-    | R -> ( x, -y)
-
-  let scale n (x, y) = (n * x, n * y)
-
-  let coordsum (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
-
-  let walk p ~dir ~amount = coordsum p (scale amount dir)
-
-  let manhattan (x1, y1) (x2, y2) = abs (x1 - x2) + abs (y1 - y2)
-end
+open Util
 
 (* Wow *)
 
@@ -40,13 +15,8 @@ module IISet =
 
 (* Parsing *)
 
-let p_input s =
-  let pref = String.sub s ~pos:0 ~len:1
-  and num  = String.sub s ~pos:1 ~len:(String.length s - 1)
-  in match pref with
-     | "L" -> (Coord.L, int_of_string num)
-     | "R" -> (Coord.R, int_of_string num)
-     | _   -> failwith "rip"
+let p_input s = Coord.dir1D_of_string (String.sub s ~pos:0 ~len:1)
+              , int_of_string (String.(sub s ~pos:1 ~len:(length s - 1)))
 
 (* Solving *)
 
@@ -68,16 +38,14 @@ let find_dup xs =
                   else go (IISet.add s y) yss
   in go IISet.empty xs
 
-open Option (* for >>= below *)
-
 let day1 =
-  let inp = In_channel.read_all "../inputs/day01.txt"
+  let inp = In_channel.read_all "../../inputs/day01.txt"
             |> String.tr ~target:'\n' ~replacement:' ' in
   let dirs = String.split_on_chars inp ~on:[','; ' ']
-             |> List.filter ~f:(fun x -> not (String.is_empty x))
-             |> List.map ~f:p_input in
+             |> List.filter_map ~f:(fun x ->
+                    if not (String.is_empty x) then Some (p_input x) else None) in
   let pos, _, ps = completely_walk dirs in
   let one = Coord.manhattan (0, 0) pos
-  and two = find_dup ps >>= fun x -> Some (Coord.manhattan (0, 0) x)
+  and two = Option.(find_dup ps >>= fun x -> Some (Coord.manhattan (0, 0) x))
   in string_of_int one
    , string_of_option string_of_int two
