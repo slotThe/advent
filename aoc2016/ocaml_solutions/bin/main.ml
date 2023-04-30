@@ -10,3 +10,4 @@ let print_answer n (one, two) =
 
 let () = print_answer 1 Day1.day1
 let () = print_answer 2 Day2.day2
+let () = print_answer 3 Day3.day3
