@@ -4,10 +4,14 @@ let (--) s t = List.init (t - s + 1) ~f:(fun i -> i + s)
 
 let string_of_option to_str o = match o with
   | None   -> "None"
-  | Some i -> String.concat ~sep:" " ["Some"; to_str i]
+  | Some i -> "Some " ^ to_str i
+
+let sort_string s =
+  String.to_list s |> List.sort ~compare:Char.compare |> String.of_char_list
 
 module Fun = struct
   let (<<) f g x = f (g x)
+  let (@.) f g x = f (g x)
 
   let (>>) f g x = g (f x)
 end
@@ -18,7 +22,7 @@ module Coord = struct
   let dir1D_of_string s = match s with
     | "L" -> L1
     | "R" -> R1
-    | _   -> failwith "rip"
+    | _   -> failwith "dir1D_of_string: expected L or R"
 
   type dir2D = L | R | U | D
 
@@ -27,7 +31,7 @@ module Coord = struct
     | "R" -> R
     | "U" -> U
     | "D" -> D
-    | _   -> failwith "rip"
+    | _   -> failwith "dir2D_of_string: expected L, R, U, or D."
 
   let turn d (y, x) = match d with
     | L1 -> (-x,  y)
