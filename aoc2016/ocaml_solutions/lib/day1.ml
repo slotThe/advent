@@ -27,11 +27,11 @@ let completely_walk das =
       let pos = Coord.walk oldpos ~dir ~amount
       in pos
        , dir
-       , List.append ps (List.map ~f:(fun x -> Coord.walk oldpos ~dir ~amount:x)
-                                  (1 -- amount)))
+       , List.append ps (List.map ~f:(fun amount -> Coord.walk oldpos ~dir ~amount)
+                                  (List.range ~stop:`inclusive 1 amount)))
 
 let find_dup xs =
-  let rec go s ys = match ys with
+  let rec go s = function
     | []       -> None
     | y :: yss -> if   IISet.mem s y
                   then Some y

@@ -1,8 +1,6 @@
 open Core
 
-let (--) s t = List.init (t - s + 1) ~f:(fun i -> i + s)
-
-let string_of_option to_str o = match o with
+let string_of_option to_str = function
   | None   -> "None"
   | Some i -> "Some " ^ to_str i
 
@@ -21,14 +19,14 @@ end
 module Coord = struct
   type dir1D = L1 | R1
 
-  let dir1D_of_string s = match s with
+  let dir1D_of_string = function
     | "L" -> L1
     | "R" -> R1
     | _   -> failwith "dir1D_of_string: expected L or R"
 
   type dir2D = L | R | U | D
 
-  let dir2D_of_string s = match s with
+  let dir2D_of_string = function
     | "L" -> L
     | "R" -> R
     | "U" -> U

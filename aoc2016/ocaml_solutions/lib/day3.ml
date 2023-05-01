@@ -11,10 +11,9 @@ let could_be_triangle xs =
 
 let part2 =
   let tuple_to_list (a, b, c) = [a; b; c] in
-  let rec list_to_tuple xs = match xs with
-    | []                -> []
+  let rec list_to_tuple = function
     | a :: b :: c :: xs -> (a, b, c) :: list_to_tuple xs
-    | _                 -> failwith "impossible"
+    | [] | _            -> []
   in could_be_triangle
        List.(map ~f:tuple_to_list inp
              |> transpose_exn

@@ -11,7 +11,7 @@ let inp = In_channel.read_lines "../../inputs/day02.txt"
    adding to it, and 'aux' is the other part of the coordinate, for
    possible comparisons. *)
 let solve moves start trans =
-  let move (x, y) d = match d with
+  let move (x, y) = function
     | L -> (trans x (-1) y, y)
     | R -> (trans x   1  y, y)
     | U -> (x             , trans y   1  x)
