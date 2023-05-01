@@ -10,8 +10,7 @@ let p_line s =
    , n
    , check
 
-let inp = In_channel.read_all "../../inputs/day04.txt"
-          |> String.split_lines |> List.map ~f:p_line
+let inp = List.map ~f:p_line (In_channel.read_lines "../../inputs/day04.txt")
 
 let frequencies xs =
   List.(sort_and_group xs ~compare:Char.compare

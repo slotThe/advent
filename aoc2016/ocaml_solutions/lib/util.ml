@@ -9,6 +9,8 @@ let string_of_option to_str o = match o with
 let sort_string s =
   String.to_list s |> List.sort ~compare:Char.compare |> String.of_char_list
 
+let read_single_line f = In_channel.read_lines f |> List.hd_exn
+
 module Fun = struct
   let (<<) f g x = f (g x)
   let (@.) f g x = f (g x)

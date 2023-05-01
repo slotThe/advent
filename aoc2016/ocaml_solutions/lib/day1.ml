@@ -39,8 +39,7 @@ let find_dup xs =
   in go IISet.empty xs
 
 let day1 =
-  let inp = In_channel.read_all "../../inputs/day01.txt"
-            |> String.tr ~target:'\n' ~replacement:' ' in
+  let inp = read_single_line "../../inputs/day01.txt" in
   let dirs = String.split_on_chars inp ~on:[','; ' ']
              |> List.filter_map ~f:(fun x ->
                     if not (String.is_empty x) then Some (p_input x) else None) in

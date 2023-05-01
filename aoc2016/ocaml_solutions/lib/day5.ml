@@ -1,6 +1,6 @@
 open Core
 
-let inp = In_channel.read_lines "../../inputs/day05.txt" |> List.hd_exn
+let inp = Util.read_single_line "../../inputs/day05.txt"
 
 let generate_hashes s =
   Seq.filter_map
