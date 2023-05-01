@@ -13,8 +13,6 @@
 
 (license LICENSE)
 
-(documentation https://url/to/documentation)
-
 (package
  (name ocaml_solutions)
  (synopsis "OCaml solutions for advent of code 2016")

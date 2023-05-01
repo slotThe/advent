@@ -5,7 +5,6 @@ maintainer: ["Tony Zorman"]
 authors: ["Tony Zorman"]
 license: "LICENSE"
 homepage: "https://github.com/slotThe/advent"
-doc: "https://url/to/documentation"
 bug-reports: "https://github.com/slotThe/advent/issues"
 depends: [
   "core"
