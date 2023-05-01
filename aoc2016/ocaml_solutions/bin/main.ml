@@ -14,4 +14,5 @@ let () =
   print_answer 3 Day3.day3;
   print_answer 4 Day4.day4;
   (* print_answer 5 Day5.day5; *)
+  print_answer 6 Day6.day6;
   ()

@@ -12,11 +12,6 @@ let p_line s =
 
 let inp = List.map ~f:p_line (In_channel.read_lines "../../inputs/day04.txt")
 
-let frequencies xs =
-  List.(sort_and_group xs ~compare:Char.compare
-        |> map ~f:(fun xs -> (hd_exn xs, length xs))
-        |> sort ~compare:(fun (_, a) (_, b) -> Int.compare b a))
-
 let valid_rooms xs =
   List.(filter_map xs ~f:(fun (a, b, c) ->
             let most_common =

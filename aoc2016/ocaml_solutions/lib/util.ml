@@ -9,6 +9,11 @@ let sort_string s =
 
 let read_single_line f = In_channel.read_lines f |> List.hd_exn
 
+let frequencies xs =
+  List.(sort_and_group xs ~compare:Char.compare
+        |> map ~f:(fun xs -> (hd_exn xs, length xs))
+        |> sort ~compare:(fun (_, a) (_, b) -> Int.compare b a))
+
 module Fun = struct
   let (<<) f g x = f (g x)
   let (@.) f g x = f (g x)
