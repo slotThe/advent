@@ -14,6 +14,19 @@ let frequencies xs =
         |> map ~f:(fun xs -> (hd_exn xs, length xs))
         |> sort ~compare:(fun (_, a) (_, b) -> Int.compare b a))
 
+(* [sliding_window n xs] create a sliding window of size [n] for the
+   list [xs]. The implementation is naive in the sense that
+
+       sliding_window 3 [1; 2; 3; 4]
+
+   will return [[1; 2; 3]; [2; 3; 4]; [3; 4]; [4]].
+ *)
+let sliding_window n xs =
+  let rec go res = function
+    | [] -> List.rev res
+    | xs -> go (List.take xs n :: res) (List.drop xs 1)
+  in go [] xs
+
 module Fun = struct
   let (<<) f g x = f (g x)
   let (@.) f g x = f (g x)
