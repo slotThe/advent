@@ -1,5 +1,16 @@
 open Core
 
+(* A set comprising tuples of integers as elements. *)
+module IISet =
+  Set.Make(
+      struct
+        type t = int * int
+        let compare x y = Tuple2.compare ~cmp1:Int.compare ~cmp2:Int.compare x y
+        let t_of_sexp = Tuple2.t_of_sexp Int.t_of_sexp Int.t_of_sexp
+        let sexp_of_t = Tuple2.sexp_of_t Int.sexp_of_t Int.sexp_of_t
+      end
+    )
+
 let string_of_option to_str = function
   | None   -> "None"
   | Some i -> "Some " ^ to_str i
@@ -26,6 +37,25 @@ let sliding_window n xs =
     | [] -> List.rev res
     | xs -> go (List.take xs n :: res) (List.drop xs 1)
   in go [] xs
+
+(* Pretty print an IISet. *)
+let ppSet set =
+  let (xmin, xmax, ymin, ymax) =
+    IISet.fold set ~init:(0, 0, 0, 0)
+      ~f:(fun (xmn, xmx, ymn, ymx) (x, y) -> min xmn x, max xmx x,
+                                             min ymn y, max ymx y)
+  and r = List.range ~stop:`inclusive
+  in List.map (r ymin ymax) ~f:(fun y ->
+         List.map (r xmin xmax) ~f:(fun x ->
+             if Set.mem set (x, y) then '#' else ' '))
+     |> List.map ~f:(fun xs -> String.of_char_list xs)
+     |> String.concat ~sep:"\n"
+
+module Parse = struct
+  let re_group re s = Re.(Option.map ~f:Group.all (exec_opt (Pcre.regexp re) s))
+
+  let ios = int_of_string
+end
 
 module Fun = struct
   let (<<) f g x = f (g x)

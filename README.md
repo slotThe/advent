@@ -198,6 +198,7 @@ This was me basically learning Haskell.
   - Day 5  : [OCaml][2016:day5:ocaml]
   - Day 6  : [OCaml][2016:day6:ocaml]
   - Day 7  : [OCaml][2016:day7:ocaml]
+  - Day 8  : [OCaml][2016:day8:ocaml]
 
 [2016:day1:ocaml]: ./aoc2016/ocaml_solutions/lib/day1.ml
 [2016:day2:ocaml]: ./aoc2016/ocaml_solutions/lib/day2.ml
@@ -206,6 +207,7 @@ This was me basically learning Haskell.
 [2016:day5:ocaml]: ./aoc2016/ocaml_solutions/lib/day5.ml
 [2016:day6:ocaml]: ./aoc2016/ocaml_solutions/lib/day6.ml
 [2016:day7:ocaml]: ./aoc2016/ocaml_solutions/lib/day7.ml
+[2016:day8:ocaml]: ./aoc2016/ocaml_solutions/lib/day8.ml
 
 ## 2015
 
