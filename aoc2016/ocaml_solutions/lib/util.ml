@@ -1,4 +1,5 @@
 open Core
+open Angstrom
 
 (* A set comprising tuples of integers as elements. *)
 module IISet =
@@ -20,6 +21,8 @@ let sort_string s =
 
 let read_single_line f = In_channel.read_lines f |> List.hd_exn
 
+let sum = List.fold ~init:0 ~f:(+)
+
 let frequencies xs =
   List.(sort_and_group xs ~compare:Char.compare
         |> map ~f:(fun xs -> (hd_exn xs, length xs))
@@ -37,6 +40,16 @@ let sliding_window n xs =
     | [] -> List.rev res
     | xs -> go (List.take xs n :: res) (List.drop xs 1)
   in go [] xs
+
+module List = struct
+  include List
+
+  let replicate a n =
+    let rec go xs = function
+      | 0 -> xs
+      | n -> go (List.cons a xs) (n - 1)
+    in go [] n
+end
 
 (* Pretty print an IISet. *)
 let ppSet set =
@@ -92,4 +105,15 @@ module Coord = struct
   let walk p ~dir ~amount = coordsum p (scale amount dir)
 
   let manhattan (x1, y1) (x2, y2) = abs (x1 - x2) + abs (y1 - y2)
+end
+
+module Parser = struct
+  open Fun
+
+  let eval p str = match parse_string ~consume:All p str with
+    | Ok v      -> v
+    | Error msg -> failwith msg
+
+  let num = many1 (satisfy Char.is_digit)
+              >>| (String.of_char_list >> Int.of_string)
 end

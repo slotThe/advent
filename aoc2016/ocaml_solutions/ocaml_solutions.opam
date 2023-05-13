@@ -11,6 +11,7 @@ depends: [
   "stdio"
   "ocaml"
   "dune" {>= "3.7"}
+  "angstrom"
   "odoc" {with-doc}
 ]
 build: [
