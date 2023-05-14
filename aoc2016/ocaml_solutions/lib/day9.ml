@@ -7,8 +7,8 @@ let p_capitals =
   >>| List.length
 
 let p_expand expand =
-  char '(' *> Parser.num <* char 'x' >>= fun one ->
-  Parser.num <* char ')'             >>= fun two ->
+  let* one = char '(' *> Parser.num <* char 'x' in
+  let* two = Parser.num <* char ')' in
   take one >>| expand two
 
 let p_all f = many1 (p_capitals <|> p_expand f) >>| sum
