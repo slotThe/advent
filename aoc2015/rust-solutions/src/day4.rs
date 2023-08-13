@@ -15,4 +15,3 @@ fn solve(pfx: &str, inp: &str) -> usize {
   }
   panic!("2015/day4::solve: Unreachable")
 }
-

@@ -4,6 +4,7 @@ use anyhow::Result;
 use rust_aoc_util::print_day;
 
 pub mod day1;
+pub mod day10;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -23,5 +24,6 @@ fn main() -> Result<()> {
   print_day(7, day7::day7()?);
   print_day(8, day8::day8()?);
   print_day(9, day9::day9()?);
+  print_day(10, day10::day10()?);
   Ok(())
 }
