@@ -1,10 +1,9 @@
 use anyhow::Result;
 use itertools::{iterate, Itertools};
+use rust_aoc_util::parse_single_line;
 
 pub fn day10() -> Result<(usize, usize)> {
-  let inp = std::fs::read_to_string("../inputs/day10.txt")?
-    .trim_end()
-    .to_string();
+  let inp = parse_single_line("../inputs/day10.txt")?;
   let res: Vec<usize> = iterate(inp, |i| play(i.clone()))
     .map(|v| v.len())
     .take(51)

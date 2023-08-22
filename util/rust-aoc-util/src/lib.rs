@@ -8,6 +8,10 @@ use nom::{bytes::complete::tag, character::complete::multispace0,
 ///////////////////////////////////////////////////////////////////////
 // Parsing
 
+pub fn parse_single_line(fp: &str) -> std::io::Result<String> {
+  std::fs::read_to_string(fp).map(|s| s.trim_end().to_string())
+}
+
 pub fn parse<'a, R, F>(inp: &'a str, parser: F) -> Result<R, nom::error::Error<&'a str>>
 where
   F: Fn(&'a str) -> nom::IResult<&'a str, R>,
