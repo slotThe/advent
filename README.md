@@ -223,6 +223,7 @@ This was me basically learning Haskell.
   - Day 8  : [Rust][2015:day8:rust]
   - Day 9  : [Rust][2015:day9:rust]
   - Day 10 : [Rust][2015:day10:rust]
+  - Day 11 : [Rust][2015:day11:rust]
 
 [2015:day1:rust]: ./aoc2015/rust-solutions/src/day1.rs
 [2015:day2:rust]: ./aoc2015/rust-solutions/src/day2.rs
@@ -234,3 +235,4 @@ This was me basically learning Haskell.
 [2015:day8:rust]: ./aoc2015/rust-solutions/src/day8.rs
 [2015:day9:rust]: ./aoc2015/rust-solutions/src/day9.rs
 [2015:day10:rust]: ./aoc2015/rust-solutions/src/day10.rs
+[2015:day11:rust]: ./aoc2015/rust-solutions/src/day11.rs
