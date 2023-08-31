@@ -1,3 +1,4 @@
 (library
- (name ocaml_solutions)
- (libraries core re angstrom))
+ (libraries core re angstrom)
+ (preprocess (pps ppx_jane))
+ (name ocaml_solutions))

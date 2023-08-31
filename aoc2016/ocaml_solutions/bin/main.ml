@@ -18,4 +18,5 @@ let () =
   print_answer 7 Day7.day7;
   print_answer 8 Day8.day8;
   print_answer 9 Day9.day9;
+  print_answer 10 Day10.day10;
   ()
