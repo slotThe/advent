@@ -3,6 +3,7 @@ module Util
     ( module BasePrelude
     , Type
     , Dim4(..)
+    , day
     , both
     , word1
     , fromBase2
@@ -31,6 +32,14 @@ import Text.ParserCombinators.ReadP
 
 type Dim4 :: Type
 data Dim4 = U | R | D | L deriving stock (Show, Read, Eq, Ord)
+
+day :: (Show a, Show b) => Int -> IO (a, b) -> IO ()
+day (show -> n) res = do
+  (one, two) <- res
+  putStrLn $ "!!! Day " <> n <> " !!!"
+  putStrLn $ "First  Task: " <> show one
+  putStrLn $ "Second Task: " <> show two
+  putStrLn ""
 
 both :: Bifunctor p => (c -> d) -> p c c -> p d d
 both f = bimap f f

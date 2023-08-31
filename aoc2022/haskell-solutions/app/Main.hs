@@ -36,11 +36,3 @@ main = do
   day 20 day20
   day 21 day21
   day 24 day24
-
-day :: (Show a, Show b) => Int -> IO (a, b) -> IO ()
-day (show -> n) res = do
-  (one, two) <- res
-  putStrLn $ "!!! Day " <> n <> " !!!"
-  putStrLn $ "First  Task: " <> show one
-  putStrLn $ "Second Task: " <> show two
-  putStrLn ""
