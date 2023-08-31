@@ -1,0 +1,84 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 5f6da338cc88e6c465e599e21a638f38f3ebae25acc7a7dfda4dfe3a6556efd6
+
+name:                haskell-solutions
+version:             0.1.0
+synopsis:            Haskell Solution for (some) AOC 2016 questions
+license:             AGPL-3
+license-file:        LICENSE
+author:              Tony Zorman
+maintainer:          soliditsallgood@mailbox.org
+build-type:          Simple
+
+library
+  exposed-modules:
+      Day10
+  other-modules:
+      Paths_haskell_solutions
+  hs-source-dirs:
+      src/
+  default-extensions:
+      GHC2021
+      StrictData
+      DerivingStrategies
+      OverloadedStrings
+      LambdaCase
+      BlockArguments
+      MultiWayIf
+      ViewPatterns
+      NoImplicitPrelude
+      GADTs
+      OverloadedLabels
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
+  build-depends:
+      array
+    , base
+    , base-prelude
+    , containers
+    , generic-lens
+    , haskell-aoc-util
+    , lens
+    , primitive
+    , text
+    , unordered-containers
+    , vector
+  default-language: Haskell2010
+
+executable aoc-2016-haskell
+  main-is: Main.hs
+  other-modules:
+      Paths_haskell_solutions
+  hs-source-dirs:
+      app
+  default-extensions:
+      GHC2021
+      StrictData
+      DerivingStrategies
+      OverloadedStrings
+      LambdaCase
+      BlockArguments
+      MultiWayIf
+      ViewPatterns
+      NoImplicitPrelude
+      GADTs
+      OverloadedLabels
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
+  build-depends:
+      array
+    , base
+    , base-prelude
+    , containers
+    , generic-lens
+    , haskell-aoc-util
+    , haskell-solutions
+    , lens
+    , primitive
+    , text
+    , unordered-containers
+    , vector
+  default-language: Haskell2010

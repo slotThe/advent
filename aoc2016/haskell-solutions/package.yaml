@@ -1,0 +1,54 @@
+name:                haskell-solutions
+version:             0.1.0
+synopsis:            Haskell Solution for (some) AOC 2016 questions
+license:             AGPL-3
+author:              Tony Zorman
+maintainer:          soliditsallgood@mailbox.org
+
+default-extensions:
+  - GHC2021
+  - StrictData
+  - DerivingStrategies
+  - OverloadedStrings
+  - LambdaCase
+  - BlockArguments
+  - MultiWayIf
+  - ViewPatterns
+  - NoImplicitPrelude
+  - GADTs
+  - OverloadedLabels
+
+ghc-options:
+  -Weverything
+  -Wno-implicit-prelude
+  -Wno-missing-import-lists
+  -Wno-unused-packages
+  -Wno-missing-safe-haskell-mode
+  -Wno-all-missed-specialisations
+  -Wno-unsafe
+  -Wno-prepositive-qualified-module
+  -O2
+
+dependencies:
+  - base
+  - base-prelude
+  - containers
+  - unordered-containers
+  - text
+  - array
+  - vector
+  - primitive
+  - lens
+  - generic-lens
+  - haskell-aoc-util
+
+library:
+  source-dirs: src/
+
+executables:
+  aoc-2016-haskell:
+    source-dirs: app
+    main: Main.hs
+    dependencies:
+      - haskell-aoc-util
+      - haskell-solutions
