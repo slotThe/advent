@@ -1,6 +1,7 @@
+use std::collections::HashMap;
+
 use anyhow::Result;
 use itertools::Itertools;
-use std::collections::HashMap;
 
 pub fn day5() -> Result<(usize, usize)> {
   let inp = std::fs::read_to_string("../inputs/day5.txt")?;

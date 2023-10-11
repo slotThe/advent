@@ -1,13 +1,8 @@
-use anyhow::Result;
-use nom::{branch::alt,
-          bytes::complete::tag,
-          character,
-          combinator::map,
-          sequence::{preceded, separated_pair},
-          IResult};
-use rust_aoc_util::{coord::{from_pair, range, Coord},
-                    parse, pure};
 use std::cmp::max;
+
+use anyhow::Result;
+use nom::{branch::alt, bytes::complete::tag, character, combinator::map, sequence::{preceded, separated_pair}, IResult};
+use rust_aoc_util::{coord::{from_pair, range, Coord}, parse, pure};
 
 pub fn day6() -> Result<(i32, i32)> {
   let input: Vec<Action> = std::fs::read_to_string("../inputs/day6.txt")?

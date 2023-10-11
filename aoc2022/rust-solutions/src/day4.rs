@@ -1,6 +1,7 @@
+use std::{num::ParseIntError, str::FromStr};
+
 use lazy_static::lazy_static;
 use regex::Regex;
-use std::{num::ParseIntError, str::FromStr};
 
 struct RangePair {
   elf1: (usize, usize),
@@ -30,8 +31,10 @@ impl FromStr for RangePair {
 
 impl RangePair {
   fn completely_overlap(&self) -> bool {
-    self.elf1.0 >= self.elf2.0 && self.elf1.1 <= self.elf2.1        // 1 contained in 2
-            || self.elf1.0 <= self.elf2.0 && self.elf1.1 >= self.elf2.1 // 2 contained in 1
+    // 1 contained in 2
+    self.elf1.0 >= self.elf2.0 && self.elf1.1 <= self.elf2.1
+      // 2 contained in 1
+      || self.elf1.0 <= self.elf2.0 && self.elf1.1 >= self.elf2.1
   }
 
   fn overlap(&self) -> bool {

@@ -1,5 +1,6 @@
-use anyhow::Result;
 use std::str::pattern::Pattern;
+
+use anyhow::Result;
 
 pub fn day4() -> Result<(usize, usize)> {
   let inp = std::fs::read_to_string("../inputs/day4.txt")?;

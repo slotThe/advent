@@ -1,10 +1,5 @@
 use anyhow::Result;
-use nom::{branch::alt,
-          bytes::complete::{tag, take},
-          error::Error,
-          multi::separated_list0,
-          sequence::{delimited, preceded, tuple},
-          IResult};
+use nom::{branch::alt, bytes::complete::{tag, take}, error::Error, multi::separated_list0, sequence::{delimited, preceded, tuple}, IResult};
 use rust_aoc_util::{parse, transpose_with};
 
 pub struct Move {

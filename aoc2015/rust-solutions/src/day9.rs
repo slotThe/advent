@@ -2,10 +2,7 @@ use std::collections::{HashMap, HashSet};
 
 use anyhow::Result;
 use itertools::Itertools;
-use nom::{bytes::complete::{tag, take_till},
-          combinator::map,
-          multi::separated_list0,
-          IResult};
+use nom::{bytes::complete::{tag, take_till}, combinator::map, multi::separated_list0, IResult};
 use rust_aoc_util::parse;
 
 pub fn day9() -> Result<(usize, usize)> {

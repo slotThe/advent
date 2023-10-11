@@ -1,11 +1,5 @@
 use anyhow::Result;
-use nom::{branch::alt,
-          bytes::complete::tag,
-          character::complete::{alpha1, anychar},
-          combinator::map,
-          multi::{count, many0},
-          sequence::{delimited, terminated},
-          IResult};
+use nom::{branch::alt, bytes::complete::tag, character::complete::{alpha1, anychar}, combinator::map, multi::{count, many0}, sequence::{delimited, terminated}, IResult};
 use rust_aoc_util::parse;
 
 pub fn day8() -> Result<(usize, usize)> {

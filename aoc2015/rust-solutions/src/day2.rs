@@ -1,5 +1,6 @@
-use anyhow::Result;
 use std::{cmp::min, num::ParseIntError, str::FromStr};
+
+use anyhow::Result;
 
 #[derive(Debug)]
 pub struct Crate {

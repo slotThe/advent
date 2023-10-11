@@ -1,12 +1,9 @@
+use std::collections::{HashMap, VecDeque};
+
 use anyhow::Result;
 use itertools::Itertools;
-use nom::{branch::alt,
-          character::{self, complete::alpha1},
-          combinator::map,
-          sequence::tuple,
-          IResult};
+use nom::{branch::alt, character::{self, complete::alpha1}, combinator::map, sequence::tuple, IResult};
 use rust_aoc_util::{parse, wtag};
-use std::collections::{HashMap, VecDeque};
 
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub enum Operand {

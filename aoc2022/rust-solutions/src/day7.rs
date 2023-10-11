@@ -1,10 +1,7 @@
-use nom::{branch::alt,
-          bytes::complete::tag,
-          combinator::{map, rest},
-          sequence::{preceded, terminated},
-          IResult};
-use rust_aoc_util::parse;
 use std::collections::HashMap;
+
+use nom::{branch::alt, bytes::complete::tag, combinator::{map, rest}, sequence::{preceded, terminated}, IResult};
+use rust_aoc_util::parse;
 
 #[derive(Debug)]
 pub enum Ins {
