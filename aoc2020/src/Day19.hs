@@ -3,18 +3,20 @@ module Day19
     , day19Two  -- :: IO ()
     ) where
 
+import Util
 import Data.Attoparsec.Text (Parser)
 
 import qualified Data.Attoparsec.Text as A
 import qualified Data.HashMap.Strict  as HMap
 import qualified Data.Text            as T
+import qualified Data.Text.IO as T
 
 
 day19 :: IO ()
-day19 = interact $ tshow . allMatches . pInput
+day19 = T.interact $ tshow . allMatches . pInput
 
 day19Two :: IO ()
-day19Two = interact $ tshow . length . allMatches . first rules' . pInput
+day19Two = T.interact $ tshow . length . allMatches . first rules' . pInput
   where
     rules' :: RuleMap -> RuleMap
     rules' rules =

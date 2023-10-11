@@ -3,17 +3,18 @@ module Day21
     , day21Two  -- :: IO ()
     ) where
 
-import Prelude
+import Util
 import Data.Attoparsec.Text (Parser)
 
 import qualified Data.Attoparsec.Text as A
 import qualified Data.HashMap.Strict  as HMap
 import qualified Data.HashSet         as HSet
 import qualified Data.Text            as T
+import qualified Data.Text.IO as T
 
 
 day21 :: IO ()
-day21 = interact $ tshow . go . lines
+day21 = T.interact $ tshow . go . T.lines
   where
     go :: [Text] -> Int
     go inp = length $ filter (not . (`HSet.member` noAllergens)) allIngredients
@@ -24,7 +25,7 @@ day21 = interact $ tshow . go . lines
 -- | God damn this looks funny
 day21Two :: IO ()
 day21Two
-    = interact
+    = T.interact
     $ T.intercalate ","
     . concatMap snd
     . sortOn fst
@@ -33,7 +34,7 @@ day21Two
     . dangerousFoods
     . snd
     . buildMap
-    . lines
+    . T.lines
 
 type Ingredients = HashSet Text
 type Allergens   = HashMap Text Ingredients

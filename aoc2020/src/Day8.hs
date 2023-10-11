@@ -3,12 +3,13 @@ module Day8
     , day8Two  -- :: IO ()
     ) where
 
-import Prelude hiding ((!?))
+import Util hiding ((!?))
 
 import Data.Vector ((!?), (//))
 
 import qualified Data.HashSet as HSet
 import qualified Data.Text    as T
+import qualified Data.Text.IO as T
 
 
 -- | WE SCREAM BECAUSE THIS IS ASSEMBLY
@@ -24,10 +25,10 @@ type Aborted    = Int
 type ReachedEnd = Int
 
 day8 :: IO ()
-day8 = interact $ tshow . runBootLoader . getInput
+day8 = T.interact $ tshow . runBootLoader . getInput
 
 day8Two :: IO ()
-day8Two = interact $ tshow . go
+day8Two = T.interact $ tshow . go
   where
     go :: Text -> Maybe ReachedEnd
     go = listToMaybe
@@ -36,7 +37,7 @@ day8Two = interact $ tshow . go
        . getInput
 
 getInput :: Text -> Vector Instruction
-getInput = fromList . map badlyParseInput . lines
+getInput = fromList . map badlyParseInput . T.lines
 
 {- | Given some instructions, create almost identical variants thereof,
    only in each of the new ones either a 'NOP' has become a 'JMP' or the

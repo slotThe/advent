@@ -5,18 +5,20 @@ module Day24
     , day24Two  -- :: IO ()
     ) where
 
+import Util
 import Data.Attoparsec.Text (Parser)
 
 import qualified Data.Attoparsec.Text as A
 import qualified Data.HashMap.Strict  as HMap
 import qualified Data.HashSet         as HSet
+import qualified Data.Text.IO as T
 
 
 day24 :: IO ()
-day24 = interact $ tshow . length . getTiles
+day24 = T.interact $ tshow . length . getTiles
 
 day24Two :: IO ()
-day24Two = interact $ tshow . length . (!! 100) . iterate gridStep . getTiles
+day24Two = T.interact $ tshow . length . (!! 100) . iterate gridStep . getTiles
 
 -- | The "alive" tiles.
 type Tiles = HashSet Hex

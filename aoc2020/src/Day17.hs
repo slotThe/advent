@@ -5,20 +5,22 @@ module Day17
     , day17Two  -- :: IO ()
     ) where
 
-import Prelude hiding (die)
+import Util
 
 import qualified Data.HashMap.Strict as HMap
 import qualified Data.HashSet        as HSet
+import qualified Data.Text.IO as T
+import qualified Data.Text    as T
 
 
 day17 :: IO ()
-day17 = interact $ tshow . getStepDim 6 3
+day17 = T.interact $ tshow . getStepDim 6 3
 
 day17Two :: IO ()
-day17Two = interact $ tshow . getStepDim 6 4
+day17Two = T.interact $ tshow . getStepDim 6 4
 
 getStepDim :: Int -> Int -> Text -> Int
-getStepDim n m = length . (!! n) . iterate (gridStep m) . pGrid . lines
+getStepDim n m = length . (!! n) . iterate (gridStep m) . pGrid . T.lines
 
 -- | A four-dimensional vector with coordinates x, y, z, and w.
 data Vec4 = Vec4 !Int !Int !Int !Int

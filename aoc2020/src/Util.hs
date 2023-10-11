@@ -1,4 +1,4 @@
-module Prelude
+module Util
     ( module Exports
     , HashMap
     , HashSet
@@ -15,9 +15,6 @@ module Prelude
     , tshow
     , tread
     , textToChar
-    , lines
-    , unlines
-    , interact
     , replace
     , splitOn
     , breakOnDrop
@@ -34,21 +31,32 @@ module Prelude
     , converge
     ) where
 
-import BasePrelude as Exports hiding (interact, lines, toList, unlines)
-
 import qualified Data.HashMap.Strict as HMap
 import qualified Data.HashSet        as HSet
 import qualified Data.Text           as T
-import qualified Data.Text.IO        as T
 import qualified Data.Text.Read      as T
 
+import Control.Applicative as Exports
+import Control.Monad as Exports
+import Data.Bifunctor as Exports
+import Data.Bits as Exports
+import Data.Bool as Exports
 import Data.ByteString (ByteString)
+import Data.Either as Exports
+import Data.Foldable as Exports hiding (toList)
+import Data.Function as Exports
+import Data.Functor as Exports
 import Data.HashMap.Strict (HashMap)
 import Data.HashSet (HashSet)
 import Data.Hashable (Hashable)
+import Data.List as Exports
+import Data.Maybe as Exports
 import Data.Text (Text)
 import Data.Vector (Vector)
+import Data.Word as Exports
 import GHC.Exts (fromList, toList)
+import GHC.Generics as Exports
+
 
 tshow :: Show a => a -> Text
 tshow = T.pack . show
@@ -71,18 +79,6 @@ textToChar :: Text -> Maybe Char
 textToChar t = if T.null t then Nothing else Just $ T.head t
 {-# INLINE textToChar #-}
 
-lines :: Text -> [Text]
-lines = T.lines
-{-# INLINE lines #-}
-
-unlines :: [Text] -> Text
-unlines = T.unlines
-{-# INLINE unlines #-}
-
-interact :: (Text -> Text) -> IO ()
-interact = T.interact
-{-# INLINE interact #-}
-
 splitOn :: Text -> Text -> [Text]
 splitOn = T.splitOn
 {-# INLINE splitOn #-}
@@ -102,7 +98,7 @@ tryShow = maybe "Nothing :(" tshow
 {-# INLINE tryShow #-}
 
 -- | Unstable sort in O(n ∙ log₁₆ n)
-nubUnstable :: (Eq a, Hashable a) => [a] -> [a]
+nubUnstable :: Hashable a => [a] -> [a]
 nubUnstable = HSet.toList . HSet.fromList
 {-# INLINE nubUnstable #-}
 
@@ -116,7 +112,7 @@ product' :: (Num a, Foldable t) => t a -> a
 product' = foldl' (*) 1
 {-# INLINE product' #-}
 
-(!?) :: (Eq k, Hashable k) => HashMap k v -> k -> Maybe v
+(!?) :: Hashable k => HashMap k v -> k -> Maybe v
 (!?) hm k = HMap.lookup k hm
 {-# INLINE (!?) #-}
 

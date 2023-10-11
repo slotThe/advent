@@ -34,7 +34,7 @@ executable advent-of-code
                      , ViewPatterns
                      , MultiWayIf
                      , NumericUnderscores
-  other-modules:       Prelude
+  other-modules:       Util
                      , Day1
                      , Day2
                      , Day3
@@ -60,8 +60,7 @@ executable advent-of-code
                      , Day23
                      , Day24
                      , Day25
-  build-depends:       base-prelude
-                     , base-noprelude
+  build-depends:       base
                      , unordered-containers
                      , text
                      , bytestring

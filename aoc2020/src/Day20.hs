@@ -3,17 +3,18 @@ module Day20
     , day20Two  -- :: IO ()
     ) where
 
-import Prelude
-import Data.List.NonEmpty (nonEmpty)
+import Util
+import Data.List.NonEmpty (nonEmpty, NonEmpty(..))
 
 import qualified Data.HashMap.Strict  as HMap
 import qualified Data.Text            as T
+import qualified Data.Text.IO as T
 
 day20 :: IO ()
-day20 = interact $ tshow
-                 . fmap getCorners
-                 . traverse (fmap pTile . nonEmpty . lines)
-                 . splitOn "\n\n"
+day20 = T.interact $ tshow
+                   . fmap getCorners
+                   . traverse (fmap pTile . nonEmpty . T.lines)
+                   . splitOn "\n\n"
 
 day20Two :: IO ()
 day20Two = undefined

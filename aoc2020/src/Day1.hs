@@ -3,6 +3,7 @@ module Day1
     , day1Two  -- :: IO ()
     ) where
 
+import Util
 import qualified Data.HashMap.Strict as HMap
 import qualified Data.Text           as T
 import qualified Data.Text.IO        as T

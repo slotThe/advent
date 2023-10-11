@@ -3,14 +3,18 @@ module Day13
     , day13Two  -- :: IO ()
     ) where
 
+import Util
 import Data.Attoparsec.Text (Parser)
-import Math.NumberTheory.Moduli.Chinese (chineseRemainder)
+import Math.NumberTheory.Moduli.Chinese (chinese)
+import Control.Arrow ((&&&))
 
 import qualified Data.Attoparsec.Text as A
+import qualified Data.Text.IO as T
+import qualified Data.Text    as T
 
 
 day13 :: IO ()
-day13 = interact $ tshow . go
+day13 = T.interact $ tshow . go
   where
     go :: Text -> Int
     go input = abs
@@ -25,11 +29,11 @@ day13 = interact $ tshow . go
         (arrTime, busIDs) :: (Int, [Int]) = inputWith pTimes input
 
 day13Two :: IO ()
-day13Two = interact $ tshow . chineseRemainder . snd . inputWith pTimesTwo
+day13Two = T.interact $ tshow . snd . fromJust . (\(p:ps) -> foldlM chinese p ps) . snd . inputWith pTimesTwo
 
 inputWith :: Parser [p] -> Text -> (Int, [p])
-inputWith p (lines -> [x,y]) = (badlyParseInt x, fromRight [] $ A.parseOnly p y)
-inputWith _ _                = error "Bad Input"
+inputWith p (T.lines -> [x,y]) = (badlyParseInt x, fromRight [] $ A.parseOnly p y)
+inputWith _ _                  = error "Bad Input"
 
 pTimes :: Parser [Int]
 pTimes = catMaybes <$>

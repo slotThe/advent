@@ -3,17 +3,20 @@ module Day23
     , day23Two  -- :: IO ()
     ) where
 
-import Prelude hiding (Vector)
+import Util hiding (Vector)
 
 import qualified Data.Vector.Unboxed         as Vec
 import qualified Data.Vector.Unboxed.Mutable as MVec
+import qualified Data.Text.IO as T
+import qualified Data.Text    as T
 
 import Control.Monad.Primitive (PrimMonad(PrimState))
 import Data.Vector.Unboxed (Vector, (!))
 import Data.Vector.Unboxed.Mutable (MVector)
+import Control.Monad.ST
 
 day23 :: IO ()
-day23 = interact $ tshow . go 0 0 . Vec.map succ . playGame 100 [] . getNumbers
+day23 = T.interact $ tshow . go 0 0 . Vec.map succ . playGame 100 [] . getNumbers
   where
     go :: Int -> Int -> Vector Int -> Int
     go !acc ix vec = case vec ! ix of
@@ -21,7 +24,7 @@ day23 = interact $ tshow . go 0 0 . Vec.map succ . playGame 100 [] . getNumbers
             ix' -> go (acc * 10 + succ ix') ix' vec
 
 day23Two :: IO ()
-day23Two = interact $
+day23Two = T.interact $
     tshow . firstTwo . playGame 10_000_000 [10 .. 1_000_000] . getNumbers
   where
     firstTwo :: Vector Int -> Int
@@ -34,7 +37,7 @@ getNumbers :: Text -> [Int]
 getNumbers
     = map (read @Int) . sequence . (: []) . toList  -- Text → [Int]
     . head
-    . lines
+    . T.lines
 
 -- | Haskell is my favourite imperative language.
 playGame :: Int -> [Int] -> [Int] -> Vector Int

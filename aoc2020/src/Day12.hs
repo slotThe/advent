@@ -3,18 +3,20 @@ module Day12
     , day12Two  -- :: IO ()
     ) where
 
+import Util
 import Control.Lens ((*=), (+=), (-=), (.=), (<<.=))
 import Control.Monad.Trans.State (State, evalState, gets)
 import Data.Generics.Labels ()
 
-import qualified Data.Text as T
+import qualified Data.Text    as T
+import qualified Data.Text.IO as T
 
 
 day12 :: IO ()
-day12 = interact $ tshow . moveShip . map pDirection . lines
+day12 = T.interact $ tshow . moveShip . map pDirection . T.lines
 
 day12Two :: IO ()
-day12Two = interact $ tshow . moveShipTwo . map pDirection . lines
+day12Two = T.interact $ tshow . moveShipTwo . map pDirection . T.lines
 
 -- | __All__ valid moves.
 data Move

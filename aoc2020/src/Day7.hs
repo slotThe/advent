@@ -3,6 +3,7 @@ module Day7
     , day7Two  -- :: IO ()
     ) where
 
+import Util
 import Data.Attoparsec.ByteString (Parser)
 
 import qualified Data.Attoparsec.ByteString.Char8 as A

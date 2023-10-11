@@ -3,18 +3,20 @@ module Day3
     , day3Two  -- :: IO ()
     ) where
 
+import Util
 import qualified Data.Text as T
+import qualified Data.Text.IO as T
 
 
 day3 :: IO ()
-day3 = interact (tshow . rightRDownD 3 1 . lines)
+day3 = T.interact (tshow . rightRDownD 3 1 . T.lines)
 
 day3Two :: IO ()
-day3Two = interact (tshow . go)
+day3Two = T.interact (tshow . go)
   where
     go input = r3d1 * r1d1 * r5d1 * r7d1 * r1d2
       where
-        grid :: [Text] = lines input
+        grid :: [Text] = T.lines input
         r3d1 :: Int    = rightRDownD 3 1 grid
         r1d1 :: Int    = rightRDownD 1 1 grid
         r5d1 :: Int    = rightRDownD 5 1 grid

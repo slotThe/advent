@@ -3,6 +3,7 @@ module Day2
     , day2Two  -- :: IO ()
     ) where
 
+import Util
 import qualified Data.Text     as T
 import qualified Data.Text.IO  as T
 

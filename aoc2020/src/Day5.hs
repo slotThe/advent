@@ -3,19 +3,21 @@ module Day5
     , day5Two  -- :: IO ()
     ) where
 
+import Util
 import qualified Data.List.NonEmpty as NE
 import qualified Data.Text          as T
+import qualified Data.Text.IO as T
 
-import Data.List.NonEmpty (nonEmpty)
+import Data.List.NonEmpty (nonEmpty, NonEmpty(..))
 
 
 day5 :: IO ()
-day5 = interact \input -> tryShow $
-    maximum . NE.map (getSeatID . pBSP) <$> nonEmpty (lines input)
+day5 = T.interact \input -> tryShow $
+    maximum . NE.map (getSeatID . pBSP) <$> nonEmpty (T.lines input)
 
 day5Two :: IO ()
-day5Two = interact \input -> tryShow $
-    getMySeat . NE.sort . NE.map (getSeatID . pBSP) <$> nonEmpty (lines input)
+day5Two = T.interact \input -> tryShow $
+    getMySeat . NE.sort . NE.map (getSeatID . pBSP) <$> nonEmpty (T.lines input)
 
 {- | I have to confess I used "Data.list.NonEmpty" solely because so I
    don't have to do a three-way (or two-way, using the implemented

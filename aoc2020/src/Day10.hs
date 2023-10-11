@@ -3,19 +3,22 @@ module Day10
     , day10Two  -- :: IO ()
     ) where
 
+import Util
 import qualified Data.List.NonEmpty as NE
+import qualified Data.Text          as T
+import qualified Data.Text.IO       as T
 
 import Data.List.NonEmpty (nonEmpty)
 
 
 day10 :: IO ()
-day10 = interact $ tshow . tryAdapters . getInput
+day10 = T.interact $ tshow . tryAdapters . getInput
 
 day10Two :: IO ()
-day10Two = interact $ tshow . (snd . NE.head <$>) . nonEmpty . count . getInput
+day10Two = T.interact $ tshow . (snd . NE.head <$>) . nonEmpty . count . getInput
 
 getInput :: Text -> [Int]
-getInput = sort . map badlyParseInt . lines
+getInput = sort . map badlyParseInt . T.lines
 
 count :: [Int] -> [(Int, Int)]
 count = foldl' go [(0, 1)]

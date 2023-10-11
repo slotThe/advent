@@ -3,20 +3,23 @@ module Day18
     , day18Two  -- :: IO ()
     ) where
 
+import Util
 import Data.Attoparsec.Text (Parser)
 
 import qualified Data.Attoparsec.Text as A
+import qualified Data.Text.IO as T
+import qualified Data.Text    as T
 
 
 day18 :: IO ()
-day18 = interact $ tshow . exprSums pExpr
+day18 = T.interact $ tshow . exprSums pExpr
 
 day18Two :: IO ()
-day18Two = interact $ tshow . exprSums pExpr2
+day18Two = T.interact $ tshow . exprSums pExpr2
 
 -- | Get the sum of all parsed expressions.
 exprSums :: Parser Expr -> Text -> Int
-exprSums p = sum' . map (sum . fmap evalExpr . A.parseOnly p) . lines
+exprSums p = sum' . map (sum . fmap evalExpr . A.parseOnly p) . T.lines
 
 -- | A simple expression.
 data Expr

@@ -3,15 +3,17 @@ module Day15
     , day15Two  -- :: IO ()
     ) where
 
+import Util
 import qualified Data.HashMap.Strict  as HMap
-import qualified Data.Text            as T
+import qualified Data.Text    as T
+import qualified Data.Text.IO as T
 
 
 day15 :: IO ()
-day15 = interact $ tshow . nth 2020 . pList
+day15 = T.interact $ tshow . nth 2020 . pList
 
 day15Two :: IO ()
-day15Two = interact $ tshow . nth 30000000 . pList
+day15Two = T.interact $ tshow . nth 30000000 . pList
 
 pList :: Text -> [Int]
 pList = map tread . T.splitOn ","

@@ -3,17 +3,20 @@ module Day14
     , day14Two  -- :: IO ()
     ) where
 
+import Util
 import Data.Attoparsec.Text (Parser)
 
 import qualified Data.Attoparsec.Text as A
 import qualified Data.HashMap.Strict  as HMap
+import qualified Data.Text    as T
+import qualified Data.Text.IO as T
 
 
 day14 :: IO ()
-day14 = interact $ tshow . memSum . pInput . lines
+day14 = T.interact $ tshow . memSum . pInput . T.lines
 
 day14Two :: IO ()
-day14Two = interact $ tshow . memSum' . pInput . lines
+day14Two = T.interact $ tshow . memSum' . pInput . T.lines
 
 -- | An X symbolizes a clear or a set instruction.
 data X = Set | Clear

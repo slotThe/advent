@@ -3,18 +3,19 @@ module Day11
     , day11Two  -- :: IO ()
     ) where
 
-import Prelude hiding ((!?), die)
+import Util hiding ((!?))
 import Data.Vector ((!?))
 
-import qualified Data.Text   as T
-import qualified Data.Vector as Vec
+import qualified Data.Text    as T
+import qualified Data.Text.IO as T
+import qualified Data.Vector  as Vec
 
 
 day11 :: IO ()
-day11 = interact $ tshow . countTakenSeats Adjacent 4 . toGrid
+day11 = T.interact $ tshow . countTakenSeats Adjacent 4 . toGrid
 
 day11Two :: IO ()
-day11Two = interact $ tshow . countTakenSeats Eye 5 . toGrid
+day11Two = T.interact $ tshow . countTakenSeats Eye 5 . toGrid
 
 -- | A seat is either empty, taken, or the floor (I suppose that's not
 -- technically a seat then, but names are hard).
@@ -33,7 +34,7 @@ data Rule
 type Grid = Vector (Vector Seat)
 
 toGrid :: Text -> Grid
-toGrid = fmap (fromList . T.foldr ((:) . pSeat) []) . fromList . lines
+toGrid = fmap (fromList . T.foldr ((:) . pSeat) []) . fromList . T.lines
 
 countTakenSeats :: Rule -> Int -> Grid -> Int
 countTakenSeats rule d = length . takenSeats . fixSeats rule d

@@ -3,17 +3,19 @@ module Day9
     , day9Two  -- :: IO ()
     ) where
 
-import Prelude hiding ((!?))
+import Util hiding ((!?))
 import Data.Vector ((!?))
 
 import qualified Data.Vector as Vec
+import qualified Data.Text.IO as T
+import qualified Data.Text as T
 
 
 day9 :: IO ()
-day9 = interact $ tshow . fmap snd . getElement . getInput
+day9 = T.interact $ tshow . fmap snd . getElement . getInput
 
 day9Two :: IO ()
-day9Two = interact $ tshow . fmap sumEls . go . getInput
+day9Two = T.interact $ tshow . fmap sumEls . go . getInput
   where
     sumEls :: Vector Int -> Int
     sumEls l = minimum l + maximum l
@@ -23,7 +25,7 @@ day9Two = interact $ tshow . fmap sumEls . go . getInput
         mapMaybe (sumWindow (Vec.slice 0 (ix - 1) xs) el) [1 .. ix - 1]
 
 getInput :: Text -> Vector Int
-getInput = fromList . map badlyParseInt . lines
+getInput = fromList . map badlyParseInt . T.lines
 
 sumWindow :: Vector Int -> Int -> Int -> Maybe (Vector Int)
 sumWindow xs s l = go l

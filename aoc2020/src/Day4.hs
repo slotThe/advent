@@ -3,19 +3,21 @@ module Day4
     , day4Two  -- :: IO ()
     ) where
 
+import Util
 import Data.Attoparsec.Text (Parser)
 import Text.ParserCombinators.Perm ((<$$>), (<||>), permute)
 
 import qualified Data.Attoparsec.Text as A
 import qualified Data.Text            as T
 import qualified Data.Text.Read       as T
+import qualified Data.Text.IO as T
 
 
 day4 :: IO ()
-day4 = interact $ parseInputWith pPassport
+day4 = T.interact $ parseInputWith pPassport
 
 day4Two :: IO ()
-day4Two = interact $ parseInputWith pPassportTwo
+day4Two = T.interact $ parseInputWith pPassportTwo
 
 parseInputWith :: Parser a -> Text -> Text
 parseInputWith p

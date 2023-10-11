@@ -3,14 +3,17 @@ module Day22
     , day22Two  -- :: IO ()
     ) where
 
+import Util
 import qualified Data.HashSet as HSet
+import qualified Data.Text.IO as T
+import qualified Data.Text    as T
 
 
 day22 :: IO ()
-day22 = interact $ tshow . playGame . getDecks
+day22 = T.interact $ tshow . playGame . getDecks
 
 day22Two :: IO ()
-day22Two = interact $ tshow . playGame2 . getDecks
+day22Two = T.interact $ tshow . playGame2 . getDecks
 
 -- | Cards are just numbers.
 type Cards = [Int]
@@ -68,5 +71,5 @@ calcWinner :: [Int] -> Int
 calcWinner = sum' . zipWith (*) [1..] . reverse
 
 pPlayer :: Text -> [Int]
-pPlayer (lines -> (_:xs)) = map badlyParseInt xs
-pPlayer _                 = error "Invalid input"
+pPlayer (T.lines -> (_:xs)) = map badlyParseInt xs
+pPlayer _                   = error "Invalid input"

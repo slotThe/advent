@@ -3,23 +3,24 @@ module Day16
     , day16Two  -- :: IO ()
     ) where
 
-import Prelude
+import Util
 import Data.Attoparsec.Text (Parser)
 
 import qualified Data.Attoparsec.Text as A
 import qualified Data.HashMap.Strict  as HMap
-import qualified Data.Text            as T
+import qualified Data.Text    as T
+import qualified Data.Text.IO as T
 
 
 day16 :: IO ()
-day16 = interact $ tshow
-                 . sum'
-                 . (\Document {nearbyTickets, fields} ->
-                        mapMaybe (invalidTicket fields) nearbyTickets)
-                 . getDocument
+day16 = T.interact $ tshow
+                   . sum'
+                   . (\Document {nearbyTickets, fields} ->
+                          mapMaybe (invalidTicket fields) nearbyTickets)
+                   . getDocument
 
 day16Two :: IO ()
-day16Two = interact $ tshow . go
+day16Two = T.interact $ tshow . go
   where
     go :: Text -> Int
     go input
