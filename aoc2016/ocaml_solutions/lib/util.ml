@@ -108,12 +108,11 @@ module Coord = struct
 end
 
 module Parser = struct
-  open Fun
-
   let eval p str = match parse_string ~consume:All p str with
     | Ok v      -> v
     | Error msg -> failwith msg
 
-  let num = many1 (satisfy Char.is_digit)
-              >>| (String.of_char_list >> Int.of_string)
+  let num = int_of_string <$>
+              lift2 (^) (option "+" (string "-")) (take_while1 Char.is_digit)
+
 end
