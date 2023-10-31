@@ -5,3 +5,5 @@ target/
 .clj-kondo
 pom.xml
 _build
+.ocamlformat
+_opam/
