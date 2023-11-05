@@ -1,6 +1,5 @@
 .stack-work/
 target/
-*.lock
 .nrepl-port
 .clj-kondo
 pom.xml
