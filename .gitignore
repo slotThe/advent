@@ -6,3 +6,5 @@ pom.xml
 _build
 .ocamlformat
 _opam/
+.direnv
+Cargo.lock

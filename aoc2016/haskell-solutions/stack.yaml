@@ -1,7 +1,0 @@
-resolver: lts-21.12
-
-packages:
-  - .
-
-extra-deps:
-  - ../../util/haskell-aoc-util/

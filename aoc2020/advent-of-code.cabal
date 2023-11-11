@@ -65,7 +65,7 @@ executable advent-of-code
                      , text
                      , bytestring
                      , attoparsec
-                     , permute
+                     , parser-combinators
                      , hashable
                      , vector
                      , transformers

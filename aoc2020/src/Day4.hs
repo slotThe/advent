@@ -3,9 +3,9 @@ module Day4
     , day4Two  -- :: IO ()
     ) where
 
-import Util
+import Control.Monad.Permutations
 import Data.Attoparsec.Text (Parser)
-import Text.ParserCombinators.Perm ((<$$>), (<||>), permute)
+import Util
 
 import qualified Data.Attoparsec.Text as A
 import qualified Data.Text            as T
@@ -48,28 +48,28 @@ data Height
 -- | Permutation parser for passport, ignoring the values and only
 -- checking if the key-value pair as a whole is there.  HACK
 pPassport :: Parser Passport
-pPassport = permute $
-    Passport <$$> const 0      <$> parseField "byr"
-             <||> const 0      <$> parseField "iyr"
-             <||> const 0      <$> parseField "eyr"
-             <||> const (CM 0) <$> parseField "hgt"
-             <||> const 0      <$> parseField "hcl"
-             <||>                  parseField "ecl"
-             <||> const 0      <$> parseField "pid"
-             <||> optional        (parseField "cid")
+pPassport = runPermutation $
+    Passport <$> toPermutation (const 0      <$> parseField "byr")
+             <*> toPermutation (const 0      <$> parseField "iyr")
+             <*> toPermutation (const 0      <$> parseField "eyr")
+             <*> toPermutation (const (CM 0) <$> parseField "hgt")
+             <*> toPermutation (const 0      <$> parseField "hcl")
+             <*> toPermutation (                 parseField "ecl")
+             <*> toPermutation (const 0      <$> parseField "pid")
+             <*> toPermutation (optional        (parseField "cid"))
 
 -- | Permutation parser for passport, with certain restrictions for the
 -- validity of the fields.
 pPassportTwo :: Parser Passport
-pPassportTwo = permute $
-    Passport <$$> pNumber 1920 2002 "byr"
-             <||> pNumber 2010 2020 "iyr"
-             <||> pNumber 2020 2030 "eyr"
-             <||> parseFieldWith pHeight                "hgt"
-             <||> parseFieldWith ("#" *> A.hexadecimal) "hcl"
-             <||> parseFieldWith pEyeColor              "ecl"
-             <||> parseFieldWith pPID                   "pid"
-             <||> optional (parseField "cid")
+pPassportTwo = runPermutation $
+    Passport <$> toPermutation (pNumber 1920 2002 "byr")
+             <*> toPermutation (pNumber 2010 2020 "iyr")
+             <*> toPermutation (pNumber 2020 2030 "eyr")
+             <*> toPermutation (parseFieldWith pHeight                "hgt")
+             <*> toPermutation (parseFieldWith ("#" *> A.hexadecimal) "hcl")
+             <*> toPermutation (parseFieldWith pEyeColor              "ecl")
+             <*> toPermutation (parseFieldWith pPID                   "pid")
+             <*> toPermutation (optional (parseField "cid"))
   where
     -- | I could make this a separate sum type, but I'm too lazy for
     -- that right now x)
