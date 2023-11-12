@@ -8,18 +8,23 @@
     # Don't forget to put the package name instead of `throw':
     let package = "ocaml_solutions";
     in flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-        on = opam-nix.lib.${system};
-        scope =
-          on.buildOpamProject { } package ./. { ocaml-base-compiler = "*"; };
-        overlay = final: prev:
-          {
-            # Your overrides go here
-          };
+      let pkgs = nixpkgs.legacyPackages.${system};
+          ocaml_solutions =
+            opam-nix.lib.${system}.buildDuneProject { } package ./.
+              { ocaml-base-compiler = "*"; };
+          overlay = final: prev: {};
       in {
-        legacyPackages = scope.overrideScope' overlay;
+        legacyPackages = ocaml_solutions.overrideScope' overlay;
 
-        packages.default = self.legacyPackages.${system}.${package};
+        # Executed by `nix build`
+        defaultPackage = self.legacyPackages.${system}.${package};
+
+        # Used by `nix develop`
+        devShell = pkgs.mkShell {
+          nativeBuildInputs = with pkgs.ocamlPackages; [
+            merlin
+          ];
+          inputsFrom = [ self.defaultPackage.${system} ];
+        };
       });
 }

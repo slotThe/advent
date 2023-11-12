@@ -16,6 +16,6 @@
 (package
  (name ocaml_solutions)
  (synopsis "OCaml solutions for advent of code 2016")
- (depends (core (<= v0.15.0)) stdio ocaml dune angstrom))
+ (depends (core (<= v0.15.0)) stdio ocaml dune angstrom utop))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
