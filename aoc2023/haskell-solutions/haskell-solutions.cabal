@@ -1,0 +1,54 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           haskell-solutions
+version:        0.1.0
+synopsis:       Haskell Solution for (some) AOC 2023 questions
+author:         Tony Zorman
+maintainer:     soliditsallgood@mailbox.org
+license:        AGPL-3
+license-file:   LICENSE
+build-type:     Simple
+
+library
+  other-modules:
+      Paths_haskell_solutions
+  hs-source-dirs:
+      src/
+  default-extensions:
+      StrictData
+      NoImplicitPrelude
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
+  build-depends:
+      array
+    , base
+    , containers
+    , haskell-aoc-util
+    , text
+    , unordered-containers
+    , vector
+  default-language: GHC2021
+
+executable aoc-2022-haskell
+  main-is: Main.hs
+  other-modules:
+      Paths_haskell_solutions
+  hs-source-dirs:
+      app
+  default-extensions:
+      StrictData
+      NoImplicitPrelude
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
+  build-depends:
+      array
+    , base
+    , containers
+    , haskell-aoc-util
+    , haskell-solutions
+    , text
+    , unordered-containers
+    , vector
+  default-language: GHC2021

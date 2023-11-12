@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "python-solutions"
+version = "0.1.0"
+description = "Python solutions for some AOC2023 problems"
+authors = ["Tony Zorman <soliditsallgood@mailbox.org>"]
+license = "AGPL-3"
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.11.0"
+pylint = "^3.0.2"
+python-lsp-server = "^1.9.0"
+
+[tool.poetry.scripts]
+python-solutions = "src.main:main"
+
+[tool.black]
+target_version = ["py311"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

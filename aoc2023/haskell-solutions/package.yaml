@@ -1,0 +1,41 @@
+name:                haskell-solutions
+version:             0.1.0
+synopsis:            Haskell Solution for (some) AOC 2023 questions
+license:             AGPL-3
+author:              Tony Zorman
+maintainer:          soliditsallgood@mailbox.org
+
+default-extensions:
+  - StrictData
+  - NoImplicitPrelude
+
+language: GHC2021
+
+ghc-options:
+  -Weverything
+  -Wno-implicit-prelude
+  -Wno-missing-import-lists
+  -Wno-unused-packages
+  -Wno-missing-safe-haskell-mode
+  -Wno-all-missed-specialisations
+  -Wno-unsafe
+  -Wno-prepositive-qualified-module
+  -O2
+
+dependencies:
+  - base
+  - containers
+  - unordered-containers
+  - text
+  - array
+  - vector
+  - haskell-aoc-util
+
+library:
+  source-dirs: src/
+
+executables:
+  aoc-2022-haskell:
+    source-dirs: app
+    main: Main.hs
+    dependencies: haskell-solutions
