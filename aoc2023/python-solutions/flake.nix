@@ -1,27 +1,33 @@
 {
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url     = "github:NixOS/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
     poetry2nix = {
       url = "github:nix-community/poetry2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows     = "nixpkgs";
+        systems.follows     = "systems";
+        flake-utils.follows = "flake-utils";
+      };
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, poetry2nix }:
+  outputs = { self, nixpkgs, flake-utils, poetry2nix, ... }:
     flake-utils.lib.eachDefaultSystem (system:
-      let
-        # see https://github.com/nix-community/poetry2nix/tree/master#api for more functions and examples.
-        pkgs = nixpkgs.legacyPackages.${system};
-        inherit (poetry2nix.lib.mkPoetry2Nix { inherit pkgs; }) mkPoetryApplication;
+      let pkgs = nixpkgs.legacyPackages.${system};
+          inherit (poetry2nix.lib.mkPoetry2Nix { inherit pkgs; }) mkPoetryApplication;
       in {
         packages = {
-          myapp   = mkPoetryApplication { projectDir = self; };
-          default = self.packages.${system}.myapp;
+          python-solutions = mkPoetryApplication { projectDir = self; };
+          default = self.packages.${system}.python-solutions;
         };
 
         devShells.default = pkgs.mkShell {
-          inputsFrom = [ self.packages.${system}.myapp ];
+          inputsFrom = [ self.packages.${system}.python-solutions ];
           packages   = [ pkgs.poetry ];
         };
       });
