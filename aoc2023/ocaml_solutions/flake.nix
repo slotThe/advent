@@ -1,8 +1,11 @@
 {
   inputs = {
-    opam-nix.url    = "github:tweag/opam-nix";
-    flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.follows = "opam-nix/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
+    opam-nix = {
+      url = "github:tweag/opam-nix";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
   outputs = { self, flake-utils, opam-nix, nixpkgs }@inputs:
     let package = "ocaml_solutions";
