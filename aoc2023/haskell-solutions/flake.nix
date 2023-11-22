@@ -10,6 +10,10 @@
         };
         haskellPackages = pkgs.haskellPackages.extend overlay;
     in {
+      # nix build
+      packages.${system}.default = haskellPackages.haskell-solutions;
+
+      # nix develop
       devShells.${system}.default = haskellPackages.shellFor {
         packages = p: [ p.haskell-solutions ];
         buildInputs = with haskellPackages; [
