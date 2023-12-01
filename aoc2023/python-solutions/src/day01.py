@@ -1,4 +1,5 @@
 import re
+from functools import reduce
 
 
 def solve1(inp: str) -> int:
@@ -6,39 +7,25 @@ def solve1(inp: str) -> int:
     return int(matches[0]) * 10 + int(matches[-1])
 
 
+replacements = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+
+
 def solve2(inp: str) -> int:
     def convert(a: str, b: str) -> int:
         if a != "":
             return int(a)
         else:
-            match b:
-                case "one":
-                    return 1
-                case "two":
-                    return 2
-                case "three":
-                    return 3
-                case "four":
-                    return 4
-                case "five":
-                    return 5
-                case "six":
-                    return 6
-                case "seven":
-                    return 7
-                case "eight":
-                    return 8
-                case "nine":
-                    return 9
+            return 1 + replacements.index(b)
 
-    matches = re.findall(
-        r"([1-9])|(?=(one|two|three|four|five|six|seven|eight|nine))", inp
+    regexp = re.compile(
+        "([1-9])|(?=(" + reduce((lambda acc, el: acc + "|" + el), replacements) + "))"
     )
+    matches = re.findall(regexp, inp)
     return convert(*matches[0]) * 10 + convert(*matches[-1])
 
 
 def day01():
-    with open("../inputs/day01.txt", "r") as inp:
+    with open("../../inputs/day01.txt", "r") as inp:
         inp = inp.readlines()
 
         def solve(solve_with):
