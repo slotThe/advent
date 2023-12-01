@@ -12,6 +12,7 @@ depends: [
   "ocaml"
   "dune" {>= "3.7"}
   "angstrom"
+  "utop"
   "odoc" {with-doc}
 ]
 build: [
