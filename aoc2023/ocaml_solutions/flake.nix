@@ -25,6 +25,7 @@
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs.ocamlPackages; [
             merlin
+            ocaml-lsp
           ];
           inputsFrom = [ self.packages.${system}.default ];
         };
