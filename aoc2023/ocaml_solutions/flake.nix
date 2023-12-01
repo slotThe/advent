@@ -7,7 +7,7 @@
       inputs.flake-utils.follows = "flake-utils";
     };
   };
-  outputs = { self, flake-utils, opam-nix, nixpkgs }@inputs:
+  outputs = { self, flake-utils, opam-nix, nixpkgs }:
     let package = "ocaml_solutions";
     in flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
@@ -19,14 +19,14 @@
         legacyPackages = ocaml_solutions.overrideScope' overlay;
 
         # Executed by `nix build`
-        defaultPackage = self.legacyPackages.${system}.${package};
+        packages.default = self.legacyPackages.${system}.${package};
 
         # Used by `nix develop`
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs.ocamlPackages; [
             merlin
           ];
-          inputsFrom = [ self.defaultPackage.${system} ];
+          inputsFrom = [ self.packages.${system}.default ];
         };
       });
 }
