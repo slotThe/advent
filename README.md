@@ -2,9 +2,13 @@
 
 ## 2023
 
-  - Day 1  : [Haskell][2023:day01:haskell]
+  - Day 1  : [Haskell][2023:day01:haskell], [Rust][2023:day01:rust], [Clojure][2023:day01:clojure], [Ocaml][2023:day01:ocaml], [Python][2023:day01:python]
 
-[2023:day1:haskell]: ./aoc2023/haskell-solutions/src/Day01.hs
+[2023:day01:haskell]: ./aoc2023/haskell-solutions/src/Day01.hs
+[2023:day01:rust]: ./aoc2023/rust-solutions/src/day01.rs
+[2023:day01:clojure]: ./aoc2023/clojure-solutions/src/clojure_solutions/day01.clj
+[2023:day01:ocaml]: ./aoc2023/ocaml_solutions/lib/day01.ml
+[2023:day01:python]: ./aoc2023/python-solutions/src/day01.py
 
 ## 2022
 
