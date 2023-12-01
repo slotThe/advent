@@ -19,6 +19,7 @@
         buildInputs = with haskellPackages; [
           cabal-install
           haskell-language-server
+          hpack
         ];
       };
     };

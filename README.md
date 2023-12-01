@@ -1,5 +1,11 @@
 # Advent of Code
 
+## 2023
+
+  - Day 1  : [Haskell][2023:day01:haskell]
+
+[2023:day1:haskell]: ./aoc2023/haskell-solutions/src/Day01.hs
+
 ## 2022
 
   - Day 1  : [Rust][2022:day1:rust], [Clojure][2022:day1:clojure], [Haskell][2022:day1:haskell]

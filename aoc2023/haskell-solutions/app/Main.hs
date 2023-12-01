@@ -1,4 +1,6 @@
 import Util
+import Day01
 
 main :: IO ()
-main = print "Hello, world!"
+main = do
+  day 1 day01
