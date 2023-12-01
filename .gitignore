@@ -9,3 +9,5 @@ _opam/
 .direnv
 Cargo.lock
 dist-newstyle
+result
+__pycache__
