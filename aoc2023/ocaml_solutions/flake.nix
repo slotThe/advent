@@ -15,7 +15,7 @@
             opam-nix.lib.${system}.buildDuneProject { } package ./.
               { ocaml-base-compiler = "*"; };
           overlay = final: prev: {};
-      in {
+      in rec {
         legacyPackages = ocaml_solutions.overrideScope' overlay;
 
         # Executed by `nix build`
@@ -27,7 +27,7 @@
             merlin
             ocaml-lsp
           ];
-          inputsFrom = [ self.packages.${system}.default ];
+          inputsFrom = [ packages.default ];
         };
       });
 }
