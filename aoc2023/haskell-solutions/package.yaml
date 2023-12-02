@@ -8,6 +8,7 @@ maintainer:          soliditsallgood@mailbox.org
 default-extensions:
   - StrictData
   - NoImplicitPrelude
+  - OverloadedStrings
 
 language: GHC2021
 
@@ -30,6 +31,7 @@ dependencies:
   - array
   - vector
   - haskell-aoc-util
+  - parser-combinators
 
 library:
   source-dirs: src/

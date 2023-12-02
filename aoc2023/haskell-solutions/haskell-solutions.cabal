@@ -16,6 +16,7 @@ build-type:     Simple
 library
   exposed-modules:
       Day01
+      Day02
   other-modules:
       Paths_haskell_solutions
   hs-source-dirs:
@@ -23,12 +24,14 @@ library
   default-extensions:
       StrictData
       NoImplicitPrelude
+      OverloadedStrings
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
   build-depends:
       array
     , base
     , containers
     , haskell-aoc-util
+    , parser-combinators
     , text
     , unordered-containers
     , vector
@@ -43,6 +46,7 @@ executable aoc-2022-haskell
   default-extensions:
       StrictData
       NoImplicitPrelude
+      OverloadedStrings
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
   build-depends:
       array
@@ -50,6 +54,7 @@ executable aoc-2022-haskell
     , containers
     , haskell-aoc-util
     , haskell-solutions
+    , parser-combinators
     , text
     , unordered-containers
     , vector
