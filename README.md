@@ -3,7 +3,7 @@
 ## 2023
 
   - Day 1  : [Haskell][2023:day01:haskell], [Rust][2023:day01:rust], [Clojure][2023:day01:clojure], [Ocaml][2023:day01:ocaml], [Python][2023:day01:python], [Emacs Lisp][2023:day01:elisp]
-  - Day 2  : [Haskell][2023:day02:haskell]
+  - Day 2  : [Haskell][2023:day02:haskell], [Rust][2023:day02:rust]
 
 [2023:day01:haskell]: ./aoc2023/haskell-solutions/src/Day01.hs
 [2023:day01:rust]: ./aoc2023/rust-solutions/src/day01.rs
@@ -12,6 +12,7 @@
 [2023:day01:python]: ./aoc2023/python-solutions/src/day01.py
 [2023:day01:elisp]: ./aoc2023/elisp-solutions/day01.el
 [2023:day02:haskell]: ./aoc2023/haskell-solutions/src/Day02.hs
+[2023:day02:rust]: ./aoc2023/rust-solutions/src/day02.rs
 
 ## 2022
 
