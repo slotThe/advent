@@ -52,10 +52,7 @@
   "Return the element at index (i, j).  Returns `nil' if index is
   out-of-bounds."
   [m [i j]]
-  (let [rows (count m)
-        cols (count (first m))]
-    (when (and (< -1 i rows) (< -1 j cols))
-      (nth (nth m i) j))))
+  (nth (nth m i nil) j nil))
 
 (defn map-matrix
   "Map a function f(i, j, el) over all elements of a matrix with
@@ -90,7 +87,7 @@
       (cons head tail))))
 
 (defn tails [xs]
-    (reductions (fn [x _] (rest x)) xs xs))
+  (reductions (fn [x _] (rest x)) xs xs))
 
 (defn converge
   "Apply a function `f' until it converges."
