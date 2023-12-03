@@ -45,6 +45,13 @@ where
 }
 
 ///////////////////////////////////////////////////////////////////////
+// Conversions
+
+pub fn iter_to_num(v: impl IntoIterator<Item = char>) -> usize {
+  v.into_iter().collect::<String>().parse().unwrap()
+}
+
+///////////////////////////////////////////////////////////////////////
 // Pretty printing
 
 pub fn print_day<A, B>(num: usize, solutions: (A, B))
