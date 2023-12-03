@@ -29,6 +29,7 @@
         devShells.default = pkgs.mkShell {
           inputsFrom = [ self.packages.${system}.python-solutions ];
           packages   = [ pkgs.poetry ];
+          nativeBuildInputs = [ pkgs.nodejs_21 ];
         };
       });
 }

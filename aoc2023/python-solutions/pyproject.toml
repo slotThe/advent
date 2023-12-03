@@ -12,7 +12,7 @@ python = "^3.11"
 
 [tool.poetry.group.dev.dependencies]
 ruff-lsp = "^0.0.45"
-python-lsp-server = "^1.9.0"
+pyright = "^1.1.338"
 
 [tool.poetry.scripts]
 python-solutions = "src.main:main"
