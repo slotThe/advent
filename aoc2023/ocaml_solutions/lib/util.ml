@@ -23,6 +23,8 @@ let read_single_line f = In_channel.read_lines f |> List.hd_exn
 
 let sum = List.fold ~init:0 ~f:(+)
 
+let asum = Array.fold ~init:0 ~f:(+)
+
 let frequencies xs =
   List.(sort_and_group xs ~compare:Char.compare
         |> map ~f:(fun xs -> (hd_exn xs, length xs))
