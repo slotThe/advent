@@ -115,3 +115,7 @@ impl AdventString for u128 {
 impl AdventString for usize {
   fn pp(&self) -> String { self.to_string() }
 }
+
+impl AdventString for isize {
+  fn pp(&self) -> String { self.to_string() }
+}
