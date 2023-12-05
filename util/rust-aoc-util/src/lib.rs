@@ -1,5 +1,6 @@
 pub mod coord;
 pub mod fun;
+pub mod interval;
 
 use anyhow::Result;
 use nom::{bytes::complete::tag, character::complete::multispace0, combinator::all_consuming, sequence::delimited, Finish, IResult};
