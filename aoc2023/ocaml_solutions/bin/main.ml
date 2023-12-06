@@ -12,4 +12,5 @@ let print_answer n (one, two) =
 let () =
   print_answer 1 Day01.day01;
   print_answer 4 Day04.day04;
+  print_answer 6 Day06.day06;
   ()
