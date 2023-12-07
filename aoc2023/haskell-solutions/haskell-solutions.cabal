@@ -17,6 +17,7 @@ library
   exposed-modules:
       Day01
       Day02
+      Day07
   other-modules:
       Paths_haskell_solutions
   hs-source-dirs:
@@ -25,6 +26,7 @@ library
       StrictData
       NoImplicitPrelude
       OverloadedStrings
+      DerivingStrategies
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
   build-depends:
       array
@@ -47,6 +49,7 @@ executable aoc-2022-haskell
       StrictData
       NoImplicitPrelude
       OverloadedStrings
+      DerivingStrategies
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
   build-depends:
       array

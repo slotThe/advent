@@ -9,6 +9,7 @@ default-extensions:
   - StrictData
   - NoImplicitPrelude
   - OverloadedStrings
+  - DerivingStrategies
 
 language: GHC2021
 
