@@ -18,10 +18,8 @@ pub fn day05() -> (isize, isize) {
     ),
     solve(
       seeds
-        .iter()
         .chunks(2)
-        .into_iter()
-        .map(|mut ch| Interval::from_len(*ch.next().unwrap(), *ch.next().unwrap()))
+        .map(|ch| Interval::from_len(ch[0], ch[1]))
         .collect(),
       &almanac_maps,
     ),
