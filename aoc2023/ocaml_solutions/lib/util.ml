@@ -25,6 +25,12 @@ let sum = List.fold ~init:0 ~f:(+)
 
 let asum = Array.fold ~init:0 ~f:(+)
 
+let gcd n m =
+  let rec go n m = if m = 0 then n else go m (n mod m)
+  in go n m
+
+let lcm n m = n * (m / gcd n m)
+
 let frequencies xs =
   List.(sort_and_group xs ~compare:Char.compare
         |> map ~f:(fun xs -> (hd_exn xs, length xs))
@@ -70,6 +76,7 @@ module Parse = struct
   let re_group re s = Re.(Option.map ~f:Group.all (exec_opt (Pcre.regexp re) s))
 
   let ios = int_of_string
+  let soi = string_of_int
 end
 
 module Fun = struct
