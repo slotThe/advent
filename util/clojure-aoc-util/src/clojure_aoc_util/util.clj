@@ -197,3 +197,14 @@
    (binary-search #(when (> (- %2 %1) 1)
                      (quot (+ %1 %2) 2))
                   pred l r)))
+
+(defn gcd
+  "Compute the greatest common divisor of two numbers."
+  [a b]
+  (loop [a (abs a) b (abs b)] ; Euclidean algorithm
+    (if (zero? b) a (recur b (mod a b)))))
+
+(defn lcm
+  "Compute the least common multiple of two positive numbers."
+  [a b]
+  (* b (quot a (gcd a b))))
