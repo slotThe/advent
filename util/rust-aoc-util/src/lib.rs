@@ -4,6 +4,7 @@ pub mod interval;
 
 use anyhow::Result;
 use nom::{bytes::complete::tag, character::complete::multispace0, combinator::all_consuming, sequence::delimited, Finish, IResult};
+use num::Num;
 
 ///////////////////////////////////////////////////////////////////////
 // Parsing
@@ -50,6 +51,27 @@ where
 
 pub fn iter_to_num(v: impl IntoIterator<Item = char>) -> usize {
   v.into_iter().collect::<String>().parse().unwrap()
+}
+
+///////////////////////////////////////////////////////////////////////
+// Algorithms
+
+pub fn gcd<N: Num + Copy>(a: N, b: N) -> N {
+  let mut a = a;
+  let mut b = b;
+  loop {
+    if b == N::zero() {
+      return a;
+    } else {
+      let tmp = a;
+      a = b;
+      b = tmp % b;
+    }
+  }
+}
+
+pub fn lcm<N: Num + Copy>(a: N, b: N) -> N {
+  b * (a.div(gcd(a, b)))
 }
 
 ///////////////////////////////////////////////////////////////////////
