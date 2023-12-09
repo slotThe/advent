@@ -1,8 +1,6 @@
 (ns clojure-solutions.day05
   (:require [clojure.string :as str]
-            [clojure-aoc-util.coords :as coord]
-            [clojure.set :as set])
-  (:use [clojure-aoc-util.util] :reload))
+            [clojure-aoc-util.util :refer [split-groups words]]))
 
 ;; Idea:
 ;;

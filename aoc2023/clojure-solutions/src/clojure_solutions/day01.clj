@@ -1,6 +1,6 @@
 (ns clojure-solutions.day01
-  (:require [clojure.string :as str])
-  (:use [clojure-aoc-util.util] :reload))
+  (:require [clojure.string :as str]
+            [clojure-aoc-util.util :refer [sum]]))
 
 (defn- solve1 [input]
   (->> input
@@ -13,7 +13,7 @@
 
 (defn- solve2 [input]
   (letfn [(to-digit [[d s]]
-            (if (not (empty? d))
+            (if (seq d)
               (parse-long d)
               (+ 1 (.indexOf replacements s))))]
     (->> input

@@ -1,8 +1,7 @@
 (ns clojure-solutions.day04
   (:require [clojure.string :as str]
-            [clojure-aoc-util.coords :as coord]
-            [clojure.set :as set])
-  (:use [clojure-aoc-util.util] :reload))
+            [clojure.set :as set]
+            [clojure-aoc-util.util :refer [sum]]))
 
 (defn- parse []
   (into {}

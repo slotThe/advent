@@ -1,7 +1,7 @@
 (ns clojure-solutions.day03
   (:require [clojure.string :as str]
-            [clojure-aoc-util.coords :as coord])
-  (:use [clojure-aoc-util.util] :reload))
+            [clojure-aoc-util.coords :as coord]
+            [clojure-aoc-util.util :refer [coll-to-base sum]]))
 
 (defn- mk-adjacency-map [inp]
   (letfn [(is-num [n] (contains? #{\0\1\2\3\4\5\6\7\8\9} n))

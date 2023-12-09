@@ -5,5 +5,6 @@ mkShell {
     jdk
     clojure
     leiningen
+    clj-kondo
   ];
 }
