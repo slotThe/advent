@@ -54,18 +54,26 @@
   [m [i j]]
   (nth (nth m i nil) j nil))
 
-(defn map-matrix
+(defn map-over-matrix
   "Map a function f(i, j, el) over all elements of a matrix with
   indices."
   [f mat]
-  (apply concat
-         (keep-indexed (fn [i row]
-                         (keep-indexed (fn [j el]
-                                         (f i j el))
-                                       row))
-                       mat)))
+  (keep-indexed (fn [i row]
+                  (keep-indexed (fn [j el]
+                                  (f i j el))
+                                row))
+                mat))
+
+(defn map-matrix
+  "Map a function f(i, j, el) over all elements of a matrix with
+  indices, and concatenate the result into a 1-dimensional vector."
+  [f mat]
+  (apply concat (map-over-matrix f mat)))
 
 ;;; Random util
+
+(defn not-in? [coll k]
+  (not (contains? coll k)))
 
 (defn signum ^long [^double d]
   (long (Math/signum d)))
