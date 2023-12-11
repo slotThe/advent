@@ -24,6 +24,11 @@
 (defn sub [[x1 y1] [x2 y2]]
   [(- x1 x2) (- y1 y2)])
 
+(defn taxicab
+  "The taxicab (L¹) norm of two points."
+  [[x1 y1] [x2 y2]]
+  (+ (abs (- x1 x2)) (abs (- y1 y2))))
+
 (defn seq->map
   "Turn a given sequence into a coordinate map.
   Optionally, takes a transducer that operates on map entries and
