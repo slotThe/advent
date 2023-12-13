@@ -10,6 +10,7 @@
             [clojure-solutions.day10 :as day10]
             [clojure-solutions.day11 :as day11]
             [clojure-solutions.day12 :as day12]
+            [clojure-solutions.day13 :as day13]
             [clojure-aoc-util.util :refer [print-day]]))
 
 (defn -main [& _]
@@ -22,4 +23,5 @@
   (print-day 9  (day09/day09 :one) (day09/day09 :two))
   (print-day 10 (day10/day10 :one) (day10/day10 :two))
   (print-day 11 (day11/day11 :one) (day11/day11 :two))
-  (print-day 12 (day12/day12 :one) (day12/day12 :two)))
+  (print-day 12 (day12/day12 :one) (day12/day12 :two))
+  (print-day 13 (day13/day13 :one) (day13/day13 :two)))
