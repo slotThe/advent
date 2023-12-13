@@ -11,6 +11,7 @@ pub mod day05;
 pub mod day06;
 pub mod day08;
 pub mod day09;
+pub mod day13;
 
 fn main() {
   print_day(1, day01::day01());
@@ -21,4 +22,5 @@ fn main() {
   print_day(6, day06::day06());
   print_day(8, day08::day08());
   print_day(9, day09::day09());
+  print_day(13, day13::day13());
 }
