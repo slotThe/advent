@@ -19,6 +19,7 @@ library
       Day02
       Day07
       Day09
+      Day16
   other-modules:
       Paths_haskell_solutions
   hs-source-dirs:
@@ -28,12 +29,15 @@ library
       NoImplicitPrelude
       OverloadedStrings
       DerivingStrategies
+      LambdaCase
+      BlockArguments
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
   build-depends:
       array
     , base
     , containers
     , haskell-aoc-util
+    , parallel
     , parser-combinators
     , text
     , unordered-containers
@@ -51,6 +55,8 @@ executable aoc-2022-haskell
       NoImplicitPrelude
       OverloadedStrings
       DerivingStrategies
+      LambdaCase
+      BlockArguments
   ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
   build-depends:
       array
@@ -58,6 +64,7 @@ executable aoc-2022-haskell
     , containers
     , haskell-aoc-util
     , haskell-solutions
+    , parallel
     , parser-combinators
     , text
     , unordered-containers

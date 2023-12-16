@@ -9,9 +9,15 @@ module Coords (
 
   -- * Moving
   above, below, left, right,
+  move,
+
+  -- * Indexing
+  ix,
 ) where
 
 import Data.Map.Strict (Map)
+import Data.Vector (Vector)
+import qualified Data.Vector as V
 import Util
 
 {- $coords
@@ -59,3 +65,14 @@ right (C x y) = C (x + 1) y
 
 neighbours4 :: Coord -> [Coord]
 neighbours4 pt = map ($! pt) [right, left, below, above]
+
+-- | Move into the given direction.
+move :: Coord -> Dim4 -> Coord
+move pt = \case
+  U -> above pt
+  D -> below pt
+  L -> left  pt
+  R -> right pt
+
+ix :: Vector (Vector a) -> Coord -> Maybe a
+ix grid C{x, y} = grid V.!? x >>= (V.!? y)

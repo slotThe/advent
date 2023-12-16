@@ -10,6 +10,8 @@ default-extensions:
   - NoImplicitPrelude
   - OverloadedStrings
   - DerivingStrategies
+  - LambdaCase
+  - BlockArguments
 
 language: GHC2021
 
@@ -33,6 +35,7 @@ dependencies:
   - vector
   - haskell-aoc-util
   - parser-combinators
+  - parallel
 
 library:
   source-dirs: src/
