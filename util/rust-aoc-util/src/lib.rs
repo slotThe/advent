@@ -2,12 +2,12 @@ pub mod coord;
 pub mod fun;
 pub mod interval;
 
+use std::{collections::{HashMap, HashSet}, hash::Hash};
+
 use anyhow::Result;
 use nom::{bytes::complete::tag, character::complete::multispace0, combinator::all_consuming, sequence::delimited, Finish, IResult};
-use std::hash::Hash;
 use num::Num;
 use priority_queue::DoublePriorityQueue;
-use std::{collections::{HashMap, HashSet}};
 
 ///////////////////////////////////////////////////////////////////////
 // Parsing
@@ -35,16 +35,15 @@ pub fn wtag<'a>(s: &'a str) -> impl FnMut(&'a str) -> IResult<&'a str, &'a str> 
 ///////////////////////////////////////////////////////////////////////
 // Matrix util
 
-pub fn inp_to_grid<T: Clone>(parse: impl Fn(char) -> Option<T>, inp: &str) -> Vec<Vec<T>>{
+pub fn inp_to_grid<T: Clone>(
+  parse: impl Fn(char) -> Option<T>,
+  inp: &str,
+) -> Vec<Vec<T>> {
   transpose(
     inp
       .lines()
-      .map(|l| {
-        l.chars()
-          .flat_map(|c| parse(c))
-          .collect()
-      })
-      .collect()
+      .map(|l| l.chars().flat_map(|c| parse(c)).collect())
+      .collect(),
   )
 }
 
@@ -90,19 +89,14 @@ pub fn gcd<N: Num + Copy>(a: N, b: N) -> N {
   }
 }
 
-pub fn lcm<N: Num + Copy>(a: N, b: N) -> N {
-  b * (a.div(gcd(a, b)))
-}
+pub fn lcm<N: Num + Copy>(a: N, b: N) -> N { b * (a.div(gcd(a, b))) }
 
 pub struct Cycle {
   pub pre: usize,
   pub len: usize,
 }
 
-pub fn detect_cycle<T: Clone + Eq + Hash>(
-  f: impl Fn(&T) -> T,
-  inp: T,
-) -> (T, Cycle) {
+pub fn detect_cycle<T: Clone + Eq + Hash>(f: impl Fn(&T) -> T, inp: T) -> (T, Cycle) {
   let mut cyc = inp;
   let mut i = 0;
   let mut seen: HashMap<T, usize> = HashMap::from([(cyc.clone(), i)]);
@@ -110,7 +104,7 @@ pub fn detect_cycle<T: Clone + Eq + Hash>(
     i += 1;
     cyc = f(&cyc);
     if let Some(&pre) = seen.get(&cyc) {
-      return (cyc, Cycle{pre, len: i});
+      return (cyc, Cycle { pre, len: i });
     } else {
       seen.insert(cyc.clone(), i);
     }

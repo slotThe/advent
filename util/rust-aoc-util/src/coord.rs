@@ -33,7 +33,10 @@ impl Dir {
   }
 }
 
-pub fn neighbours4_dir_iter(x: usize, y: usize) -> impl Iterator<Item = (usize, usize, Dir)> {
+pub fn neighbours4_dir_iter(
+  x: usize,
+  y: usize,
+) -> impl Iterator<Item = (usize, usize, Dir)> {
   [
     (x + 1, y, Dir::East),
     (x, y + 1, Dir::South),

@@ -6,6 +6,7 @@ pub struct Interval {
 
 impl Interval {
   pub fn beg(self) -> isize { self.beg }
+
   pub fn end(self) -> isize { self.end }
 
   /// Create an interval from a starting point, and a length.
