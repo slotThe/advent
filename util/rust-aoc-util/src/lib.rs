@@ -4,9 +4,10 @@ pub mod interval;
 
 use anyhow::Result;
 use nom::{bytes::complete::tag, character::complete::multispace0, combinator::all_consuming, sequence::delimited, Finish, IResult};
-use num::Num;
 use std::hash::Hash;
-use std::collections::HashMap;
+use num::Num;
+use priority_queue::DoublePriorityQueue;
+use std::{collections::{HashMap, HashSet}};
 
 ///////////////////////////////////////////////////////////////////////
 // Parsing
@@ -34,6 +35,19 @@ pub fn wtag<'a>(s: &'a str) -> impl FnMut(&'a str) -> IResult<&'a str, &'a str> 
 ///////////////////////////////////////////////////////////////////////
 // Matrix util
 
+pub fn inp_to_grid<T: Clone>(parse: impl Fn(char) -> Option<T>, inp: &str) -> Vec<Vec<T>>{
+  transpose(
+    inp
+      .lines()
+      .map(|l| {
+        l.chars()
+          .flat_map(|c| parse(c))
+          .collect()
+      })
+      .collect()
+  )
+}
+
 pub fn transpose<El: Clone>(xxs: Vec<Vec<El>>) -> Vec<Vec<El>> {
   transpose_with(|v| v, xxs)
 }
@@ -46,6 +60,10 @@ where
     .map(|i| xxs.iter().map(|row| row[i].clone()).collect())
     .map(f)
     .collect()
+}
+
+pub fn grid_get<T>(grid: &[Vec<T>], x: usize, y: usize) -> Option<&T> {
+  grid.get(x).and_then(|v| v.get(y))
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -95,6 +113,36 @@ pub fn detect_cycle<T: Clone + Eq + Hash>(
       return (cyc, Cycle{pre, len: i});
     } else {
       seen.insert(cyc.clone(), i);
+    }
+  }
+}
+
+pub fn dijkstra<N, P>(starts: &[P], more: impl Fn(&P) -> Vec<(P, N)>) -> HashMap<P, N>
+where
+  P: Ord + Hash + Copy,
+  N: Num + Ord + Copy,
+{
+  let mut all_costs = HashMap::new();
+  let mut seen = HashSet::new();
+  let mut queue = DoublePriorityQueue::new();
+  for start in starts {
+    queue.push(*start, N::zero());
+  }
+  loop {
+    if let Some((u, cost_u)) = queue.pop_min() {
+      if !seen.contains(&u) {
+        all_costs.insert(u, cost_u); // final, minimal, cost of a point
+        seen.insert(u);
+        for &(n, cost_n) in more(&u).iter() {
+          if let Some(&p) = queue.get_priority(&n) {
+            queue.push(n, p.min(cost_u + cost_n));
+          } else {
+            queue.push(n, cost_u + cost_n);
+          }
+        }
+      }
+    } else {
+      return all_costs;
     }
   }
 }

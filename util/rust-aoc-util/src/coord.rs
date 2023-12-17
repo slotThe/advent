@@ -1,11 +1,46 @@
 use itertools::Itertools;
 
-#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Clone, Copy)]
 pub enum Dir {
   North,
   East,
   South,
   West,
+}
+
+impl Dir {
+  pub fn opposed(d: Dir) -> (Dir, Dir) {
+    use Dir::*;
+    match d {
+      North | South => (East, West),
+      East | West => (North, South),
+    }
+  }
+
+  pub fn is_opposed(self, d: Dir) -> bool {
+    let (a, b) = Self::opposed(self);
+    d == a || d == b
+  }
+
+  pub fn is_reversed(self, d: Dir) -> bool {
+    use Dir::*;
+    match self {
+      North => d == South,
+      South => d == North,
+      East => d == West,
+      West => d == East,
+    }
+  }
+}
+
+pub fn neighbours4_dir_iter(x: usize, y: usize) -> impl Iterator<Item = (usize, usize, Dir)> {
+  [
+    (x + 1, y, Dir::East),
+    (x, y + 1, Dir::South),
+    (x - 1, y, Dir::West),
+    (x, y - 1, Dir::North),
+  ]
+  .into_iter()
 }
 
 pub fn char_to_dir(c: char) -> Option<Dir> {
