@@ -19,6 +19,7 @@
   - Day 15 : [Clojure][2023:day15:clojure]
   - Day 16 : [Clojure][2023:day16:clojure], [Haskell][2023:day16:haskell]
   - Day 17 : [Rust][2023:day17:rust]
+  - Day 18 : [Clojure][2023:day18:clojure]
 
 [2023:day01:haskell]: ./aoc2023/haskell-solutions/src/Day01.hs
 [2023:day01:rust]: ./aoc2023/rust-solutions/src/day01.rs
@@ -55,6 +56,7 @@
 [2023:day16:clojure]: ./aoc2023/clojure-solutions/src/clojure_solutions/day16.clj
 [2023:day16:haskell]: ./aoc2023/haskell-solutions/src/Day16.hs
 [2023:day17:rust]: ./aoc2023/rust-solutions/src/day17.rs
+[2023:day18:clojure]: ./aoc2023/clojure-solutions/src/clojure_solutions/day18.clj
 
 ## 2022
 
