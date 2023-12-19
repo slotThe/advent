@@ -20,6 +20,7 @@ library
       Day07
       Day09
       Day16
+      Day19
   other-modules:
       Paths_haskell_solutions
   hs-source-dirs:
