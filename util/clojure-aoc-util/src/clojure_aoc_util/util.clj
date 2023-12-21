@@ -148,35 +148,40 @@
 (defn dijkstra
   "Dijkstra's shortest path algorithm.
 
-  `start' is either a single, or a sequence of starting positions.  The
-  given `more' function is a function of two arguments that computes the
-  neighbours and their costs for each index.  It gets the index to
-  compute the neighbours for, as well as the already seen points.  This
-  allows for filtering while computing the neighbours, which may improve
-  performance."
-  [start more]
-  (letfn [(mincost [cost cost*]
-            (fn [cc] (if cc          ; if value exists, take the minimum
-                       (min cc (+ cost cost*))
-                       (+ cost cost*))))]
-    (loop [all-costs  {}
-           seen       #{}
-           looking-at (if (seq? start)
-                        (apply priority-map (mapcat vector start (repeat 0)))
-                        (priority-map start 0))]
-      (if (empty? looking-at)        ; no more points to look at -> STOP
-        all-costs
-        (let [[u cost-u] (peek looking-at)
-              tail (pop looking-at)]
-          (if (seen u)               ;  check for seen in case `more' doesn't
-            (recur all-costs seen tail)
-            (recur (assoc all-costs u cost-u) ; final, minimal, cost of a point
-                   (conj seen u)
-                   (reduce (fn [acc [n cost-n]]
-                             ;; Remember only the minimal cost of a neighbour.
-                             (update acc n (mincost cost-u cost-n)))
-                           tail
-                           (more u seen)))))))))
+  - `start' is either a single, or a sequence of starting positions.
+
+  - The given `more' function is a function of two arguments that
+    computes the neighbours and their costs for each index. It gets the
+    index to compute the neighbours for, as well as the already seen
+    points. This allows for filtering while computing the neighbours,
+    which may improve performance.
+
+  - If the optional flag :with-cost is given, then the `more' function
+    gets the index and its associated cost as a first argument, instead
+    of just the index."
+  [start more & flags]
+  (let [flags (set flags)]
+    (letfn [(mincost [cost cost*]
+              (fn [cc] (if cc             ; if value exists, take the minimum
+                         (min cc (+ cost cost*))
+                         (+ cost cost*))))]
+      (loop [all-costs {}, seen #{},
+             looking-at (if (seq? start)
+                          (apply priority-map (mapcat vector start (repeat 0)))
+                          (priority-map start 0))]
+        (if (empty? looking-at)           ; no more points to look at -> STOP
+          all-costs
+          (let [[u cost-u] (peek looking-at), tail (pop looking-at),
+                feed-more (if (:with-cost flags) [u cost-u] u)]
+            (if (seen u)                ;  check for seen in case `more' doesn't
+              (recur all-costs seen tail)
+              (recur (assoc all-costs u cost-u) ; final, minimal, cost of a point
+                     (conj seen u)
+                     (reduce (fn [acc [n cost-n]]
+                               ;; Remember only the minimal cost of a neighbour.
+                               (update acc n (mincost cost-u cost-n)))
+                             tail
+                             (more feed-more seen))))))))))
 
 (defn flood-fill
   "A simple flood-fill.
