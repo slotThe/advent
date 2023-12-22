@@ -41,7 +41,10 @@ library:
   source-dirs: src/
 
 executables:
-  aoc-2022-haskell:
+  aoc-2023-haskell:
     source-dirs: app
     main: Main.hs
     dependencies: haskell-solutions
+    ghc-options:
+      -threaded
+      -with-rtsopts=-N

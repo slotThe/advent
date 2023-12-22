@@ -59,7 +59,7 @@ executable aoc-2022-haskell
       DerivingStrategies
       LambdaCase
       BlockArguments
-  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2
+  ghc-options: -Weverything -Wno-implicit-prelude -Wno-missing-import-lists -Wno-unused-packages -Wno-missing-safe-haskell-mode -Wno-all-missed-specialisations -Wno-unsafe -Wno-prepositive-qualified-module -O2 -threaded -with-rtsopts=-N
   build-depends:
       array
     , base
