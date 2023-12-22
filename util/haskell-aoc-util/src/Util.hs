@@ -19,6 +19,8 @@ module Util
     , nubIntOn
     , nubOrd
     , nubOrdOn
+    , converge
+    , (.:)
     ) where
 
 import BasePrelude hiding (left, right)
@@ -92,3 +94,12 @@ bfsOn trans start neighs = go mempty (fromList start)
                  else a : go (a' `Set.insert` seen)
                              (foldl' (|>) rest (neighs a))
      where a' = trans a
+
+-- | Apply a function to an initial seed until it converges.
+converge :: Eq a => (a -> a) -> a -> a
+converge f a = fst . head . dropWhile (uncurry (/=)) . zip xs $ drop 1 xs
+ where xs = iterate f a
+
+-- | @f .: g ≡ λx y → f (g x y)@.
+(.:) :: (a -> b) -> (c -> d -> a) -> c -> d -> b
+(.:) = (.) . (.)
