@@ -33,6 +33,10 @@ impl Dir {
   }
 }
 
+pub fn neighbours4_iter(x: usize, y: usize) -> impl Iterator<Item = (usize, usize)> {
+  neighbours4_dir_iter(x, y).map(|(a, b, _)| (a, b))
+}
+
 pub fn neighbours4_dir_iter(
   x: usize,
   y: usize,
