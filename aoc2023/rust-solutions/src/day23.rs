@@ -2,13 +2,15 @@ use std::collections::{HashMap, HashSet};
 
 use rust_aoc_util::{coord, grid_get, transpose};
 
-pub fn day23() -> (isize, isize) {
+type UCoord = (usize, usize);
+
+pub fn day23() -> (usize, usize) {
   let inp = std::fs::read_to_string("../inputs/day23.txt").unwrap();
   let inp = transpose(inp.lines().map(|l| l.chars().collect()).collect());
   (solve(&inp, neighbours1), solve(&inp, neighbours2))
 }
 
-fn neighbours1(inp: &[Vec<char>], (x, y): (usize, usize)) -> Vec<(usize, usize)> {
+fn neighbours1(inp: &[Vec<char>], (x, y): UCoord) -> Vec<UCoord> {
   match inp[x][y] {
     '>' => vec![(x + 1, y)],
     '<' => vec![(x - 1, y)],
@@ -18,7 +20,7 @@ fn neighbours1(inp: &[Vec<char>], (x, y): (usize, usize)) -> Vec<(usize, usize)>
   }
 }
 
-fn neighbours2(inp: &[Vec<char>], (x, y): (usize, usize)) -> Vec<(usize, usize)> {
+fn neighbours2(inp: &[Vec<char>], (x, y): UCoord) -> Vec<UCoord> {
   coord::neighbours4_iter(x, y)
     .filter(|&(a, b)| grid_get(inp, a, b).is_some_and(|&c| c != '#'))
     .collect()
@@ -26,8 +28,8 @@ fn neighbours2(inp: &[Vec<char>], (x, y): (usize, usize)) -> Vec<(usize, usize)>
 
 fn solve(
   inp: &[Vec<char>],
-  neighbours: impl Fn(&[Vec<char>], (usize, usize)) -> Vec<(usize, usize)>,
-) -> isize {
+  neighbours: impl Fn(&[Vec<char>], UCoord) -> Vec<UCoord>,
+) -> usize {
   let start = (1, 0);
   let goal = (inp.len() - 2, inp.len() - 1);
   let graph = build_graph(inp, neighbours);
@@ -52,17 +54,17 @@ fn solve(
 
 // There is a smaller graph hiding in the bigger graph! Basically,
 // instead of looking at the big grid, build an undirected graph out of
-// all junctions (i.e., points with more than two neighbours), as well
-// as the two end points. This is much smaller, so that one can
-// semi-bruteforce the longest path in `solve'.
+// all crossings (i.e., points with more than two neighbours), as well
+// as the two end points. This is a *much* smaller graph, so that one
+// can semi-bruteforce the longest path in `solve'.
 fn build_graph(
   inp: &[Vec<char>],
-  neighbours: impl Fn(&[Vec<char>], (usize, usize)) -> Vec<(usize, usize)>,
-) -> HashMap<(usize, usize), HashMap<(usize, usize), isize>> {
+  neighbours: impl Fn(&[Vec<char>], UCoord) -> Vec<UCoord>,
+) -> HashMap<UCoord, HashMap<UCoord, usize>> {
   let mut vertices = HashSet::from([(1, 0), (inp.len() - 2, inp.len() - 1)]);
   for i in 0..inp.len() {
     for j in 0..inp.len() {
-      if inp[i][j] != '#' && 2 < neighbours2(inp, (i, j)).len() {
+      if inp[i][j] != '#' && 2 < neighbours(inp, (i, j)).len() {
         vertices.insert((i, j));
       }
     }
@@ -75,20 +77,18 @@ fn build_graph(
 
 fn build_paths(
   inp: &[Vec<char>],
-  nodes: &HashSet<(usize, usize)>,
-  v: (usize, usize),
-  neighbours: impl Fn(&[Vec<char>], (usize, usize)) -> Vec<(usize, usize)>,
-) -> HashMap<(usize, usize), isize> {
+  nodes: &HashSet<UCoord>,
+  v: UCoord,
+  neighbours: impl Fn(&[Vec<char>], UCoord) -> Vec<UCoord>,
+) -> HashMap<UCoord, usize> {
   let mut queue: Vec<_> = neighbours(inp, v).into_iter().map(|n| (n, 1)).collect();
   let mut visited = HashSet::from([v]);
   let mut res = HashMap::new();
   while let Some((pt, cost)) = queue.pop() {
     visited.insert(pt);
     if nodes.contains(&pt) {
-      // point in the graph
       res.insert(pt, cost);
     } else {
-      // auxiliary point
       for neigh in neighbours(inp, pt) {
         if !visited.contains(&neigh) {
           queue.push((neigh, cost + 1));
