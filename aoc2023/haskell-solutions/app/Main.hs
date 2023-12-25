@@ -6,6 +6,7 @@ import Day09
 import Day16
 import Day19
 import Day22
+import Day25
 import Util
 
 main :: IO ()
@@ -17,4 +18,5 @@ main = sequenceA_ . parMap rseq (uncurry day) $
   , (16, day16)
   , (19, day19)
   , (22, day22)
+  , (25, day25)
   ]
