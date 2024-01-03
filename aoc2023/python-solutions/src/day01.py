@@ -1,5 +1,6 @@
 import re
 from functools import reduce
+from util import INPUTS
 
 
 def solve1(inp: str) -> int:
@@ -24,12 +25,17 @@ def solve2(inp: str) -> int:
     return convert(*matches[0]) * 10 + convert(*matches[-1])
 
 
-def day01():
-    with open("../../inputs/day01.txt", "r") as inp:
-        inp = inp.readlines()
+def parse() -> list[str]:
+    with open(f"{INPUTS}/day01.txt", "r") as inp:
+        return [x.strip() for x in inp.readlines()]
 
-        def solve(solve_with):
-            print(sum(map(lambda x: solve_with(x.strip()), inp)))
 
-        solve(solve1)
-        solve(solve2)
+def day01() -> tuple[int, int]:
+    inp = parse()
+    return sum([solve1(x) for x in inp]), sum([solve2(x) for x in inp])
+
+
+assert day01() == (54331, 54518)
+
+if __name__ == "__main__":
+    print(day01())

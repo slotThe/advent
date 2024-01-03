@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "Python solutions for some AOC2023 problems"
 authors = ["Tony Zorman <soliditsallgood@mailbox.org>"]
 license = "AGPL-3"
-readme = "README.md"
 packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
@@ -13,9 +12,9 @@ python = "^3.11"
 [tool.poetry.group.dev.dependencies]
 ruff-lsp = "^0.0.45"
 pyright = "^1.1.338"
+ruff = "^0.1.5"
 
 [tool.poetry.scripts]
-python-solutions = "src.main:main"
 day01 = "src.day01:day01"
 
 [tool.black]
