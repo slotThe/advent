@@ -20,8 +20,10 @@
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
           inherit (poetry2nix.lib.mkPoetry2Nix { inherit pkgs; }) mkPoetryApplication;
+          python = pkgs.python312;
       in {
         packages = {
+          inherit python;
           python-solutions = mkPoetryApplication { projectDir = self; };
           default = self.packages.${system}.python-solutions;
         };
@@ -29,7 +31,7 @@
         devShells.default = pkgs.mkShell {
           inputsFrom = [ self.packages.${system}.python-solutions ];
           packages   = [ pkgs.poetry ];
-          nativeBuildInputs = [ pkgs.nodejs_21 ];
+          nativeBuildInputs = [ pkgs.nodejs_21 python ];
           shellHook = ''
             export PROJECT_ROOT="$(pwd)"
           '';
