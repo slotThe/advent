@@ -12,14 +12,19 @@ python = "^3.11"
 [tool.poetry.group.dev.dependencies]
 ruff-lsp = "^0.0.45"
 pyright = "^1.1.338"
-ruff = "^0.1.5"
+ruff = "==0.1.8"
+jedi = "^0.19.1"
+jedi-language-server = "^0.41.2"
 
 [tool.poetry.scripts]
 day01 = "src.day01:day01"
 day02 = "src.day02:day02"
 
-[tool.black]
-target_version = ["py311"]
+[tool.ruff.lint.isort]
+case-sensitive = true
+combine-as-imports = true
+detect-same-package = true
+lines-after-imports = 1
 
 [build-system]
 requires = ["poetry-core"]
