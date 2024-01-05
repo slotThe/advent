@@ -1,4 +1,4 @@
-from util import INPUTS
+from util import INPUTS, p_ints
 import re
 from dataclasses import dataclass
 
@@ -11,9 +11,7 @@ class Hand:
 
 input: dict[int, Hand] = {}
 for line in open(f"{INPUTS}/day04.txt", "r").readlines():
-    [win, my] = [
-        [int(x) for x in re.findall(r"\d+", c)] for c in line.strip().split("|")
-    ]
+    [win, my] = [p_ints(c) for c in line.strip().split("|")]
     input[win[0]] = Hand(len(set(win[1:]).intersection(set(my))), 1)
 
 part1 = sum(2 ** (hand.winning - 1) for hand in input.values() if hand.winning != 0)

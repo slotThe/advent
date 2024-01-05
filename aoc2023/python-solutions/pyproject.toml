@@ -16,10 +16,6 @@ ruff = "==0.1.8"
 jedi = "^0.19.1"
 jedi-language-server = "^0.41.2"
 
-[tool.poetry.scripts]
-day01 = "src.day01:day01"
-day02 = "src.day02:day02"
-
 [tool.ruff.lint.isort]
 case-sensitive = true
 combine-as-imports = true

@@ -7,7 +7,7 @@
   - Day 3  : [Rust][2023:day03:rust], [Clojure][2023:day03:clojure], [Python][2023:day03:python]
   - Day 4  : [Rust][2023:day04:rust], [Clojure][2023:day04:clojure], [OCaml][2023:day04:ocaml], [Python][2023:day04:python]
   - Day 5  : [Clojure][2023:day05:clojure], [Rust][2023:day05:rust]
-  - Day 6  : [OCaml][2023:day06:ocaml], [Clojure][2023:day06:clojure], [Rust][2023:day06:rust]
+  - Day 6  : [OCaml][2023:day06:ocaml], [Clojure][2023:day06:clojure], [Rust][2023:day06:rust], [Python][2023:day06:python]
   - Day 7  : [Haskell][2023:day07:haskell]
   - Day 8  : [Clojure][2023:day08:clojure], [Rust][2023:day08:rust], [OCaml][2023:day08:ocaml]
   - Day 9  : [Clojure][2023:day09:clojure], [Rust][2023:day09:rust], [Haskell][2023:day09:haskell]
@@ -49,6 +49,7 @@
 [2023:day06:ocaml]: ./aoc2023/ocaml_solutions/lib/day06.ml
 [2023:day06:clojure]: ./aoc2023/clojure-solutions/src/clojure_solutions/day06.clj
 [2023:day06:rust]: ./aoc2023/rust-solutions/src/day06.rs
+[2023:day06:python]: ./aoc2023/python-solutions/src/day06.py
 [2023:day07:haskell]: ./aoc2023/haskell-solutions/src/Day07.hs
 [2023:day08:clojure]: ./aoc2023/clojure-solutions/src/clojure_solutions/day08.clj
 [2023:day08:rust]: ./aoc2023/rust-solutions/src/day08.rs
