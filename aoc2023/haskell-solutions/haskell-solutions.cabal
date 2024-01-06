@@ -22,6 +22,7 @@ library
       Day16
       Day19
       Day22
+      Day25
   other-modules:
       Paths_haskell_solutions
   hs-source-dirs:
@@ -46,7 +47,7 @@ library
     , vector
   default-language: GHC2021
 
-executable aoc-2022-haskell
+executable aoc-2023-haskell
   main-is: Main.hs
   other-modules:
       Paths_haskell_solutions

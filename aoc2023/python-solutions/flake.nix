@@ -24,12 +24,12 @@
       in {
         packages = {
           inherit python;
-          python-solutions = mkPoetryApplication { projectDir = self; };
-          default = self.packages.${system}.python-solutions;
+          main = mkPoetryApplication { projectDir = self; };
+          default = self.packages.${system}.main;
         };
 
         devShells.default = pkgs.mkShell {
-          inputsFrom = [ self.packages.${system}.python-solutions ];
+          inputsFrom = [ self.packages.${system}.main ];
           packages   = [ pkgs.poetry ];
           nativeBuildInputs = [ pkgs.nodejs_21 python ];
           shellHook = ''
