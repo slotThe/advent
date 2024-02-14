@@ -1,5 +1,16 @@
 # Advent of Code
 
+## Some general information
+
+- Languages for a given day appear in solving order (from left to right).
+  Later solutions might be prettier, but they also might not be.
+
+- I don't generally "go back" to improve old solutions,
+  though I might play around with new utility libraries and shoehorn them into past years.
+
+- This code is not well documented, pretty, fast, or even particularly readable.
+  I'm just having fun (and learning lots of languages) :)
+
 ## 2023
 
   - Day 1  : [Haskell][2023:day01:haskell], [Rust][2023:day01:rust], [Clojure][2023:day01:clojure], [Ocaml][2023:day01:ocaml], [Python][2023:day01:python], [Emacs Lisp][2023:day01:elisp]
@@ -317,14 +328,3 @@ This was me basically learning Haskell.
 [2015:day9:rust]: ./aoc2015/rust-solutions/src/day9.rs
 [2015:day10:rust]: ./aoc2015/rust-solutions/src/day10.rs
 [2015:day11:rust]: ./aoc2015/rust-solutions/src/day11.rs
-
-# Some general information
-
-- Languages for a given day appear in solving order (from left to right).
-  Later solutions might be prettier.
-
-- I don't generally "go back" to improve old solutions,
-  though I might play around with new utility libraries and shoehorn them into past years.
-
-- This code is not well documented, pretty, fast, or even particularly readable.
-  I'm just having fun (and learning lots of languages) :)
