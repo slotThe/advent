@@ -2,7 +2,7 @@ from util import INPUTS, p_ints, prod
 import re
 
 
-def binary(pred, lo, hi):
+def binary(pred, lo: int, hi: int) -> int:
     while lo != hi:
         mid = (lo + hi) // 2
         if pred(mid):

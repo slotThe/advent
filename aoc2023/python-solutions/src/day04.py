@@ -1,5 +1,4 @@
 from util import INPUTS, p_ints
-import re
 from dataclasses import dataclass
 
 

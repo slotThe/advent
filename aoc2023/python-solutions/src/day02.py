@@ -3,8 +3,10 @@ from functools import reduce
 from util import INPUTS
 import re
 
+type game = list[tuple[int, str]]
 
-def parse():
+
+def parse() -> list[game]:
     with open(f"{INPUTS}/day02.txt", "r") as inp:
         return [
             [(int(m[0]), m[1]) for m in re.findall(r"([0-9]+) (green|blue|red)", line)]
@@ -12,7 +14,7 @@ def parse():
         ]
 
 
-def game_possible(val, color):
+def game_possible(val: int, color: str) -> bool:
     match color:
         case "blue":
             return 14 >= val
@@ -20,9 +22,11 @@ def game_possible(val, color):
             return 13 >= val
         case "red":
             return 12 >= val
+        case _:
+            return False
 
 
-def possible_games(xs):
+def possible_games(xs: list[game]) -> int:
     return sum(
         [
             i
@@ -32,14 +36,14 @@ def possible_games(xs):
     )
 
 
-def part2(cubes):
+def part2(cubes: game) -> int:
     res = defaultdict(int)  # Defaults to 0
     for val, color in cubes:
         res[color] = max(res[color], val)
     return reduce(lambda a, b: a * b, res.values())
 
 
-def day02():
+def day02() -> tuple[int, int]:
     input = parse()
     return possible_games(input), sum([part2(cubes) for cubes in input])
 
