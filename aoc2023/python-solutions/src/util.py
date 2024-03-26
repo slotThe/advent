@@ -9,7 +9,7 @@ INPUTS = os.path.join(os.environ["PROJECT_ROOT"], "../inputs")
 
 def p_ints(s: str) -> list[int]:
     """Parse a string into a list of ints."""
-    return list(map(int, re.findall(r"\d+", s)))
+    return list(map(int, re.findall(r"-?\d+", s)))
 
 
 def prod(xs: Iterable[Integral]) -> Integral:
