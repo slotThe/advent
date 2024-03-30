@@ -176,36 +176,17 @@ impl<A: ToString> AdventString for Result<A> {
   }
 }
 
-// Yup, this is really necessary, because apparently
-//
 //     impl<A: ToString> AdventString for A
 //
-// doesn't work and triggers E0119. Yikes.
+// doesn't work and triggers E0119 because upstream *may* add a
+// ToString/Display implementation for Option in the future :/
 
-impl AdventString for String {
-  fn pp(&self) -> String { self.to_string() }
+macro_rules! advent_impl {
+  ($($t:ty)+) => {
+    $(impl AdventString for $t {
+      fn pp(&self) -> String { self.to_string() }
+    })+
+  };
 }
 
-impl AdventString for i32 {
-  fn pp(&self) -> String { self.to_string() }
-}
-
-impl AdventString for u16 {
-  fn pp(&self) -> String { self.to_string() }
-}
-
-impl AdventString for u32 {
-  fn pp(&self) -> String { self.to_string() }
-}
-
-impl AdventString for u128 {
-  fn pp(&self) -> String { self.to_string() }
-}
-
-impl AdventString for usize {
-  fn pp(&self) -> String { self.to_string() }
-}
-
-impl AdventString for isize {
-  fn pp(&self) -> String { self.to_string() }
-}
+advent_impl!(&str String u8 i16 u16 i32 u32 i64 u64 i128 u128 usize isize);
