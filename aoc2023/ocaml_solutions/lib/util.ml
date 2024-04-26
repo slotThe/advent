@@ -75,6 +75,8 @@ let ppSet set =
 module Parse = struct
   let re_group re s = Re.(Option.map ~f:Group.all (exec_opt (Pcre.regexp re) s))
 
+  let re_all re s = List.map ~f:Re.Group.all (Re.all (Re.Pcre.regexp re) s)
+
   let ios = int_of_string
   let soi = string_of_int
 end
