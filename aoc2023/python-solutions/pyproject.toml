@@ -13,8 +13,6 @@ python = "^3.12"
 ruff-lsp = "^0.0.45"
 pyright = "^1.1.338"
 ruff = "==0.1.8"
-jedi = "^0.19.1"
-jedi-language-server = "^0.41.2"
 
 [tool.ruff.lint.isort]
 case-sensitive = true
