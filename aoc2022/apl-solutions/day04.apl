@@ -1,5 +1,5 @@
 ⍝ 1-3,4-6 gets transformed into a matrix like [[1 3] [4 6]]
-input ← (2 2⍴⍎¨ ∘ ('\d+'⎕S'&'))¨⊃⎕NGET '../inputs/day4.txt' 1
+input ← {(2 2)⍴ 2⊃ ',-'⎕VFI ⍵}¨⊃⎕NGET '../inputs/day4.txt' 1
 S ← { +⌿⍺⍺¨⍵ }
 
 ⍝ (1): For a given 2×2 matrix, compute the min and max along the columns
