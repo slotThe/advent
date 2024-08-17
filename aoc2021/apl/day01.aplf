@@ -1,0 +1,6 @@
+day01←{
+    sol←+/2</⊢+/(⍎¨⊃⎕NGET'../elisp/day1.txt' 1)⍨
+    ⎕←(sol 1),(sol 3)
+}
+
+day01 'run'
