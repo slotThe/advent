@@ -9,9 +9,9 @@ let mk_assoc_array xs =
     let inp = (String.split inp ~on:'|')
     and p_integers xs = List.filter_map ~f:int_of_string_opt
                           (String.split xs ~on:' ') in
-    List.reduce_exn ~f:ISet.inter
+    List.reduce_exn ~f:Set.inter
       (List.map ~f:(p_integers >> ISet.of_list) inp)
-    |> ISet.length
+    |> Set.length
   in
   List.(range 1 (length xs) ~stop:`inclusive
         |> map ~f:(fun n -> (1, p_input (nth_exn xs (n - 1))))

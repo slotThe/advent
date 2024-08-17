@@ -62,7 +62,7 @@ end
 (* Pretty print an IISet. *)
 let ppSet set =
   let (xmin, xmax, ymin, ymax) =
-    IISet.fold set ~init:(0, 0, 0, 0)
+    Set.fold set ~init:(0, 0, 0, 0)
       ~f:(fun (xmn, xmx, ymn, ymx) (x, y) -> min xmn x, max xmx x,
                                              min ymn y, max ymx y)
   and r = List.range ~stop:`inclusive

@@ -8,10 +8,10 @@ module SSet = Set.Make(String)
 let run_down start ends lrs tree =
   let l = List.length lrs in
   let rec go ix i node =
-    if SSet.exists ~f:(String.equal node) ends
+    if Set.exists ~f:(String.equal node) ends
     then i
     else let ix' = (ix + 1) mod l
-         and (l, r) = SMap.find_exn tree node in
+         and (l, r) = Map.find_exn tree node in
          go ix' (i + 1) @@ match List.nth_exn lrs ix with | 'L' -> l | _ -> r
   in go 0 0 start
 
@@ -24,7 +24,7 @@ let mk_tree rest =
   |> SMap.of_alist_exn
 
 let mk_start_end tree =
-  let nodes = SMap.keys tree in
+  let nodes = Map.keys tree in
   let starts = List.filter ~f:(String.is_suffix ~suffix:"A") nodes in
   let ends = SSet.of_list @@ List.filter ~f:(String.is_suffix ~suffix:"Z") nodes in
   starts, ends
