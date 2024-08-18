@@ -178,7 +178,7 @@
 
 Instead of Haskell, I decided to learn Clojure through this.
 
-  - Day 1  : [emacs-lisp][2021:day1:elisp], [Dyalog APL][2021:day1:apl]
+  - Day 1  : [emacs-lisp][2021:day1:elisp], [Dyalog APL][2021:day1:apl], [BQN][2021:day1:bqn]
   - Day 2  : [Haskell][2021:day2:haskell] and [Clojure][2021:day2:clojure]
   - Day 3  : [Clojure][2021:day3:clojure]
   - Day 4  : [Clojure][2021:day4:clojure]
@@ -206,6 +206,7 @@ Instead of Haskell, I decided to learn Clojure through this.
 
 [2021:day1:elisp]: ./aoc2021/elisp/day1.el
 [2021:day1:apl]: ./aoc2021/apl/day01.aplf
+[2021:day1:bqn]: ./aoc2021/bqn/day01.bqn
 [2021:day2:haskell]: ./aoc2021/haskell/src/Day2.hs
 [2021:day2:clojure]: ./aoc2021/clojure-solutions/src/clojure_solutions/day2.clj
 [2021:day3:clojure]: ./aoc2021/clojure-solutions/src/clojure_solutions/day3.clj
