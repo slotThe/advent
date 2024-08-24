@@ -103,7 +103,7 @@
   - Day 5  : [Haskell][2022:day5:haskell], [Clojure][2022:day5:clojure], [Rust][2022:day5:rust]
   - Day 6  : [Haskell][2022:day6:haskell], [Clojure][2022:day6:clojure], [Rust][2022:day6:rust], [Dyalog APL][2022:day6:apl]
   - Day 7  : [Clojure][2022:day7:clojure], [Haskell][2022:day7:haskell], [Rust][2022:day7:rust]
-  - Day 8  : [Haskell][2022:day8:haskell], [Clojure][2022:day8:clojure]
+  - Day 8  : [Haskell][2022:day8:haskell], [Clojure][2022:day8:clojure], [BQN][2022:day8:bqn]
   - Day 9  : [Clojure][2022:day9:clojure], [Haskell][2022:day9:haskell]
   - Day 10 : [Clojure][2022:day10:clojure], [Rust][2022:day10:rust]
   - Day 11 : [Haskell][2022:day11:haskell]
@@ -152,6 +152,7 @@
 [2022:day7:rust]: ./aoc2022/rust-solutions/src/day7.rs
 [2022:day8:clojure]: ./aoc2022/clojure-solutions/src/clojure_solutions/day8.clj
 [2022:day8:haskell]: ./aoc2022/haskell-solutions/src/Day8.hs
+[2022:day8:bqn]: ./aoc2022/bqn-solutions/day08.bqn
 [2022:day9:haskell]: ./aoc2022/haskell-solutions/src/Day9.hs
 [2022:day9:clojure]: ./aoc2022/clojure-solutions/src/clojure_solutions/day9.clj
 [2022:day10:clojure]: ./aoc2022/clojure-solutions/src/clojure_solutions/day10.clj
