@@ -294,6 +294,12 @@ This was me basically learning Haskell.
 [2020:day24:haskell]: ./aoc2020/src/Day24.hs
 [2020:day25:haskell]: ./aoc2020/src/Day25.hs
 
+## 2017
+
+  - Day 1  : [BQN][2017:day01:bqn]
+
+[2017:day01:bqn]: ./aoc2017/bqn/day01.bqn
+
 ## 2016
 
   - Day 1  : [OCaml][2016:day1:ocaml]
