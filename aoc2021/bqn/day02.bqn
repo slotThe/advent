@@ -1,4 +1,4 @@
-Split ← { ((¯1+⊢×·+`»⊸<)¬𝕩=𝕨)⊔𝕩 }
+⟨Split⟩ ← •Import "../../util/bqn_util/util.bqn"
 input ← {d‿v: d‿(•ParseFloat v)}∘(' '⊸Split)¨ •FLines "../haskell/puzzle-input/day2.txt"
 ToCoord ← { ⊑ 𝕩/˜ (<𝕨)⍷"forward"‿"up"‿"down" }
 
