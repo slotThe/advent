@@ -298,9 +298,11 @@ This was me basically learning Haskell.
 
   - Day 1  : [BQN][2017:day01:bqn]
   - Day 2  : [BQN][2017:day02:bqn]
+  - Day 3  : [BQN][2017:day03:bqn]
 
 [2017:day01:bqn]: ./aoc2017/bqn/day01.bqn
 [2017:day02:bqn]: ./aoc2017/bqn/day02.bqn
+[2017:day03:bqn]: ./aoc2017/bqn/day03.bqn
 
 ## 2016
 
