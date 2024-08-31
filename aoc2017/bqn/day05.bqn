@@ -1,7 +1,7 @@
 inp ← •ParseFloat¨ •FLines "../inputs/day05.txt"
 Sim ← { thresh 𝕊 v‿i‿s: # vector‿index‿step
   n ← i+i⊑v
-  v (⟨1, ¯1⟩ ⊑˜ thresh≤i⊑v)⊸+⌾(i⊸⊑)↩
+  v (thresh ≤ i⊑v)◶⟨1⊸+, ¯1⊸+⟩⌾(i⊸⊑)↩
   v‿n‿(s+1)
 }
 •Show ¯1⊑ (∞ Sim •_while_ {·𝕊v‿i‿s: i<≠v ∧ i>0} inp‿0‿0)
