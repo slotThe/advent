@@ -300,11 +300,13 @@ This was me basically learning Haskell.
   - Day 2  : [BQN][2017:day02:bqn]
   - Day 3  : [BQN][2017:day03:bqn]
   - Day 4  : [BQN][2017:day04:bqn]
+  - Day 5  : [BQN][2017:day05:bqn]
 
 [2017:day01:bqn]: ./aoc2017/bqn/day01.bqn
 [2017:day02:bqn]: ./aoc2017/bqn/day02.bqn
 [2017:day03:bqn]: ./aoc2017/bqn/day03.bqn
 [2017:day04:bqn]: ./aoc2017/bqn/day04.bqn
+[2017:day05:bqn]: ./aoc2017/bqn/day05.bqn
 
 ## 2016
 
