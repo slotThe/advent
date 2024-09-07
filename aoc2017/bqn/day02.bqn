@@ -1,5 +1,5 @@
-⟨Split⟩ ← •Import "../../util/bqn_util/util.bqn"
-inp ← (•ParseFloat¨ (@+9)⊸Split)¨ •FLines "../inputs/day02.txt"
+⟨Split, tab⟩ ← •Import "../../util/bqn_util/util.bqn"
+inp ← (•ParseFloat¨ tab⊸Split)¨ •FLines "../inputs/day02.txt"
 
 •Show +´ (⌈´-⌊´)¨ inp  # Part 1
 

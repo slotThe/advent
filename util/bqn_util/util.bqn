@@ -3,3 +3,5 @@
 # >>> ' ' Split "  A string   containing a   sentence.   "
 # ⟨ "A" "string" "containing" "a" "sentence." ⟩
 Split ⇐ (¬-˜⊢×·+`»⊸>)∘≠⊔⊢
+
+tab ⇐ @+9
