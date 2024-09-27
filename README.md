@@ -302,6 +302,7 @@ This was me basically learning Haskell.
   - Day 4  : [BQN][2017:day04:bqn]
   - Day 5  : [BQN][2017:day05:bqn]
   - Day 6  : [BQN][2017:day06:bqn]
+  - Day 7  : [BQN][2017:day07:bqn]
   - Day 8  : [BQN][2017:day08:bqn]
   - Day 9  : [BQN][2017:day09:bqn]
   - Day 10 : [BQN][2017:day10:bqn]
@@ -319,6 +320,7 @@ This was me basically learning Haskell.
 [2017:day04:bqn]: ./aoc2017/bqn/day04.bqn
 [2017:day05:bqn]: ./aoc2017/bqn/day05.bqn
 [2017:day06:bqn]: ./aoc2017/bqn/day06.bqn
+[2017:day07:bqn]: ./aoc2017/bqn/day07.bqn
 [2017:day08:bqn]: ./aoc2017/bqn/day08.bqn
 [2017:day09:bqn]: ./aoc2017/bqn/day09.bqn
 [2017:day10:bqn]: ./aoc2017/bqn/day10.bqn
