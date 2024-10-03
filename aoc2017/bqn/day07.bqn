@@ -1,13 +1,10 @@
 ⟨Split, cr⟩ ← •Import "../../util/bqn_util/util.bqn"
-inp ← •FLines "../inputs/day07.txt"
-inp{ # Parse input
+inp ← {
   ws ← ' ' Split 𝕩
-  (⊑ws)‿(•BQN 1⊑ws)‿((-(','⊸=)∘(¯1⊸↑))⊸↓¨3↓ws) # name‿weight‿children
-}¨↩
+  (⊑ws)‿(•BQN 1⊑ws)‿({-','=¯1↑𝕩}⊸↓¨3↓ws) # name‿weight‿children
+}¨ •FLines"../inputs/day07.txt"
 
-•Show root ← ⊑ (⊑¨inp)(¬∘∊/⊣)(∾¯1⊑¨inp) # ⇒ "svugo"
-
-1↓⊑((<"svugo")≡¨⊑¨inp)/inp
+•Show root ← ⊑ (⊑¨inp){(¬𝕨∊𝕩)/𝕨}(∾¯1⊑¨inp) # ⇒ "svugo"
 
 h ← ⟨⟩•HashMap⟨⟩ ⋄ { n‿w‿ch: n h.Set w‿ch }¨inp # name -> weight, children
 M ← =´2↑⊑¨ # Do the first two elements have matching cumulative weights?
@@ -19,7 +16,7 @@ SpotOutlier ← {
       ⟨w, (≠sums)×⊑⊑s⟩;
     𝕊s : M s?                    # Last weight is higher than the [o]ther[w]eights
       wwc‿mw←¯1⊑s ⋄ ow‿·←  ⊑s ⋄ (mw-wwc-ow)!0;
-    𝕊s : M⌽s?                    # First weight is lower than the [other][w]eights
+    𝕊s : M⌽s?                    # First weight is lower than the [o]ther[w]eights
       wwc‿mw←  ⊑s ⋄ ow‿·←¯1⊑s ⋄ (mw-wwc-ow)!0
   } sums
 }
