@@ -16,6 +16,6 @@ DecToHex←{
 }
 KnotHash ⇐ {
   ls ← ⌽ ⟨17, 31, 73, 47, 23⟩∾˜ -⟜@¨ 𝕩
-  ∾ DecToHex∘X¨ (16⥊16)/⊸⊔ ⊑ R´⟜ls⍟64 (↕256)‿0‿0
+  ∾ DecToHex∘X¨ 16(/⥊˜)⊸⊔ ⊑ R´⟜ls⍟64 (↕256)‿0‿0
 }
 •Show KnotHash inp2 # ⇒ "2da93395f1a6bb3472203252e3b17fe5"

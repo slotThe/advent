@@ -1,17 +1,13 @@
 ⟨Split,_Fix,cr⟩ ← •Import "../../util/bqn_util/util.bqn"
+inp ← (⊑⋈2⊸↓)∘(•BQN¨)∘(' '⊸Split)¨•FLines"../inputs/day12.txt"
 
-P ← {
-  h‿t ← 1((⊑↑)⋈1↓↓)' 'Split𝕩
-  h (⋈○•BQN) ∾'⟨'∾t∾'⟩'
+# Calculate the group of the first element of as = ⟨⟨el, children⟩, …⟩
+FGroup ← { 𝕊as: # What on earth is a graph? :]
+   { a‿cs 𝕊 seen: ⊑a∊seen? ⍷seen∾cs; 𝕩 }´⟜as _Fix ⟨⊑⊑as⟩
 }
-inp ← ⌽P¨•FLines"../inputs/day12.txt"
 
-# What on earth is a graph? :]
-GroupOf ← { # calculate the group of 𝕩 in 𝕨
-  𝕨⊸{ 𝕩{ x‿cs 𝕊 seen: ⊑x∊seen? ⍷seen∾cs; 𝕩 }´𝕨 } _Fix 𝕩
-}
-•Show ≠ inp GroupOf ⟨0⟩
+≠FGroup inp  # ⇒ 380
 
 c ← 0
-{ c +⟜1↩ ⋄ ((⊑¨𝕩)(¬∊)𝕩GroupOf⟨⊑¯1⊑𝕩⟩)/𝕩 } •_while_ (⟨⟩⊸≢) inp
-•Show c
+{ c +⟜1↩ ⋄ (⊑¨⊸(¬∊)/⊣)⟜FGroup 𝕩 } •_while_ (⟨⟩⊸≢) inp
+c            # ⇒ 181
