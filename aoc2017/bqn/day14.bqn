@@ -2,20 +2,21 @@
 ⟨KnotHash⟩ ← •Import "./day10.bqn"
 
 grid ← {
-  DecToBin ← ⊢{ 0𝕊r: r∾˜0⥊˜4-≠r;
-                p𝕊r: (⌊p÷2)𝕊(r∾˜2|p)
-              }⟜⟨⟩
+  HexToBin ← {  𝕊p: p𝕊⟨⟩;              # Start
+               0𝕊r: r∾˜0⥊˜4-≠r;        # End: pad with zeros
+               p𝕊r: (⌊p÷2)𝕊(r∾˜2|p)    # Conversion
+             }¨∘("0123456789abcdef"⊸⊐) # Convert hex to decimal, then to binary
   Start ← (⊑•FLines"../inputs/day14.txt")∾"-"∾•Fmt
-  Row ← ∾∘(DecToBin¨)∘("0123456789abcdef"⊸⊐)∘KnotHash
-  > Row∘Start¨ ↕128
+  Row ← ∾∘HexToBin∘KnotHash
+  >Row∘Start¨↕128
 }
 
 •Show +´⥊grid # ⇒ 8222
 
-•Show { 𝕊g:
-  g {𝕩×(≢𝕩)⥊↕≠⥊𝕩}↩                      # reshape with unique numbers for all 1's
-  g {(×𝕩)×(»˘𝕩)⌈(«˘𝕩)⌈(»𝕩)⌈(«𝕩)⌈𝕩}_Fix↩ # See [Note Game of Life]
-  1-˜+´∊⥊g                              # Count all unique numbers minus 0
+{ 𝕊g:
+  g (+`⊸×⌾⥊)↩                          # reshape with unique numbers for all 1's
+  g {(×𝕩)×⌈´⟨»˘,«˘,»,«,⊢⟩{𝕎𝕩}¨<𝕩}_Fix↩ # See [Note Game of Life]
+  1-˜+´∊⥊g                             # Count all unique numbers minus 0
 } grid # ⇒ 1086
 
 # [Note Game of Life]
@@ -25,7 +26,7 @@ grid ← {
 # neighbours. Since every live cell is associated to a unique number, always
 # take the biggest one. For example,
 #
-#     ⊢m←3‿3⥊0‿0‿2‿1‿3‿0‿4‿0‿0
+#     m←3‿3⥊0‿0‿2‿1‿3‿0‿4‿0‿0
 # ┌─
 # ╵ 0 0 2
 #   1 3 0
