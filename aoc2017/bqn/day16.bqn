@@ -1,16 +1,14 @@
 ⟨Split⟩ ← •Import "../../util/bqn_util/util.bqn"
 P ← {
-  (1↓𝕩) {
-    a𝕊's': (-•ParseFloat a)⊸⌽;                 # sA
-    a𝕊'x': ⌽⌾((•ParseFloat¨'/'Split a)⊸⊏);     # xA/B
-    a𝕊'p': { 𝕊xs: ⌽⌾((xs⊐∾'/'Split a)⊸⊏) xs }  # pA/B
-  } ⊑𝕩
+  a‿"s": (-•ParseFloat a)⊸⌽;                # sA
+  a‿"x": ⌽⌾((•ParseFloat¨'/'Split a)⊸⊏);    # xA/B
+  a‿"p": { 𝕊xs: ⌽⌾((xs⊐∾'/'Split a)⊸⊏) xs } # pA/B
 }
-inp ← ⌽P¨','Split⊑•FLines"../inputs/day16.txt"
+inp ← ⌽ P∘(1⊸(↓⋈↑))¨ ','Split ⊑•FLines"../inputs/day16.txt"
 
 ('a'+↕16){𝕎𝕩}´inp # ⇒ "eojfmbpkldghncia"
 
 h  ← ⟨⟩•HashMap⟨⟩
-d  ← {𝕎𝕩}´⟜inp•_while_{ b←¬h.Has𝕩 ⋄ 𝕩 h.Set 1 ⋄ b } ('a'+↕16)
-dn ← ⊑(h.Keys@)⊐<d
-{𝕎𝕩}´⟜inp⍟(dn+(h.Count@)|10e9-dn) d # ⇒ "iecopnahgdflmkjb"
+d  ← {𝕎𝕩}´⟜inp•_while_{ (𝕩h.Set@) ⊢ ¬h.Has𝕩 } ('a'+↕16) # dup
+di ← ⊑(h.Keys@)⊐<d                                      # dup index
+{𝕎𝕩}´⟜inp⍟(di+(h.Count@)|10e9-di) d # ⇒ "iecopnahgdflmkjb"
