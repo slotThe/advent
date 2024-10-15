@@ -1,18 +1,18 @@
 ⟨Split,cr⟩ ← •Import "../../util/bqn_util/util.bqn"
 inp ← >•FLines "../inputs/day22.txt"
-start ← ⟨0, ⌊2÷˜≢inp, ¯1‿0⟩
+start ← ⟨0, ⌊(≢inp)÷2, ¯1‿0⟩
 
-Turn ← {
+Turn ← { # Given direction 𝕩, turn 𝕨 steps to the right.
   ts ← ⟨¯1‿0, 0‿1, 1‿0, 0‿¯1⟩
-  ts⊑˜⊑4|𝕨+ts⊐<𝕩
+  (4|𝕨+⊑ts⊐<𝕩)⊑ts
 }
 
 # Simulate a burst.
 #   mod‿infectedTarget‿TurnOffset 𝕊 infectCount‿position‿direction
-Sim ← { m‿t‿TB 𝕊 i‿p‿d:
-  pv ← 0 h.Get p      # Don't keep track of clean cells.
-  nd ← (TB pv) Turn d
-  p h.Set m|pv+1
+Sim ← { m‿t‿TO 𝕊 i‿p‿d:
+  pv ← 0 h.Get p      # Don't keep track of clean (= 0) cells.
+  nd ← (TO pv) Turn d
+  p h.Set m|pv+1      # New value for p.
   ⟨i+t=pv, p+nd, nd⟩
 }
 
