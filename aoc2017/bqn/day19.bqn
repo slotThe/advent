@@ -6,17 +6,13 @@ ND ← { pos 𝕊 dir: # Compute new direction for pos going in dir.
 }
 
 path ← {
-  ·‿pth‿pos ← {
-    𝕊dir‿pth‿pos:                  # Continue case
-      np ← dir+pos
-      ' '≠np⊑inp? ⟨dir, pth∾pos⊑inp, np⟩;
-    𝕊dir‿pth‿pos:                  # Change direction case
-      dir ↩ ⊑ pos ND dir
+  ·‿pth‿pos ← { 𝕊dir‿pth‿pos:        
+      {' '=inp⊑˜dir+pos? dir(⊑pos⊸ND)↩;@} # Change direction if necessary
       ⟨dir, pth∾pos⊑inp, pos+dir⟩
-  } •_while_ {
-    𝕊dir‿pth‿pos: 0≠ ≠pos ND dir   # We can move somewhere
-  } ⟨1‿0, "", ⟨0, ⊑(⊏inp)⊐'|'⟩⟩
-  pth∾pos⊑inp                      # Add last position to final path
+  }•_while_{
+    𝕊dir‿·‿pos: 0< ≠pos ND dir   # While we can move somewhere
+  } ⟨1‿0, "", ⟨0, ⊑'|'⊐˜⊏inp⟩⟩
+  pth∾pos⊑inp                    # Add last position to final path
 }
 
 •Show ∊⟜('A'+↕26)⊸/ path # ⇒ "RUEDAHWKSM"

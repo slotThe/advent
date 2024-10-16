@@ -1,4 +1,4 @@
-⟨Split,cr⟩←•Import"../../util/bqn_util/util.bqn"
+⟨Split⟩←•Import"../../util/bqn_util/util.bqn"
 inp←' '⊸Split¨ •FLines"../inputs/day08.txt"
 
 # Convert instructions to BQN code: Given a list of tokens like

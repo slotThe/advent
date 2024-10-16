@@ -2,7 +2,7 @@ inp ← •ParseFloat¨ •FLines "../inputs/day05.txt"
 n←≠inp
 Sim ← { thresh 𝕊 i‿s: # index‿step
   n ← i+i⊑inp
-  inp (thresh ≤ i⊑inp)◶⟨1⊸+, ¯1⊸+⟩⌾(i⊸⊑)↩
+  inp ((thresh ≤ i⊑inp)⊑⟨1⊸+, ¯1⊸+⟩)⌾(i⊸⊑)↩
   n‿(s+1)
 }
 

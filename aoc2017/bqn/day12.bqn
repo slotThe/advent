@@ -1,4 +1,4 @@
-⟨Split,_Fix,cr⟩ ← •Import "../../util/bqn_util/util.bqn"
+⟨Split,_Fix⟩ ← •Import "../../util/bqn_util/util.bqn"
 inp ← (⊑⋈2⊸↓)∘(•BQN¨)∘(' '⊸Split)¨•FLines"../inputs/day12.txt"
 
 # Calculate the group of the first element of as = ⟨⟨el, children⟩, …⟩

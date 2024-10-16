@@ -1,4 +1,4 @@
-⟨Split, cr⟩ ← •Import "../../util/bqn_util/util.bqn"
+⟨Split⟩ ← •Import "../../util/bqn_util/util.bqn"
 inp ← {
   ws ← ' ' Split 𝕩
   (⊑ws)‿(•BQN 1⊑ws)‿({-','=¯1↑𝕩}⊸↓¨3↓ws) # name‿weight‿children
