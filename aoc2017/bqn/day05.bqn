@@ -1,12 +1,10 @@
 inp ← •ParseFloat¨ •FLines "../inputs/day05.txt"
-n←≠inp
-Sim ← { thresh 𝕊 i‿s: # index‿step
-  n ← i+i⊑inp
-  inp ((thresh ≤ i⊑inp)⊑⟨1⊸+, ¯1⊸+⟩)⌾(i⊸⊑)↩
-  n‿(s+1)
+Sim ← { thresh 𝕊 ins‿i‿s: # instructions‿index‿step
+  n ← i+i⊑ins
+  ins ((thresh ≤ i⊑ins)⊑⟨1⊸+, ¯1⊸+⟩)⌾(i⊸⊑)↩
+  ins‿n‿(s+1)
 }
 
-•Show ¯1⊑ ∞ Sim •_while_{ ·𝕊i‿s: i<n∧i≥0 } 0‿0   # ⇒ 351282
+¯1⊑ ∞ Sim•_while_{ ·𝕊ins‿i‿s: (i<≠ins)∧i≥0 } inp‿0‿0 # ⇒ 351282
 
-inp ← •ParseFloat¨ •FLines "../inputs/day05.txt" # Reset input
-•Show ¯1⊑ (3 Sim •_while_ {·𝕊i‿s: i<n∧i≥0} 0‿0)  # ⇒ 24568703
+¯1⊑ 3 Sim•_while_{ ·𝕊ins‿i‿s: (i<≠ins)∧i≥0 } inp‿0‿0 # ⇒ 24568703

@@ -8,11 +8,11 @@ inp←' '⊸Split¨ •FLines"../inputs/day08.txt"
 # convert them—if needed—to their respective BQN token:
 #
 #     ⟨ "d" "-↩" "683" "×" "qn" "=" "0" ⟩
-conv ← ⟨
-  ⟨"if", "dec", "inc", ">=", "==", "<=", "!="⟩
-  ⟨"×" , "-↩" , "+↩" , "≥" , "=" , "≤" , "≠" , ⊢⟩ # last is fallthrough
-⟩
-C ← (⊑1⊐˜(⊑conv)≡¨<)◶(1⊑conv)¨
+C ← {
+  from ← ⟨"if", "dec", "inc", ">=", "==", "<=", "!="⟩
+  to   ← ⟨"×" , "-↩" , "+↩" , "≥" , "=" , "≤" , "≠" , ⊢⟩ # last is fallthrough
+  {⊑from⊐<𝕩}◶to¨𝕩
+}
 
 r ← ∊⊸/ ⊑¨inp                       # all registers ⇒ ⟨ "d" "rak" … ⟩
 •Show •BQN ∾⟨
