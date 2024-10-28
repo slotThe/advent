@@ -9,13 +9,9 @@ R ← { n 𝕊 xs‿p‿ss: # one round; 𝕨: one length; 𝕩: ⟨list of mark
 
 inp2 ← ⊑•FLines"../inputs/day10.txt"
 X ← ⊑⋈⊸(16•bit._xor)´ # XOR two 16 bit signed ints together
-DecToHex←{
-  𝕩{ 0𝕊n: n∾˜(2-≠n)⥊'0';
-     x𝕊n: (⌊x÷16)𝕊(n∾˜"0123456789abcdef"⊑˜16|x)
-  }""
-}
+DecToHex ← { "0123456789abcdef" ⊏˜ 16(⌊∘÷˜ ⋈ |)𝕩 }
 KnotHash ⇐ {
-  ls ← ⌽ ⟨17, 31, 73, 47, 23⟩∾˜ -⟜@¨ 𝕩
+  ls ← ⌽ ⟨17, 31, 73, 47, 23⟩∾˜ 𝕩-@
   ∾ DecToHex∘X¨ 16(/⥊˜)⊸⊔ ⊑ R´⟜ls⍟64 (↕256)‿0‿0
 }
 KnotHash inp2 # ⇒ "2da93395f1a6bb3472203252e3b17fe5"

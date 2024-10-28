@@ -3,7 +3,7 @@
 
 grid ← {
   HexToBin ← {  𝕊p: p𝕊⟨⟩;              # Start
-               0𝕊r: r∾˜0⥊˜4-≠r;        # End: pad with zeros
+               0𝕊r: r«4⥊0;             # End: pad with zeros
                p𝕊r: (⌊p÷2)𝕊(r∾˜2|p)    # Conversion
              }¨∘("0123456789abcdef"⊸⊐) # Convert hex to decimal, then to binary
   Start ← (⊑•FLines"../inputs/day14.txt")∾"-"∾•Fmt
