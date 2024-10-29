@@ -96,7 +96,7 @@
 
 ## 2022
 
-  - Day 1  : [Rust][2022:day1:rust], [Clojure][2022:day1:clojure], [Haskell][2022:day1:haskell], [(Dyalog + GNU)APL][2022:day1:apl], [BQN][2022:day1:bqn]
+  - Day 1  : [Rust][2022:day1:rust], [Clojure][2022:day1:clojure], [Haskell][2022:day1:haskell], [(Dyalog + GNU)APL][2022:day1:apl], [BQN][2022:day1:bqn], [OCaml][2022:day1:ocaml]
   - Day 2  : [Rust][2022:day2:rust], [Clojure][2022:day2:clojure], [Haskell][2022:day2:haskell], [Dyalog APL][2022:day2:apl], [BQN][2022:day2:bqn]
   - Day 3  : [Clojure][2022:day3:clojure], [Rust][2022:day3:rust], [Haskell][2022:day3:haskell], [Dyalog APL][2022:day3:apl]
   - Day 4  : [Rust][2022:day4:rust], [Clojure][2022:day4:clojure], [Haskell][2022:day4:haskell], [Dyalog APL][2022:day4:apl]
@@ -127,6 +127,7 @@
 [2022:day1:haskell]: ./aoc2022/haskell-solutions/src/Day1.hs
 [2022:day1:apl]: ./aoc2022/apl-solutions/day01.apl
 [2022:day1:bqn]: ./aoc2022/bqn-solutions/day01.bqn
+[2022:day1:ocaml]: ./aoc2022/ocaml_solutions/bin/day01.ml
 [2022:day2:rust]: ./aoc2022/rust-solutions/src/day2.rs
 [2022:day2:clojure]: ./aoc2022/clojure-solutions/src/clojure_solutions/day2.clj
 [2022:day2:haskell]: ./aoc2022/haskell-solutions/src/Day2.hs
