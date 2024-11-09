@@ -10,7 +10,7 @@ let p_line s =
    , n
    , check
 
-let inp = List.map ~f:p_line (In_channel.read_lines "../../inputs/day04.txt")
+let inp = List.map ~f:p_line (In_channel.read_lines "../inputs/day04.txt")
 
 let valid_rooms xs =
   List.(filter_map xs ~f:(fun (a, b, c) ->

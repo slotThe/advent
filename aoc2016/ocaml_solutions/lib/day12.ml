@@ -40,7 +40,7 @@ let execute hm ix xs =
 
 let day12 =
   let solve start_c =
-    let hm = In_channel.read_lines "../../inputs/day12.txt"
+    let hm = In_channel.read_lines "../inputs/day12.txt"
              |> List.map ~f:(Parser.eval p_ins)
              |> Array.of_list
              |> execute

@@ -14,7 +14,7 @@ let p_expand expand =
 let p_all f = many1 (p_capitals <|> p_expand f) >>| sum
 
 let day9 =
-  let inp = read_single_line "../../inputs/day09.txt" in
+  let inp = read_single_line "../inputs/day09.txt" in
   let one = Parser.eval (p_all (fun n xs -> n * String.length xs)) inp in
   (* God I love recursion *)
   let rec two s = Parser.eval (p_all (fun n xs -> n * two xs)) s

@@ -52,46 +52,46 @@ let cons_if_present el = function None    -> [ el ]
 
 let do_instruction (bots, delayed) = function
   | Val (data, key) ->
-      (GetterMap.update bots key ~f:(cons_if_present data), delayed)
+      (Map.update bots key ~f:(cons_if_present data), delayed)
   | Give (b, lo, hi) ->
-      (bots, GetterMap.add_exn delayed ~key:(Bot b) ~data:(lo, hi))
+      (bots, Map.add_exn delayed ~key:(Bot b) ~data:(lo, hi))
 
 let rec solve delayed bs =
   let go bots (k, vs) =
     if Int.equal 2 (List.length vs) then
-      let a, b = GetterMap.find_exn delayed k in
+      let a, b = Map.find_exn delayed k in
       (* let () = if hd = 17 && tl = 61 then print_endline (string_of_getter k) in *)
-      GetterMap.update
-        (GetterMap.update
-           (GetterMap.remove bots k)
+      Map.update
+        (Map.update
+           (Map.remove bots k)
            a
            ~f:(cons_if_present (List.hd_exn vs)))
         b
         ~f:(cons_if_present (List.last_exn vs))
     else bots
   in
-  let bots = GetterMap.filteri bs ~f:(fun ~key ~data:_ -> is_bot key) in
-  if 0 = GetterMap.length bots
+  let bots = Map.filteri bs ~f:(fun ~key ~data:_ -> is_bot key) in
+  if 0 = Map.length bots
   then bs
   else solve delayed
-         (GetterMap.fold bots ~init:bs
+         (Map.fold bots ~init:bs
             ~f:(fun ~key ~data m -> go m (key, List.sort ~compare:compare_int data)))
 
 (* Main *)
 
 let day10 =
   let bs, ds =
-    In_channel.read_lines "../../inputs/day10.txt"
+    In_channel.read_lines "../inputs/day10.txt"
     |> List.map ~f:(fun l -> Parser.eval (p_value <|> p_ins) l)
     |> List.fold ~f:do_instruction ~init:(GetterMap.empty, GetterMap.empty)
   in
   let solved = solve ds bs in
-  let things = GetterMap.filteri solved
+  let things = Map.filteri solved
                  ~f:(fun ~key ~data:_ ->
                    match key with
                    | Output 0 | Output 1 | Output 2 -> true
                    | _ -> false)
   in "141"
    , string_of_int @@
-       GetterMap.fold things ~init:1
+       Map.fold things ~init:1
          ~f:(fun ~key:_ ~data acc -> acc * List.hd_exn data)

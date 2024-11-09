@@ -38,13 +38,13 @@ let rot thing points = match thing with
 let executeInstructions ins =
   let go ps = function
     | Rot r  -> rot r ps
-    | Rect r -> IISet.union (rect r) ps
+    | Rect r -> Set.union (rect r) ps
   in List.fold ins ~init:IISet.empty ~f:go
 
 (* IO stuff *)
 
 let day8 =
-  let res = List.map (In_channel.read_lines "../../inputs/day08.txt") ~f:p_line
+  let res = List.map (In_channel.read_lines "../inputs/day08.txt") ~f:p_line
             |> executeInstructions
-  in string_of_int (IISet.length res)
+  in string_of_int (Set.length res)
    , "\n" ^ ppSet res

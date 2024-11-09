@@ -2,7 +2,7 @@ open Core
 
 let inp =
   let p_int s n = int_of_string String.(sub s ~pos:n ~len:5 |> strip)
-  in In_channel.read_lines "../../inputs/day03.txt"
+  in In_channel.read_lines "../inputs/day03.txt"
      |> List.map ~f:(fun s -> p_int s 0, p_int s 5, p_int s 10)
 
 let could_be_triangle xs =

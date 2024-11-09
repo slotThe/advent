@@ -21,13 +21,13 @@ let completely_walk das =
 let find_dup xs =
   let rec go s = function
     | []       -> None
-    | y :: yss -> if   IISet.mem s y
+    | y :: yss -> if   Set.mem s y
                   then Some y
-                  else go (IISet.add s y) yss
+                  else go (Set.add s y) yss
   in go IISet.empty xs
 
 let day1 =
-  let inp = read_single_line "../../inputs/day01.txt" in
+  let inp = read_single_line "../inputs/day01.txt" in
   let dirs = String.split_on_chars inp ~on:[','; ' ']
              |> List.filter_map ~f:(fun x ->
                     if not (String.is_empty x) then Some (p_input x) else None) in

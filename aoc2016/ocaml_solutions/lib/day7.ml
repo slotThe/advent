@@ -34,13 +34,13 @@ let collect_bab xs =
     ~f:(function | [a; b; c] when Char.(a = c && a <> b) -> Some [b; a; b]
                  | _ -> None)
 
-let match_bab bab's xs = List.exists (sliding_window 3 xs) ~f:(SSet.mem bab's)
+let match_bab bab's xs = List.exists (sliding_window 3 xs) ~f:(Set.mem bab's)
 
 let part2 (supernet, hypernet) =
   let babs = SSet.of_list @@ List.concat_map supernet ~f:collect_bab
   in List.filter ~f:(match_bab babs) hypernet |> not @. List.is_empty
 
 let day7 =
-  let inp = List.map ~f:p_line (In_channel.read_lines "../../inputs/day07.txt")
+  let inp = List.map ~f:p_line (In_channel.read_lines "../inputs/day07.txt")
   in string_of_int (List.count inp ~f:part1)
    , string_of_int (List.count inp ~f:part2)

@@ -2,7 +2,7 @@ open Core
 open Util.Coord
 open Util.Fun
 
-let inp = In_channel.read_lines "../../inputs/day02.txt"
+let inp = In_channel.read_lines "../inputs/day02.txt"
           |> List.map ~f:(String.to_list
                           >> List.map ~f:(Char.to_string >> dir2D_of_string))
 

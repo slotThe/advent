@@ -1,6 +1,6 @@
 open Core
 
-let inp = Util.read_single_line "../../inputs/day05.txt"
+let inp = Util.read_single_line "../inputs/day05.txt"
 
 let generate_hashes s =
   Seq.filter_map
