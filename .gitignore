@@ -11,3 +11,4 @@ Cargo.lock
 dist-newstyle
 result
 __pycache__
+.nix-venv

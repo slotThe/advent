@@ -1,0 +1,9 @@
+(executable
+ (public_name ocaml_solutions)
+ (name main)
+ (libraries ocaml_solutions))
+
+(executable
+ (public_name day01)
+ (name day01)
+ (libraries ocaml_solutions))

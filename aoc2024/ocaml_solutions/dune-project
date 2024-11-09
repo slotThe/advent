@@ -1,0 +1,9 @@
+(lang dune 3.17)
+(name ocaml_solutions)
+(source
+ (github slotThe/advent))
+(authors "Tony Zorman <mail@tony-zorman.com>")
+(package
+ (name ocaml_solutions)
+ (synopsis "OCaml solutions for AoC 2024")
+ (depends ocaml dune))
