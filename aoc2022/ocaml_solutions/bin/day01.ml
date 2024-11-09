@@ -2,16 +2,20 @@ open Core
 
 let split : on:string -> string list -> string list list =
  fun ~on xs ->
-  let rec go (r :: rs) = function
-    | [] -> List.rev (r :: rs)
-    | x :: xs ->
-        if equal_string x on then go ([] :: r :: rs) xs
-        else go ((x :: r) :: rs) xs
+  let rec go rs xs =
+    match rs with
+    | [] -> []
+    | r :: rs -> (
+        match xs with
+        | [] -> List.rev (r :: rs)
+        | x :: xs ->
+            if equal_string x on then go ([] :: r :: rs) xs
+            else go ((x :: r) :: rs) xs)
   in
   go [ [] ] xs
 
 let day01 : int list =
-  In_channel.read_lines "../../inputs/day1.txt"
+  In_channel.read_lines "../inputs/day1.txt"
   |> split ~on:""
   |> List.map ~f:(fun l ->
          List.map ~f:int_of_string l |> List.fold ~init:0 ~f:( + ))
@@ -22,3 +26,6 @@ let part1 : int =
 let part2 : int =
   List.sort day01 ~compare:compare_int |> List.rev |> fun l ->
   List.take l 3 |> List.fold ~init:0 ~f:( + )
+
+let () =
+  List.map ~f:string_of_int [ part1; part2 ] |> Out_channel.output_lines stdout

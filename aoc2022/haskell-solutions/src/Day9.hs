@@ -10,7 +10,7 @@ day9 = do
   pure (solve 1, solve 9)
 
 simulate :: [Dim4] -> [[Coord]]
-simulate = iterate' (scanl' follow (C 0 0)) . scanl' move (C 0 0)
+simulate = iterate' (scanl' follow (C 0 0)) . scanl' Day9.move (C 0 0)
 
 follow :: Coord -> Coord -> Coord
 follow t h@(C hx hy)
