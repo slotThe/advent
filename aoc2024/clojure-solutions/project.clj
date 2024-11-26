@@ -5,7 +5,10 @@
             :url "https://www.gnu.org/licenses/gpl-3.0.en.html"}
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [clojure-aoc-util "0.1.0-SNAPSHOT"]]
-  :main ^:skip-aot clojure-solutions.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all
-                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
+  :profiles {:core {:main ^:skip-aot clojure-solutions.core}
+             :day01 {:main ^:skip-aot clojure-solutions.day01}
+             :uberjar {:aot :all
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
+  :aliases {"core" ["with-profile" "core" "run"]
+            "day01" ["with-profile" "day01" "run"]})

@@ -18,23 +18,25 @@ common warnings
 
 library
     import:           warnings
-    -- exposed-modules:
-    -- other-modules:
-    -- other-extensions:
     build-depends:
         base ^>=4.18.2.1,
         haskell-aoc-util,
     hs-source-dirs:   lib
     default-language: GHC2021
 
-executable haskell-solutions
+common day
     import:           warnings
-    main-is:          Main.hs
-    -- other-modules:
-    -- other-extensions:
     build-depends:
         base ^>=4.18.2.1,
         haskell-solutions,
         haskell-aoc-util,
     hs-source-dirs:   app
     default-language: GHC2021
+
+executable haskell-solutions
+    import:           day
+    main-is:          Main.hs
+
+executable day01
+    import:           day
+    main-is:          Day01.hs
