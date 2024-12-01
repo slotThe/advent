@@ -6,4 +6,4 @@
 (package
  (name ocaml_solutions)
  (synopsis "OCaml solutions for AoC 2024")
- (depends ocaml dune))
+ (depends base core stdio ocaml dune))

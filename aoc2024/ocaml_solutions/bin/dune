@@ -6,4 +6,4 @@
 (executable
  (public_name day01)
  (name day01)
- (libraries ocaml_solutions))
+ (libraries core ocaml_solutions))

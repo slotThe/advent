@@ -25,6 +25,7 @@
           ocamlPackages.odoc
           ocamlPackages.ounit
           ocamlPackages.ocaml-lsp
+          ocamlPackages.core
           ocamlPackages.base
           ocamlPackages.stdio
           ocamlformat
