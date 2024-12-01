@@ -3,7 +3,6 @@ version:             0.1.0.0
 synopsis:            Haskell utility things for advent of code problems
 homepage:            https://github.com/slotThe/advent
 license:             AGPL-3
-license-file:        LICENSE
 author:              Tony Zorman
 maintainer:          tonyzorman@mailbox.org
 copyright:           2023 Tony Zorman
