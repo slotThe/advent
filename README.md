@@ -13,9 +13,10 @@
 
 ## 2024
 
-  - Day 1  : [BQN][2024:day01:bqn]
+  - Day 1  : [BQN][2024:day01:bqn], [Clojure][2024:day01:clojure]
 
 [2024:day01:bqn]: ./aoc2024/bqn-solutions/day01.bqn
+[2024:day01:clojure]: ./aoc2024/clojure-solutions/src/clojure_solutions/day01.clj
 
 ## 2023
 
