@@ -10,5 +10,5 @@ main = do
          . T.lines <$> T.readFile "../inputs/day01.txt"
   day 1 . pure . both sum $
     ( zipWith (abs .: (-)) l r
-    , [x * y | x <- l, let y = length (filter (x ==) r)]
+    , [x * length (filter (x ==) r) | x <- l ]
     )
