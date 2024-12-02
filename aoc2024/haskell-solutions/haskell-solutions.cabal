@@ -14,11 +14,20 @@ extra-doc-files:    CHANGELOG.md
 -- extra-source-files:
 
 common ghcopts
-    ghc-options: -Wall
+    ghc-options:
+        -Weverything
+        -Wno-implicit-prelude
+        -Wno-missing-import-lists
+        -Wno-unused-packages
+        -Wno-missing-safe-haskell-mode
+        -Wno-all-missed-specialisations
+        -Wno-unsafe
+        -Wno-prepositive-qualified-module
+        -O2
     default-extensions:
-      StrictData
-      NoImplicitPrelude
-      OverloadedStrings
+        StrictData
+        NoImplicitPrelude
+        OverloadedStrings
 
 library
     import:           ghcopts
