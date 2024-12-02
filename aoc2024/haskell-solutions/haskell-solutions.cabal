@@ -46,3 +46,7 @@ executable haskell-solutions
 executable day01
     import:           day
     main-is:          Day01.hs
+
+executable day02
+    import:           day
+    main-is:          Day02.hs

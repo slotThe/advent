@@ -13,6 +13,7 @@ module Util
     , rightToMaybe
     , pNum
     , pInput
+    , tread
     , bfs
     , bfsOn
     , nubInt
@@ -30,6 +31,7 @@ import Data.Sequence (Seq, ViewL (..), (|>))
 import qualified Data.Sequence as Seq
 import Data.Set (Set)
 import qualified Data.Set as Set
+import qualified Data.Text as T
 import Text.ParserCombinators.ReadP
 
 type Dim4 :: Type
@@ -79,6 +81,9 @@ pNum = read <$> munch1 isDigit
 instance a ~ String => IsString (ReadP a) where
   fromString :: String -> ReadP a
   fromString = string
+
+tread :: Read a => T.Text -> a
+tread = read . T.unpack
 
 bfs :: forall a. Ord a => [a] -> (a -> [a]) -> [a]
 bfs = bfsOn id
