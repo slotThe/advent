@@ -1,8 +1,7 @@
-⟨Split,_Fix⟩ ← •Import "../../util/bqn_util/util.bqn"
+⟨Split,Ints,_Fix⟩ ← •Import "../../util/bqn_util/util.bqn"
 ord‿upd ← {
   n ← ⊑/⟨⟩⊸≡¨inp←•FLines"../inputs/day05.txt"
-  P ← •ParseFloat¨¨∘(Split¨)
-  ⟨ '|'P n↑inp, ','P(n+1)↓inp ⟩
+  Ints¨¨(n⊸↑⋈(n+1)⊸↓)inp
 }
 Out ← { a‿b𝕊xs: (⊑⎊¯∞/a=xs) < ⊑⎊∞/b=xs } # Not intersecting
 MI ← (⌊2÷˜≠)⊸⊑   # Middle index
