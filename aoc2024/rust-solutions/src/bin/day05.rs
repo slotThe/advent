@@ -1,21 +1,24 @@
+use std::cmp::Ordering;
+
 use anyhow::Result;
-use rust_aoc_util::converge;
 
 fn not_isect((a, b): &(u32, u32), xs: &[u32]) -> bool {
-  match (
-    xs.iter().position(|x| x == a),
-    xs.iter().position(|x| x == b),
-  ) {
-    (Some(ia), Some(ib)) => ia < ib,
-    _ => true,
-  }
+  xs.iter().position(|x| x == a).map_or(true, |ia| {
+    xs.iter().position(|x| x == b).map_or(true, |ib| ia < ib)
+  })
 }
 
-fn reorder((a, b): &(u32, u32), xs: &mut [u32]) {
-  xs.swap(
-    xs.iter().position(|x| x == a).unwrap(),
-    xs.iter().position(|x| x == b).unwrap(),
-  );
+fn compare(ords: &[(u32, u32)], a: &u32, b: &u32) -> Ordering {
+  // (x, y) ∈ ords means that x must come before y.
+  for (x, y) in ords {
+    if (a, b) == (x, y) {
+      return Ordering::Less;
+    }
+    if (a, b) == (y, x) {
+      return Ordering::Greater;
+    }
+  }
+  Ordering::Equal
 }
 
 fn main() -> Result<()> {
@@ -40,27 +43,20 @@ fn main() -> Result<()> {
       })
       .unwrap();
 
-  let (good, bad): (Vec<Vec<u32>>, Vec<Vec<u32>>) = upd
+  let (good, mut bad): (Vec<Vec<u32>>, Vec<Vec<u32>>) = upd
     .into_iter()
     .partition(|u| ord.iter().all(|o| not_isect(o, u)));
 
-  println!("{}", good.iter().map(|xs| xs[xs.len() / 2]).sum::<u32>());
+  let one: u32 = good.iter().map(|xs| xs[xs.len() / 2]).sum();
+  assert!(one == 4578);
+  println!("{one}");
 
-  println!(
-    "{}",
-    bad.into_iter().fold(0, |acc, u| {
-      let xs = converge(u, |u| {
-        let mut uu = u.clone();
-        for o in &ord {
-          if !not_isect(o, &uu) {
-            reorder(o, &mut uu);
-          }
-        }
-        uu
-      });
-      acc + xs[xs.len() / 2]
-    })
-  );
+  for u in &mut bad {
+    u.sort_by(|a, b| compare(&ord, a, b));
+  }
+  let two: u32 = bad.iter().map(|xs| xs[xs.len() / 2]).sum();
+  assert!(two == 6179);
+  println!("{two}");
 
   Ok(())
 }
