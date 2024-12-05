@@ -1,6 +1,5 @@
-#![feature(int_roundings)]
-
 use anyhow::Result;
+use rust_aoc_util::converge;
 
 fn not_isect((a, b): &(u32, u32), xs: &[u32]) -> bool {
   match (
@@ -17,21 +16,6 @@ fn reorder((a, b): &(u32, u32), xs: &mut [u32]) {
     xs.iter().position(|x| x == a).unwrap(),
     xs.iter().position(|x| x == b).unwrap(),
   );
-}
-
-fn converge<X, F>(mut x: X, f: F) -> X
-where
-  F: Fn(&X) -> X,
-  X: std::cmp::PartialEq,
-{
-  loop {
-    let fx = f(&x);
-    if x == fx {
-      break x;
-    } else {
-      x = fx;
-    }
-  }
 }
 
 fn main() -> Result<()> {
@@ -60,28 +44,22 @@ fn main() -> Result<()> {
     .into_iter()
     .partition(|u| ord.iter().all(|o| not_isect(o, u)));
 
-  println!(
-    "{}",
-    good.iter().map(|xs| xs[xs.len().div_floor(2)]).sum::<u32>()
-  );
+  println!("{}", good.iter().map(|xs| xs[xs.len() / 2]).sum::<u32>());
 
   println!(
     "{}",
-    bad
-      .into_iter()
-      .map(|u| {
-        converge(u, |u| {
-          let mut uu = u.clone();
-          ord.iter().for_each(|o| {
-            if !not_isect(o, &uu) {
-              reorder(o, &mut uu);
-            }
-          });
-          uu
-        })
-      })
-      .map(|xs| xs[xs.len().div_floor(2)])
-      .sum::<u32>()
+    bad.into_iter().fold(0, |acc, u| {
+      let xs = converge(u, |u| {
+        let mut uu = u.clone();
+        for o in &ord {
+          if !not_isect(o, &uu) {
+            reorder(o, &mut uu);
+          }
+        }
+        uu
+      });
+      acc + xs[xs.len() / 2]
+    })
   );
 
   Ok(())
