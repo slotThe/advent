@@ -1,8 +1,14 @@
 # 𝕨 Split 𝕩 splits the vector 𝕩 according to the separator 𝕨.
 #
-# >>> ' ' Split "  A string   containing a   sentence.   "
+#     ' ' Split "  A string   containing a   sentence.   "
 # ⟨ "A" "string" "containing" "a" "sentence." ⟩
 Split ⇐ (¬-˜⊢×·+`»⊸>)∘≠⊔⊢
+
+# Like split, but works for higher-dimensional things.
+#
+#     "z" SplitF ⟨"a", "b", "z", "c", "z", "d", "e", "f"⟩
+# ⟨ ⟨ "a" "b" ⟩ ⟨ "c" ⟩ ⟨ "d" "e" "f" ⟩ ⟩
+SplitF ⇐ { ((¯1+⊢×·+`»⊸<)¬𝕨⊸≡¨𝕩)⊔𝕩 }
 
 # F _Fix y computes the fixed point of F starting at y (avoiding stack
 # overflow).
