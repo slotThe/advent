@@ -1,10 +1,6 @@
 ⟨SplitF,Ints,_Fix⟩ ← •Import "../../util/bqn_util/util.bqn"
 ord‿upd ← Ints¨¨⟨⟩SplitF•FLines"../inputs/day05.txt"
 Out ← { a‿b𝕊xs: (⊑⎊¯∞/a=xs) < ⊑⎊∞/b=xs } # Not intersecting
-MI ← (⌊2÷˜≠)⊸⊑   # Middle index
 bad‿good ← { ∧´ord Out¨<𝕩 }¨⊸⊔ upd
-
-!4578≡+´MI¨good
-
 S ← { a‿b𝕊xs: {¬a‿b Out 𝕩}◶⟨⊢, {⌽⌾(⟨⊑/a=𝕩,⊑/b=𝕩⟩⊑¨<)𝕩}⟩ xs } # Switch
-!6179≡+´MI∘(ord⊸(S´˜)_Fix)¨bad
+!4578‿6179≡ (+´{𝕩⊑˜⌊2÷˜≠𝕩}¨)¨⟨good, (ord⊸(S´˜)_Fix)¨bad⟩
