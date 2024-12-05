@@ -75,6 +75,21 @@ pub fn iter_to_num(v: impl IntoIterator<Item = char>) -> usize {
 ///////////////////////////////////////////////////////////////////////
 // Algorithms
 
+pub fn converge<X, F>(mut x: X, f: F) -> X
+where
+  F: Fn(&X) -> X,
+  X: std::cmp::PartialEq,
+{
+  loop {
+    let fx = f(&x);
+    if x == fx {
+      break x;
+    } else {
+      x = fx;
+    }
+  }
+}
+
 pub fn gcd<N: Num + Copy>(a: N, b: N) -> N {
   let mut a = a;
   let mut b = b;
