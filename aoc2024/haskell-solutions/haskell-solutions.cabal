@@ -45,6 +45,7 @@ common day
         text,
         haskell-solutions,
         haskell-aoc-util,
+        unordered-containers,
     hs-source-dirs:   app
     default-language: GHC2021
 
@@ -63,3 +64,7 @@ executable day02
 executable day03
     import:           day
     main-is:          Day03.hs
+
+executable day07
+    import:           day
+    main-is:          Day07.hs
