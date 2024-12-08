@@ -24,6 +24,9 @@
 (defn sub [[x1 y1] [x2 y2]]
   [(- x1 x2) (- y1 y2)])
 
+(defn mulc [c [x y]]
+  [(* c x) (* c y)])
+
 (defn taxicab
   "The taxicab (L¹) norm of two points."
   [[x1 y1] [x2 y2]]
