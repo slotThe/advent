@@ -13,6 +13,7 @@ module Util
     , rightToMaybe
     , pNum
     , pInput
+    , pInts
     , tread
     , bfs
     , bfsOn
@@ -32,7 +33,7 @@ import qualified Data.Sequence as Seq
 import Data.Set (Set)
 import qualified Data.Set as Set
 import qualified Data.Text as T
-import Text.ParserCombinators.ReadP
+import Text.ParserCombinators.ReadP hiding (many)
 
 type Dim4 :: Type
 data Dim4 = U | R | D | L deriving stock (Show, Read, Eq, Ord)
@@ -75,6 +76,16 @@ pInput p = fst . head . readP_to_S p
 
 pNum :: Read a => ReadP a
 pNum = read <$> munch1 isDigit
+
+-- | Slurp all integers from the given string.
+--
+-- >>> ints "19: {[4],  6} -9"
+-- [19,4,6,-9]
+pInts :: String -> [Int]
+pInts = catMaybes . pInput (many ((Just <$> int) <++ (Nothing <$ munch1 (not <$> isNum))) <* eof)
+ where
+  isNum :: Char -> Bool = \c -> c == '-' || isDigit c
+  int   :: ReadP Int   = read <$> munch1 isNum
 
 -- | We want to use @"string"@ as a parser with @OverloadedStrings@
 -- instead of having to write @string "string"@—make it so.
