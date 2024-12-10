@@ -6,24 +6,25 @@ Turn ← { # Given direction 𝕩, turn 𝕨 steps to the right.
   ts ← ⟨¯1‿0, 0‿1, 1‿0, 0‿¯1⟩
   (⊑4|𝕨+ts⊐<𝕩)⊑ts
 }
-
-seen←•HashMap˜⟨⟩
-path←⟨⟩
+IB ← { r‿c 𝕊 x‿y: (y<r)∧(y≥0)∧(x<c)∧x≥0 }
 Sim ← {
-  seen.Delete¨seen.Keys@
-  start seen.Set@
-  r ← (>𝕩){
+  hm←⟨start⟩•HashMap⟨@⟩
+  rc ← ≢>𝕩
+  ret ← (>𝕩){
     grid 𝕊 p‿d:
-      seen.Has⟨p+d,d⟩? "LOOP";
+      hm.Has⟨p+d,d⟩? "LOOP";
     grid 𝕊 p‿d:
       np ← p+d
-      { 𝕊@: @;
-        𝕊'#': ⟨p, 1 Turn d⟩;
-        𝕊·: ⟨np,d⟩ ⊣ ⟨np,d⟩seen.Set@
-      }np⊑⎊@grid
+       rc⊸IB◶⟨
+       @                             # falling off
+       { 𝕊'#': ⟨p, 1 Turn d⟩;        # hitting head
+         𝕊·: np‿d ⊣ ⟨np,d⟩hm.Set@    # continuing
+       }⊑⟜grid
+       ⟩ np
   }•_while_{ ·𝕊"LOOP": 0; ·𝕊@: 0; 1 }start
-  r ⊣ path↩⍷⊑¨seen.Keys@
+  ⟨ret, ⍷⊑¨hm.Keys@⟩
 }
-Sim <inp
-≠path                                               # ⇒ 4758
-≠"LOOP"⊸≡¨⊸/Sim¨{<'#'⌾(𝕩⊸⊑)inp}¨((⊑start)⊸≢¨⊸/)path # ⇒ 1670
+
+path ← 1⊑Sim <inp
+!4758≡≠path
+!1670≡≠"LOOP"⊸≡¨⊸/⊑∘Sim¨{<'#'⌾(𝕩⊸⊑)inp}¨path
