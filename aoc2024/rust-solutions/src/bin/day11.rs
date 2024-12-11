@@ -18,11 +18,7 @@ fn blink(hm: &mut HashMap<isize, isize>) {
     }
   });
   v.into_iter().for_each(|(y, count)| {
-    hm.entry(y)
-      .and_modify(|c| {
-        *c += count;
-      })
-      .or_insert(count);
+    hm.entry(y).and_modify(|c| *c += count).or_insert(count);
   });
 }
 
