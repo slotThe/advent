@@ -34,6 +34,7 @@ library
     build-depends:
         base ^>=4.18.2.1,
         haskell-aoc-util,
+        containers >= 0.6.7,
         text,
     hs-source-dirs:   lib
     default-language: GHC2021
@@ -46,6 +47,7 @@ common day
         haskell-solutions,
         haskell-aoc-util,
         unordered-containers,
+        containers >= 0.6.7,
     hs-source-dirs:   app
     default-language: GHC2021
 
@@ -68,3 +70,7 @@ executable day03
 executable day07
     import:           day
     main-is:          Day07.hs
+
+executable day12
+    import:           day
+    main-is:          Day12.hs

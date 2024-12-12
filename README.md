@@ -24,6 +24,7 @@
   - Day 9  : [Rust][2024:day09:rust]
   - Day 10 : [Clojure][2024:day10:clojure], [BQN][2024:day10:bqn]
   - Day 11 : [Rust][2024:day11:rust], [BQN][2024:day11:bqn]
+  - Day 12 : [Haskell][2024:day12:haskell]
 
 [2024:day01:bqn]: ./aoc2024/bqn-solutions/day01.bqn
 [2024:day01:clojure]: ./aoc2024/clojure-solutions/src/clojure_solutions/day01.clj
@@ -54,6 +55,7 @@
 [2024:day10:bqn]: ./aoc2024/bqn-solutions/day10.bqn
 [2024:day11:rust]: ./aoc2024/rust-solutions/src/bin/day11.rs
 [2024:day11:bqn]: ./aoc2024/bqn-solutions/day11.bqn
+[2024:day12:haskell]: ./aoc2024/haskell-solutions/app/Day12.hs
 
 ## 2023
 
