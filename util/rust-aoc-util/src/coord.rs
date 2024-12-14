@@ -1,3 +1,5 @@
+use std::ops::{Add, Mul, Sub};
+
 use itertools::Itertools;
 
 #[derive(Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Clone, Copy)]
@@ -64,8 +66,8 @@ pub fn char_to_dir(c: char) -> Option<Dir> {
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub struct Coord {
-  x: i32,
-  y: i32,
+  pub x: i32,
+  pub y: i32,
 }
 
 impl Coord {
@@ -77,9 +79,40 @@ impl Coord {
       Dir::South => self.y += 1,
     }
   }
+
+  pub fn cmul(&self, c: i32) -> Self {
+    Coord {
+      x: self.x * c,
+      y: self.y * c,
+    }
+  }
+
+  pub fn rem_euclid(&self, rhs: &Self) -> Self {
+    Coord {
+      x: self.x.rem_euclid(rhs.x),
+      y: self.y.rem_euclid(rhs.y),
+    }
+  }
 }
 
 pub fn from_pair(p: (i32, i32)) -> Coord { Coord { x: p.0, y: p.1 } }
+
+macro_rules! coord_instances {
+  ($($inst:ident $name:ident),+) => {
+    $(
+      impl $inst for Coord {
+        type Output = Self;
+        fn $name(self, rhs: Self) -> Self::Output {
+          Coord {
+            x: self.x.$name(rhs.x),
+            y: self.y.$name(rhs.y),
+          }
+        }
+      }
+    )+
+  };
+}
+coord_instances!(Add add, Sub sub, Mul mul);
 
 /// 2D coordinate indexing. Coordinates are required to be non-negative;
 /// this is not checked.

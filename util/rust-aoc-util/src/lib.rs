@@ -120,6 +120,7 @@ pub fn gcd<N: Num + Copy>(a: N, b: N) -> N {
 
 pub fn lcm<N: Num + Copy>(a: N, b: N) -> N { b * (a.div(gcd(a, b))) }
 
+#[derive(Debug)]
 pub struct Cycle {
   pub pre: usize,
   pub len: usize,
