@@ -1,17 +1,6 @@
 use anyhow::Result;
 use itertools::Itertools;
-use nom::{self, branch::alt, character::{self, complete::none_of}, combinator::map, multi::many1};
-use rust_aoc_util::parse;
-
-fn p_ints(s: &str) -> Result<Vec<f64>, nom::error::Error<&str>> {
-  parse(s, |s| {
-    many1(alt((
-      map(character::complete::i32, |i| Some(i as f64)),
-      map(many1(none_of("-0123456789")), |_| None),
-    )))(s)
-  })
-  .map(|v| v.into_iter().flatten().collect())
-}
+use rust_aoc_util::slurp_nums;
 
 type Point = (f64, f64);
 type Mat = (f64, f64, f64, f64); // 2×2
@@ -37,7 +26,7 @@ fn main() -> Result<()> {
   let inp = inp
     .split("\n\n")
     .map(|l| {
-      let v = p_ints(l).unwrap();
+      let v = slurp_nums(l).unwrap();
       ((v[0], v[1], v[2], v[3]), (v[4], v[5]))
     })
     .collect_vec();

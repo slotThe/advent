@@ -5,7 +5,7 @@ pub mod interval;
 use std::{collections::{HashMap, HashSet}, hash::Hash};
 
 use anyhow::Result;
-use nom::{bytes::complete::tag, character::complete::multispace0, combinator::all_consuming, sequence::delimited, Finish, IResult};
+use nom::{branch::alt, bytes::complete::tag, character::{self, complete::{multispace0, none_of}}, combinator::{all_consuming, map}, multi::many1, sequence::delimited, Finish, IResult};
 use num::Num;
 use priority_queue::DoublePriorityQueue;
 
@@ -14,6 +14,20 @@ use priority_queue::DoublePriorityQueue;
 
 pub fn parse_single_line(fp: &str) -> std::io::Result<String> {
   std::fs::read_to_string(fp).map(|s| s.trim_end().to_string())
+}
+
+/// Slurp all numbers out of the given line.
+/// >>> slurp_nums"12,rstr.(9032),ristnrie4991"
+pub fn slurp_nums<N: Num + From<i32>>(
+  s: &str,
+) -> Result<Vec<N>, nom::error::Error<&str>> {
+  parse(s, |s| {
+    many1(alt((
+      map(character::complete::i32, |i| Some(i.into())),
+      map(many1(none_of("-0123456789")), |_| None),
+    )))(s)
+  })
+  .map(|v| v.into_iter().flatten().collect())
 }
 
 pub fn parse<'a, R, F>(inp: &'a str, parser: F) -> Result<R, nom::error::Error<&'a str>>
@@ -42,7 +56,7 @@ pub fn inp_to_grid<T: Clone>(
   transpose(
     inp
       .lines()
-      .map(|l| l.chars().flat_map(|c| parse(c)).collect())
+      .map(|l| l.chars().flat_map(&parse).collect())
       .collect(),
   )
 }
