@@ -1,6 +1,6 @@
-⟨SplitF,Ints,_Fix⟩ ← •Import "../../util/bqn_util/util.bqn"
+⟨Ix⟩ ← •Import "../../util/bqn_util/util.bqn"
 inp←>•FLines"../inputs/day06.txt"
-start←⟨⊑'^'(/○⥊⟜(↕≢)⍷)inp, ¯1‿0⟩
+start←⟨⊑Ix'^'=inp, ¯1‿0⟩
 
 Turn ← { # Given direction 𝕩, turn 𝕨 steps to the right.
   ts ← ⟨¯1‿0, 0‿1, 1‿0, 0‿¯1⟩

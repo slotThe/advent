@@ -1,6 +1,5 @@
-⟨SplitF⟩ ← •Import "../../util/bqn_util/util.bqn"
-IxOf ← /○⥊⟜↕⟜≢       # Index of all 1's in array 𝕩
-Start ← {⊑IxOf'@'=𝕩}
+⟨SplitF, Ix⟩ ← •Import "../../util/bqn_util/util.bqn"
+Start ← {⊑Ix'@'=𝕩}
 
 ins‿mvs ← {
   ins‿mvs ← ⟨⟩SplitF •FLines"../inputs/day15.txt"
@@ -24,7 +23,7 @@ Sim ← { grid‿pos‿dirs:
   }•_while_{ ·‿·‿ds: ⟨⟩≢ds } ⟨pos⟩‿⟨⟩‿dirs
   grid                                            # return the finished grid
 }
-Solve ← { +´{𝕊y‿x: x+y×100}¨ IxOf∊⟜'O'‿'[' Sim⟨𝕩, Start 𝕩, mvs⟩ }
+Solve ← { +´{𝕊y‿x: x+y×100}¨ Ix∊⟜'O'‿'[' Sim⟨𝕩, Start 𝕩, mvs⟩ }
 
 !1552463≡Solve ins
 !1554058≡Solve (∾{'O':"[]"; '@':"@."; 𝕩‿𝕩}¨)˘ins
