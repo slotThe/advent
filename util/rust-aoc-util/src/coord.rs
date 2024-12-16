@@ -33,6 +33,15 @@ impl Dir {
       West => d == East,
     }
   }
+
+  pub fn turn_right(self) -> Dir {
+    match self {
+      Dir::North => Dir::East,
+      Dir::East => Dir::South,
+      Dir::South => Dir::West,
+      Dir::West => Dir::North,
+    }
+  }
 }
 
 pub fn neighbours4_iter(x: usize, y: usize) -> impl Iterator<Item = (usize, usize)> {
@@ -64,13 +73,22 @@ pub fn char_to_dir(c: char) -> Option<Dir> {
 
 // 2d coordinates: x grows to the *right* and y grows *down*.
 
-#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Clone, Copy)]
 pub struct Coord {
   pub x: i32,
   pub y: i32,
 }
 
 impl Coord {
+  pub fn move_in(self, d: Dir) -> Self {
+    match d {
+      Dir::North => self + NORTH,
+      Dir::West => self + WEST,
+      Dir::East => self + EAST,
+      Dir::South => self + SOUTH,
+    }
+  }
+
   pub fn move_dir_mut(&mut self, d: Dir) {
     match d {
       Dir::North => self.y -= 1,
