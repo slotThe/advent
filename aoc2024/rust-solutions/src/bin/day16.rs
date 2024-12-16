@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use anyhow::Result;
 use itertools::Itertools;
-use rust_aoc_util::{coord::{self, Coord, Dir}, dijkstra};
+use rust_aoc_util::{coord::{self, Coord, Dir::{self, *}}, dijkstra};
 
 fn get_val(grid: &HashMap<Coord, char>, v: char) -> Coord {
   *grid
@@ -12,8 +12,8 @@ fn get_val(grid: &HashMap<Coord, char>, v: char) -> Coord {
     .unwrap()
 }
 
-fn neighs(p: Coord, d: Dir, grid: &HashMap<Coord, char>) -> Vec<((Coord, Dir), usize)> {
-  [Dir::North, Dir::East, Dir::South, Dir::West]
+fn neighs(p: Coord, d: Dir, grid: &HashMap<Coord, char>) -> Vec<((Coord, Dir), isize)> {
+  [North, East, South, West]
     .into_iter()
     .map(|d2| {
       if d == d2 {
@@ -43,12 +43,11 @@ fn main() -> Result<()> {
         .collect_vec()
     })
     .collect();
-
-  let d_fw = dijkstra(&[(get_val(&inp, 'S'), Dir::East)], |&(p, d)| {
-    neighs(p, d, &inp)
-  });
   let end = get_val(&inp, 'E');
-  let min = *d_fw
+
+  // Forwards reachability from start.
+  let fw = dijkstra(&[(get_val(&inp, 'S'), East)], |&(p, d)| neighs(p, d, &inp));
+  let min = *fw
     .iter()
     .filter_map(|((p, _), n)| if *p == end { Some(n) } else { None })
     .min()
@@ -56,8 +55,9 @@ fn main() -> Result<()> {
   assert_eq!(min, 105508);
   println!("{min}");
 
-  let d_bw = dijkstra(
-    &d_fw // valid endings
+  // Backwards reachability from all minimal goals.
+  let bw = dijkstra(
+    &fw
       .iter()
       .filter_map(|(&(p, d), &n)| {
         if p == end && n == min {
@@ -70,12 +70,14 @@ fn main() -> Result<()> {
     |&(p, d)| neighs(p, d, &inp),
   );
 
-  let two = d_fw
-    .iter()
-    .flat_map(|(&(p, d), &v)| {
+  let two = fw
+    .into_iter()
+    .flat_map(|((p, d), v)| {
+      // A neighbour that can be reached with weight w leads to the
+      // goal weight min iff it has a backwards weight of min - v + w.
       neighs(p, d, &inp)
         .into_iter()
-        .filter(|((np, nd), w)| v + d_bw.get(&(*np, *nd)).unwrap() - w == min)
+        .filter(|(pos, w)| Some(&(min - v + w)) == bw.get(&pos))
         .collect_vec()
     })
     .unique_by(|((p, _), _)| *p)
