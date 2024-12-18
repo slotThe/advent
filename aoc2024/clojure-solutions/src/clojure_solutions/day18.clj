@@ -10,28 +10,25 @@
        (partition 2)
        (mapv vec)))
 
-(defn- path-exists? [grid & shortest]
-  (let [dijkstra? (:shortest (set shortest))]
-    (get ((if dijkstra? util/dijkstra util/flood-fill)
-          [0 0]
-          (fn [p seen]
-            (for [n (c/neighbours4 p)
-                  :when (and (contains? grid n)
-                             (not (contains? seen n)))]
-              (if dijkstra? [n 1] n))))
-         [70 70])))
+(defn- path-exists? [grid]
+  (get (util/dijkstra
+        [0 0]
+        (fn [p seen]
+          (for [n (c/neighbours4 p)
+                :when (and (contains? grid n)
+                           (not (contains? seen n)))]
+            [n 1])))
+       [70 70]))
 
 (defn -main [& _args]
   (let [points (parse)
-        grid (reduce disj
-                     (into #{} (for [x (range 0 71), y (range 0 71)] [x y]))
-                     (take 1024 points))
-        one (path-exists? grid :shortest)
+        grid (into #{} (for [x (range 0 71), y (range 0 71)] [x y]))
+        one (path-exists? (reduce disj grid (take 1024 points)))
         _ (assert (= one 416))
-        two (reduce (fn [acc p]
-                      (let [grid (disj acc p)]
-                        (if (path-exists? grid) grid (reduced p))))
-                    grid
-                    (drop 1024 points))
+        two (points (first
+                     (util/binary-search
+                      (fn [i] (not (path-exists? (reduce disj grid (take i points)))))
+                      0
+                      (count points))))
         _ (assert (= two [50 23]))]
     (util/print-day 18 one two)))
