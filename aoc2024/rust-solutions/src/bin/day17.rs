@@ -51,7 +51,8 @@ fn find_quine(mut prog: Vec<usize>) -> usize {
       .flat_map(|prev| {
         (0..8)
           .filter_map(|i| {
-            let now = 8 * prev + i;
+            // Shift to next three bits.
+            let now = prev << 3 | i;
             // Hand-optimised from input, but I guess one could also run one
             // step of `sim`.
             if prog[prog.len() - 1] == (now & 7 ^ 1) ^ (now >> (now & 7 ^ 2)) & 7 {
@@ -75,18 +76,19 @@ fn main() -> Result<()> {
       .map(|i| *i as usize)
       .collect();
 
-  println!(
-    "{}",
-    sim(
-      (inp[0], inp[1], inp[2]),
-      &inp[3..].iter().tuple_windows().step_by(2).collect_vec()
-    )
-    .iter()
-    .map(|x| format!("{x}"))
-    .intersperse(",".to_string())
-    .collect::<String>()
-  );
+  let one = sim(
+    (inp[0], inp[1], inp[2]),
+    &inp[3..].iter().tuple_windows().step_by(2).collect_vec(),
+  )
+  .iter()
+  .map(|x| format!("{x}"))
+  .intersperse(",".to_string())
+  .collect::<String>();
+  assert_eq!(one, "7,1,5,2,4,0,7,6,1");
+  println!("{one}");
 
-  println!("{:?}", find_quine(inp[3..].to_vec()));
+  let two = find_quine(inp[3..].to_vec());
+  assert_eq!(two, 37222273957364);
+  println!("{two}");
   Ok(())
 }
