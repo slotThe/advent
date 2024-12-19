@@ -36,6 +36,7 @@ library
         haskell-aoc-util,
         containers >= 0.6.7,
         text,
+        MemoTrie,
     hs-source-dirs:   lib
     default-language: GHC2021
 
@@ -48,6 +49,7 @@ common day
         haskell-aoc-util,
         unordered-containers,
         containers >= 0.6.7,
+        MemoTrie,
     hs-source-dirs:   app
     default-language: GHC2021
 
@@ -78,3 +80,7 @@ executable day12
 executable day18
     import:           day
     main-is:          Day18.hs
+
+executable day19
+    import:           day
+    main-is:          Day19.hs
