@@ -5,7 +5,6 @@ synopsis:           Haskell Solutions for AoC 2024
 -- description:
 homepage:           https://github.com/slotThe/advent
 license:            GPL-3.0-or-later
-license-file:       LICENSE
 author:             Tony Zorman
 maintainer:         mail@tony-zorman.com
 -- copyright:
@@ -23,6 +22,7 @@ common ghcopts
         -Wno-all-missed-specialisations
         -Wno-unsafe
         -Wno-prepositive-qualified-module
+        -Wno-name-shadowing
         -O2
     default-extensions:
         StrictData

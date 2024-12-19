@@ -1,5 +1,3 @@
-{-# LANGUAGE NoImplicitPrelude, OverloadedStrings, BlockArguments, TypeFamilies #-}
-
 import Util
 import Data.MemoTrie
 
@@ -7,9 +5,8 @@ arrangements :: [String] -> String -> Int
 arrangements towels = memoFix go
  where
   go :: (String -> Int) -> String -> Int
-  go go ptn
-    | null ptn = 1
-    | otherwise  = sum [ go (drop (length t) ptn) | t <- towels , t `isPrefixOf` ptn ]
+  go _  ""  = 1
+  go go ptn = sum [ go (drop (length t) ptn) | t <- towels , t `isPrefixOf` ptn ]
 
 main :: IO ()
 main = do
