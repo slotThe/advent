@@ -10,6 +10,7 @@ module Util
     , chunksOf
     , dropEnd
     , breakOn
+    , splitOn
     , rightToMaybe
     , pNum
     , pInput
@@ -67,6 +68,14 @@ breakOn :: Eq a => [a] -> [a] -> ([a], [a])
 breakOn needle haystack | needle `isPrefixOf` haystack = ([], haystack)
 breakOn _      []       = ([], [])
 breakOn needle (x:xs)   = first (x:) $ breakOn needle xs
+
+splitOn :: Eq a => [a] -> [a] -> [[a]]
+splitOn needle = go
+ where
+  n    = length needle
+  go s = case breakOn needle s of
+    (f, []) -> [f]
+    (f, rs) -> f : go (drop n rs)
 
 rightToMaybe :: Either a b -> Maybe b
 rightToMaybe = either (const Nothing) Just
