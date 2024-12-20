@@ -20,29 +20,37 @@ fn build_path(path: &HashSet<Coord>, start: Coord, end: Coord) -> HashMap<Coord,
   res
 }
 
-fn solve(inp: &HashMap<Coord, char>, start: Coord, end: Coord, max_dist: u32) -> usize {
-  let free: HashSet<Coord> = inp
+fn solve(free: &HashSet<Coord>, path: &HashMap<Coord, i32>, max_dist: i32) -> Vec<i32> {
+  free
     .iter()
-    .filter(|(_, c)| c != &&'#')
-    .map(|(p, _)| *p)
-    .collect();
-  let path: HashMap<Coord, i32> = build_path(&free, start, end);
-  let mut res = 0;
-  for p in &free {
-    let np = path.get(&p).unwrap();
-    res += free
-      .iter()
-      .filter(|q| p.manhattan(**q) <= max_dist)
-      .filter(|&q| path.get(q).unwrap() - np - p.manhattan(*q) as i32 >= 100)
-      .count();
-  }
-  res
+    .flat_map(|p| {
+      let np = path.get(&p).unwrap();
+      free
+        .iter()
+        .map(|&q| (q, p.manhattan(q) as i32))
+        .filter(|(_, d)| *d <= max_dist)
+        .filter(move |(q, d)| path.get(q).unwrap() - np - d >= 100)
+        .map(|(_, d)| d)
+    })
+    .collect()
 }
 
 fn main() -> Result<()> {
   let g = coord::map_from_grid(&std::fs::read_to_string("../inputs/day20.txt")?);
   let start = *g.iter().find(|(_, c)| c == &&'S').map(|(p, _)| p).unwrap();
   let end = *g.iter().find(|(_, c)| c == &&'E').map(|(p, _)| p).unwrap();
-  print_day(18, (solve(&g, start, end, 2), solve(&g, start, end, 20)));
+
+  let free = g
+    .iter()
+    .filter(|(_, c)| c != &&'#')
+    .map(|(p, _)| *p)
+    .collect();
+  let path = build_path(&free, start, end);
+
+  let r = solve(&free, &path, 20);
+  print_day(
+    18,
+    (r.iter().filter(|d| **d == 2).count(), r.iter().count()),
+  );
   Ok(())
 }
