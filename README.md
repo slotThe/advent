@@ -32,6 +32,7 @@
   - Day 17 : [Rust][2024:day17:rust], [BQN][2024:day17:bqn]
   - Day 18 : [Clojure][2024:day18:clojure], [BQN][2024:day18:bqn], [Haskell][2024:day18:haskell]
   - Day 19 : [Haskell][2024:day19:haskell], [BQN][2024:day19:bqn], [Rust][2024:day19:rust]
+  - Day 20 : [Rust][2024:day20:rust]
 
 [2024:day01:bqn]: ./aoc2024/bqn-solutions/day01.bqn
 [2024:day01:clojure]: ./aoc2024/clojure-solutions/src/clojure_solutions/day01.clj
@@ -80,6 +81,7 @@
 [2024:day19:haskell]: ./aoc2024/haskell-solutions/app/Day19.hs
 [2024:day19:bqn]: ./aoc2024/bqn-solutions/day19.bqn
 [2024:day19:rust]: ./aoc2024/rust-solutions/src/bin/day19.rs
+[2024:day20:rust]: ./aoc2024/rust-solutions/src/bin/day20.rs
 
 ## 2023
 

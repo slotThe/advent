@@ -1,4 +1,4 @@
-use std::ops::{Add, Mul, Sub};
+use std::{collections::HashMap, ops::{Add, Mul, Sub}};
 
 use itertools::Itertools;
 
@@ -9,6 +9,8 @@ pub enum Dir {
   South,
   West,
 }
+
+const CARDINAL: [Dir; 4] = [Dir::North, Dir::West, Dir::South, Dir::East];
 
 impl Dir {
   pub fn opposed(d: Dir) -> (Dir, Dir) {
@@ -111,9 +113,27 @@ impl Coord {
       y: self.y.rem_euclid(rhs.y),
     }
   }
+
+  pub fn neighbours4(&self) -> impl Iterator<Item = Self> + use<'_> {
+    CARDINAL.iter().map(|d| self.move_in(*d))
+  }
+
+  pub fn manhattan(&self, p: Self) -> u32 { self.x.abs_diff(p.x) + self.y.abs_diff(p.y) }
 }
 
 pub fn from_pair(p: (i32, i32)) -> Coord { Coord { x: p.0, y: p.1 } }
+
+pub fn map_from_grid(s: &str) -> HashMap<Coord, char> {
+  s.lines()
+    .enumerate()
+    .flat_map(|(i, l)| {
+      l.chars()
+        .enumerate()
+        .map(|(j, c)| (from_pair((j as i32, i as i32)), c))
+        .collect_vec()
+    })
+    .collect()
+}
 
 macro_rules! coord_instances {
   ($($inst:ident $name:ident),+) => {
