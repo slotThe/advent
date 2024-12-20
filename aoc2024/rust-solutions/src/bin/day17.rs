@@ -1,3 +1,4 @@
+#![feature(iter_intersperse)]
 use anyhow::Result;
 use itertools::Itertools;
 use rust_aoc_util::slurp_nums;
@@ -76,14 +77,16 @@ fn main() -> Result<()> {
       .map(|i| *i as usize)
       .collect();
 
-  let one = sim(
-    (inp[0], inp[1], inp[2]),
-    &inp[3..].iter().tuple_windows().step_by(2).collect_vec(),
+  let one: String = Iterator::intersperse(
+    sim(
+      (inp[0], inp[1], inp[2]),
+      &inp[3..].iter().tuple_windows().step_by(2).collect_vec(),
+    )
+    .iter()
+    .map(|x| format!("{x}")),
+    ",".to_string(),
   )
-  .iter()
-  .map(|x| format!("{x}"))
-  .intersperse(",".to_string())
-  .collect::<String>();
+  .collect();
   assert_eq!(one, "7,1,5,2,4,0,7,6,1");
   println!("{one}");
 

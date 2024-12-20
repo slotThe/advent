@@ -1,7 +1,7 @@
 #![feature(pattern)]
 use std::{collections::HashMap, str::pattern::Pattern};
 
-use anyhow::{anyhow, Result};
+use anyhow::Result;
 use itertools::Itertools;
 use rust_aoc_util::print_day;
 

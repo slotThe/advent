@@ -2,6 +2,7 @@ use std::collections::{HashMap, HashSet};
 
 use anyhow::Result;
 use itertools::Itertools;
+use rust_aoc_util::print_day;
 
 type Point = (isize, isize);
 type Grid = HashMap<Point, char>;
@@ -43,13 +44,17 @@ fn main() -> Result<()> {
         .collect::<Vec<_>>()
     })
     .collect();
-  println!("{}", solve(&inp, |g, p, np| vec![n_dist(2, p, np)]));
-  println!(
-    "{}",
-    solve(&inp, |g, p, np| (1..)
-      .map(|i| n_dist(i, p, np))
-      .take_while(|p| g.contains_key(&p))
-      .collect())
+  print_day(
+    8,
+    (
+      solve(&inp, |_, p, np| vec![n_dist(2, p, np)]),
+      solve(&inp, |g, p, np| {
+        (1..)
+          .map(|i| n_dist(i, p, np))
+          .take_while(|p| g.contains_key(&p))
+          .collect()
+      }),
+    ),
   );
   Ok(())
 }
