@@ -49,7 +49,7 @@ fn main() -> Result<()> {
 
   let r = solve(&free, &path, 20);
   print_day(
-    18,
+    20,
     (r.iter().filter(|d| **d == 2).count(), r.iter().count()),
   );
   Ok(())

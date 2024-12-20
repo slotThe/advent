@@ -59,13 +59,8 @@ fn main() -> Result<()> {
   let bw = dijkstra(
     &fw
       .iter()
-      .filter_map(|(&(p, d), &n)| {
-        if p == end && n == min {
-          Some((p, d))
-        } else {
-          None
-        }
-      })
+      .filter(|(&(p, _), &n)| p == end && n == min)
+      .map(|(x, _)| *x)
       .collect_vec(),
     |&(p, d)| neighs(p, d, &inp),
   );
