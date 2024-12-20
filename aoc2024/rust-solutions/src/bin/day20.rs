@@ -20,14 +20,14 @@ fn build_path(path: &HashSet<Coord>, start: Coord, end: Coord) -> HashMap<Coord,
   res
 }
 
-fn solve(free: &HashSet<Coord>, path: &HashMap<Coord, i32>, max_dist: i32) -> Vec<i32> {
-  free
+fn solve(path: &HashMap<Coord, i32>, max_dist: i32) -> Vec<i32> {
+  path
     .iter()
-    .flat_map(|p| {
-      let np = path.get(&p).unwrap();
-      free
+    .flat_map(|(p, _)| {
+      let np = path.get(p).unwrap();
+      path
         .iter()
-        .map(|&q| (q, p.manhattan(q) as i32))
+        .map(|(q, _)| (q, p.manhattan(*q) as i32))
         .filter(|(_, d)| *d <= max_dist)
         .filter(move |(q, d)| path.get(q).unwrap() - np - d >= 100)
         .map(|(_, d)| d)
@@ -40,14 +40,16 @@ fn main() -> Result<()> {
   let start = *g.iter().find(|(_, c)| c == &&'S').map(|(p, _)| p).unwrap();
   let end = *g.iter().find(|(_, c)| c == &&'E').map(|(p, _)| p).unwrap();
 
-  let free = g
-    .iter()
-    .filter(|(_, c)| c != &&'#')
-    .map(|(p, _)| *p)
-    .collect();
-  let path = build_path(&free, start, end);
+  let path = build_path(
+    &g.iter()
+      .filter(|(_, c)| c != &&'#')
+      .map(|(p, _)| *p)
+      .collect(),
+    start,
+    end,
+  );
 
-  let r = solve(&free, &path, 20);
+  let r = solve(&path, 20);
   print_day(
     20,
     (r.iter().filter(|d| **d == 2).count(), r.iter().count()),
