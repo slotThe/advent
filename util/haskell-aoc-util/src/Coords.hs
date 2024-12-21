@@ -8,11 +8,19 @@ module Coords (
   neighbours4,
 
   -- * Moving
-  above, below, left, right,
-  move,
+  above, below, left, right, move,
+
+  -- * Unit lengths
+  origin, north, south, east, west,
 
   -- * Indexing
   ix,
+
+  -- * To and fro
+  toChar, toPair,
+
+  -- * Metrics
+  manhattan,
 ) where
 
 import Data.Map.Strict (Map)
@@ -51,6 +59,18 @@ instance Num Coord where
   signum :: Coord -> Coord
   signum C{} = error "Coord: signum"
 
+toPair :: Coord -> (Int, Int)
+toPair (C x y) = (x, y)
+
+-- | Convert a unit coordinate to its respective character representation.
+toChar :: Coord -> Char
+toChar = \case
+  C (-1) 0    -> '<'
+  C 1    0    -> '>'
+  C 0    (-1) -> '^'
+  C 0    1    -> 'v'
+  _           -> error "Coord.toChar: Want one of north, south, east, or west."
+
 toCoordMap :: [[a]] -> Map Coord a
 toCoordMap = fromList . prepMat (\i j el -> (C j i, el))
  where
@@ -63,8 +83,19 @@ below (C x y) = C x      (y + 1)
 left  (C x y) = C (x - 1) y
 right (C x y) = C (x + 1) y
 
+origin, north, south, west, east :: Coord
+origin = C 0 0
+north = above origin
+south = below origin
+west  = left  origin
+east  = right origin
+
 neighbours4 :: Coord -> [Coord]
 neighbours4 pt = map ($! pt) [right, left, below, above]
+
+-- | Manhattan distance between two coords.
+manhattan :: Coord -> Coord -> Int
+manhattan = (uncurry (+) . toPair . abs) .: (-)
 
 -- | Move into the given direction.
 move :: Coord -> Dim4 -> Coord

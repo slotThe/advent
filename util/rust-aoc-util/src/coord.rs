@@ -119,6 +119,16 @@ impl Coord {
   }
 
   pub fn manhattan(&self, p: Self) -> u32 { self.x.abs_diff(p.x) + self.y.abs_diff(p.y) }
+
+  pub fn to_dir(&self) -> char {
+    match self {
+      Coord { x: -1, y: 0 } => '<',
+      Coord { x: 1, y: 0 } => '>',
+      Coord { x: 0, y: -1 } => '^',
+      Coord { x: 0, y: 1 } => 'v',
+      _ => panic!("Can't convert a non-unit coord to a dir"),
+    }
+  }
 }
 
 pub fn from_pair(p: (i32, i32)) -> Coord { Coord { x: p.0, y: p.1 } }
