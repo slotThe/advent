@@ -30,15 +30,15 @@ fn main() -> Result<()> {
 
 type Cache = HashMap<((char, char), usize), usize>;
 
-fn solve(lvl: usize, s: &str) -> usize {
+fn solve(lvl: usize, code: &str) -> usize {
   fn go(m: Mode, n: usize, s: &str, memo: &mut Cache) -> usize {
     use Mode::*;
     ("A".to_string() + s)
       .chars()
       .map_windows(|&[x, y]| match memo.get(&((x, y), n)) {
-        Some(r) => *r,
+        Some(ret) => *ret,
         None => {
-          let paths = dirs(m, x, y);
+          let paths = paths(m, x, y);
           let ret = if n == 0 {
             paths.iter().map(|p| p.len()).min().unwrap()
           } else {
@@ -50,13 +50,13 @@ fn solve(lvl: usize, s: &str) -> usize {
       })
       .sum()
   }
-  go(Mode::Key, lvl, s, &mut HashMap::new()) // Key is only used once
+  go(Mode::Key, lvl, code, &mut HashMap::new()) // Key is only used once
 }
 
-fn dirs(m: Mode, b: char, e: char) -> Vec<String> {
-  let hm = match m {
-    Mode::Key => &KEYPAD,
-    Mode::Dir => &DIRPAD,
+fn paths(m: Mode, b: char, e: char) -> Vec<String> {
+  let (hm, empty) = match m {
+    Mode::Key => (&KEYPAD, coord::from_pair((-2, 0))),
+    Mode::Dir => (&DIRPAD, coord::from_pair((-2, -1))),
   };
   let mut res: Vec<(Coord, Vec<Coord>)> = vec![(*hm.get(&b).unwrap(), vec![])];
   let end = *hm.get(&e).unwrap();
@@ -66,10 +66,10 @@ fn dirs(m: Mode, b: char, e: char) -> Vec<String> {
       .flat_map(|(p, path)| {
         [NORTH, SOUTH, EAST, WEST]
           .iter()
-          .filter_map(|&m| {
-            let q = *p + m;
-            if q.manhattan(end) < p.manhattan(end) && q != coord::from_pair((-2, -1)) {
-              Some((q, [path.clone(), vec![m]].concat()))
+          .filter_map(|&dir| {
+            let q = *p + dir;
+            if q.manhattan(end) < p.manhattan(end) && q != empty {
+              Some((q, [path.clone(), vec![dir]].concat()))
             } else {
               None
             }
@@ -78,9 +78,7 @@ fn dirs(m: Mode, b: char, e: char) -> Vec<String> {
       })
       .collect();
     match res.first() {
-      None => {
-        return vec!["A".to_string()];
-      },
+      None => return vec!["A".to_string()],
       Some((c, _)) => {
         if c == &end {
           return res // Transform into human-readable directions
