@@ -4,7 +4,7 @@ pub mod interval;
 
 use std::{collections::{HashMap, HashSet}, hash::Hash};
 
-use anyhow::Result;
+use anyhow::{anyhow, Result};
 use nom::{branch::alt, bytes::complete::tag, character::{self, complete::{multispace0, none_of}}, combinator::{all_consuming, map}, multi::many1, sequence::delimited, Finish, IResult};
 use num::Num;
 use priority_queue::DoublePriorityQueue;
@@ -17,10 +17,7 @@ pub fn parse_single_line(fp: &str) -> std::io::Result<String> {
 }
 
 /// Slurp all numbers out of the given line.
-/// >>> slurp_nums"12,rstr.(9032),ristnrie4991"
-pub fn slurp_nums<N: Num + From<i32>>(
-  s: &str,
-) -> Result<Vec<N>, nom::error::Error<&str>> {
+pub fn slurp_nums<N: Num + From<i32>>(s: &str) -> anyhow::Result<Vec<N>> {
   parse(s, |s| {
     many1(alt((
       map(character::complete::i32, |i| Some(i.into())),
@@ -28,6 +25,7 @@ pub fn slurp_nums<N: Num + From<i32>>(
     )))(s)
   })
   .map(|v| v.into_iter().flatten().collect())
+  .map_err(|e| anyhow!(e.to_string()))
 }
 
 pub fn parse<'a, R, F>(inp: &'a str, parser: F) -> Result<R, nom::error::Error<&'a str>>
