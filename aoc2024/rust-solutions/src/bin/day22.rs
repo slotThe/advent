@@ -3,6 +3,7 @@ use std::collections::HashMap;
 
 use anyhow::Result;
 use itertools::Itertools;
+use rayon::prelude::*;
 use rust_aoc_util::slurp_nums;
 
 fn sim(mut n: u64) -> Vec<u64> {
@@ -22,14 +23,14 @@ fn main() -> Result<()> {
   let sims: Vec<Vec<u64>> = slurp_nums(&std::fs::read_to_string("../inputs/day22.txt")?)?
     .iter()
     .map(|n: &i32| sim(*n as u64))
-    .collect_vec();
+    .collect();
 
   let one: u64 = sims.iter().map(|v| v[2000]).sum();
   assert_eq!(13584398738, one);
   println!("{one}");
 
   let diffs: Vec<HashMap<W4, i32>> = sims
-    .iter()
+    .par_iter()
     .map(|v| v.iter().map(|n| n.rem_euclid(10) as i32).collect_vec())
     .map(|v| {
       v.iter()
@@ -40,13 +41,13 @@ fn main() -> Result<()> {
         .unique_by(|(w, _)| *w)       // first window wins
         .collect()
     })
-    .collect_vec();
+    .collect();
   let two = *diffs
     .iter()
-    .fold(HashMap::new(), |mut acc, h| {
-      h.iter().for_each(|(w, &v)| {
+    .fold(HashMap::new(), |mut acc, hm| {
+      for (w, &v) in hm {
         acc.entry(w).and_modify(|ov| *ov += v).or_insert(v);
-      });
+      }
       acc
     })
     .values()

@@ -1,5 +1,6 @@
 #![feature(try_blocks)]
 use anyhow::Result;
+use rayon::prelude::*;
 
 fn eval<F>(goal: u64, xs: &[u64], ops: &[F]) -> bool
 where
@@ -32,7 +33,7 @@ fn main() -> Result<()> {
   let e1 = |(g, xs): &&(u64, Vec<u64>)| -> bool {
     eval(*g, xs, [std::ops::Add::add, std::ops::Mul::mul].as_ref())
   };
-  println!("{}", inp.iter().filter(e1).map(|(g, _)| g).sum::<u64>());
+  println!("{}", inp.par_iter().filter(e1).map(|(g, _)| g).sum::<u64>());
 
   let e2 = |(g, xs): &&(u64, Vec<u64>)| {
     eval(
@@ -44,6 +45,6 @@ fn main() -> Result<()> {
       .as_ref(),
     )
   };
-  println!("{}", inp.iter().filter(e2).map(|(g, _)| g).sum::<u64>());
+  println!("{}", inp.par_iter().filter(e2).map(|(g, _)| g).sum::<u64>());
   Ok(())
 }

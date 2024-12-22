@@ -2,6 +2,7 @@ use std::collections::{HashMap, HashSet};
 
 use anyhow::Result;
 use itertools::Itertools;
+use rayon::prelude::*;
 use rust_aoc_util::{coord::{self, Coord}, print_day};
 
 fn build_path(path: &HashSet<Coord>, start: Coord, end: Coord) -> HashMap<Coord, i32> {
@@ -28,8 +29,8 @@ fn solve(path: &HashMap<Coord, i32>, max_dist: i32) -> Vec<i32> {
     .filter(|p| coord::from_pair((0, 0)).manhattan(*p) <= max_dist as u32)
     .collect_vec();
   path
-    .iter()
-    .flat_map(|(&p, _)| {
+    .par_iter()
+    .flat_map_iter(|(&p, _)| {
       let np = path.get(&p).unwrap();
       stencil.iter().filter_map(move |&s| {
         let q = s + p; // p added to default stencil
