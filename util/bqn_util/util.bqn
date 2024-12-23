@@ -27,5 +27,16 @@ Ints ⇐ { •ParseFloat¨((¯1+⊢×·+`»⊸<)𝕩∊'-'∾'0'+↕10)⊔𝕩 }
 # ⟨ ⟨ 0 0 ⟩ ⟨ 0 1 ⟩ ⟨ 0 2 ⟩ ⟨ 1 0 ⟩ ⟨ 1 1 ⟩ ⟩
 Ix ⇐ /○⥊⟜↕⟜≢
 
+# Combine hash-maps and apply 𝔽 to duplicate keys.
+_merge ⇐ { W _𝕣 hms:
+  c ← •HashMap˜⟨⟩
+  { 𝕊hm:
+    { 𝕊k‿v: c.Has k? k c.Set (v W c.Get k);
+      𝕊k‿v: k c.Set v
+    }¨ (hm.Keys@)⋈¨(hm.Values@)
+  }¨hms
+  c
+}
+
 tab ⇐ @+9
 lf  ⇐ @+10
