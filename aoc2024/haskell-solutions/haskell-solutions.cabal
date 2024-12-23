@@ -92,3 +92,7 @@ executable day21
 executable day22
     import:           day
     main-is:          Day22.hs
+
+executable day23
+    import:           day
+    main-is:          Day23.hs
