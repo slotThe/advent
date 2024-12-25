@@ -16,6 +16,7 @@ module Util
     , pInput
     , pInts
     , tread
+    , binarySearch
     , bfs
     , bfsOn
     , dijkstra
@@ -131,6 +132,14 @@ converge :: Eq a => (a -> a) -> a -> a
 converge f a = fst . head . dropWhile (uncurry (/=)) . zip xs $ drop 1 xs
  where xs = iterate f a
 
+binarySearch :: forall a. Integral a => (a -> Bool) -> a -> a -> a
+binarySearch pred = go
+ where
+  go :: a -> a -> a
+  go l r | l == r    = l
+         | pred mid  = go l         mid
+         | otherwise = go (mid + 1) r
+   where mid = (r + l) `div` 2
 
 dijkstra :: forall a. Ord a => [a] -> (a -> [(a, Int)]) -> Map a Int
 dijkstra starts more = go (fromList [(0, NE.singleton s) | s <- starts ]) mempty mempty

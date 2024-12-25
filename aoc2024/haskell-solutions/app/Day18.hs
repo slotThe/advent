@@ -1,12 +1,11 @@
 {-# LANGUAGE NoImplicitPrelude, OverloadedStrings, BlockArguments #-}
+{-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
 
 import Util
 import qualified Data.Set as Set
-import qualified Data.Map as Map
 import Data.Set (Set)
 import qualified Coords as C
 import Coords (Coord(..))
-import qualified Debug.Trace
 
 floodFill :: Set Coord -> Coord -> Coord -> Maybe Int
 floodFill grid start goal = go mempty [(start, 0)]
@@ -21,15 +20,6 @@ floodFill grid start goal = go mempty [(start, 0)]
                                       | np <- C.neighbours4 x
                                       , np `Set.member` grid
                                       ])
-
-binarySearch :: forall t. Integral t => (t -> Bool) -> t -> t -> t
-binarySearch pred = go
- where
-  go :: t -> t -> t
-  go l r | l == r    = l
-         | pred mid  = go l         mid
-         | otherwise = go (mid + 1) r
-   where mid = (r + l) `div` 2
 
 main :: IO ()
 main = do
