@@ -12,6 +12,7 @@ cabal-version:       >=1.10
 library
   exposed-modules:     Coords
                        Util
+                       PriorityQueue
   hs-source-dirs:      src
   default-extensions:  GHC2021
                        StrictData
