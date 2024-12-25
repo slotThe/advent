@@ -18,6 +18,7 @@ module Util
     , tread
     , bfs
     , bfsOn
+    , dijkstra
     , nubInt
     , nubIntOn
     , nubOrd
@@ -29,11 +30,16 @@ module Util
 import BasePrelude hiding (left, right)
 import Data.Containers.ListUtils (nubInt, nubIntOn, nubOrd, nubOrdOn)
 import Data.Kind (Type)
+import qualified Data.List.NonEmpty as NE
+import Data.Map (Map)
+import qualified Data.Map as Map
 import Data.Sequence (Seq, ViewL (..), (|>))
 import qualified Data.Sequence as Seq
 import Data.Set (Set)
 import qualified Data.Set as Set
 import qualified Data.Text as T
+import PriorityQueue (PQueue(..))
+import qualified PriorityQueue as PQ
 import Text.ParserCombinators.ReadP hiding (many)
 
 type Dim4 :: Type
@@ -124,6 +130,27 @@ bfsOn trans start neighs = go mempty (fromList start)
 converge :: Eq a => (a -> a) -> a -> a
 converge f a = fst . head . dropWhile (uncurry (/=)) . zip xs $ drop 1 xs
  where xs = iterate f a
+
+
+dijkstra :: forall a. Ord a => [a] -> (a -> [(a, Int)]) -> Map a Int
+dijkstra starts more = go (fromList [(0, NE.singleton s) | s <- starts ]) mempty mempty
+ where
+  go :: PQueue a -> Set a -> Map a Int -> Map a Int
+  go !q !seen !costs = case PQ.popMin q of
+    Nothing              -> costs
+    Just (x, cx, queue) ->
+      if x `Set.member` seen then go queue seen costs
+      else
+        let (queue', costs') =
+              foldl' (\(que, cst) (n, cn) -> (PQ.insert n cn que, Map.insert n cn cst))
+                     (queue, costs)
+                     (map (bestCost cx) $ more x)
+        in go queue' (x `Set.insert` seen) costs'
+   where
+    bestCost :: Int -> (a, Int) -> (a, Int)
+    bestCost cx (n, cn) = (n,) case costs Map.!? n of
+      Nothing -> cx + cn
+      Just c  -> c
 
 -- | @f .: g ≡ λx y → f (g x y)@.
 (.:) :: (a -> b) -> (c -> d -> a) -> c -> d -> b
