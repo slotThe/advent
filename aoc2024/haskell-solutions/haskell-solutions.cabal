@@ -53,10 +53,6 @@ common day
     hs-source-dirs:   app
     default-language: GHC2021
 
-executable haskell-solutions
-    import:           day
-    main-is:          Main.hs
-
 executable day01
     import:           day
     main-is:          Day01.hs
