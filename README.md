@@ -386,6 +386,16 @@ This was me basically learning Haskell.
 [2020:day24:haskell]: ./aoc2020/src/Day24.hs
 [2020:day25:haskell]: ./aoc2020/src/Day25.hs
 
+## 2018
+
+  - Day 1  : [Python][2018:day01:python]
+  - Day 2  : [Python][2018:day02:python]
+  - Day 3  : [Python][2018:day03:python]
+
+[2018:day01:python]: ./aoc2018/python-solutions/day01.py
+[2018:day02:python]: ./aoc2018/python-solutions/day02.py
+[2018:day03:python]: ./aoc2018/python-solutions/day03.py
+
 ## 2017
 
   - Day 1  : [BQN][2017:day01:bqn]
