@@ -1,6 +1,13 @@
 open Core
 open Angstrom
 
+let print_answer n (one, two) =
+  print_endline "";
+  print_endline (String.concat ~sep:" " [ "!!! DAY"; string_of_int n; "!!!" ]);
+  print_endline (String.concat ~sep:" " [ "Part 1:"; one ]);
+  print_endline (String.concat ~sep:" " [ "Part 2:"; two ]);
+  ()
+
 (* A set comprising tuples of integers as elements. *)
 module IISet = Set.Make (struct
   type t = int * int

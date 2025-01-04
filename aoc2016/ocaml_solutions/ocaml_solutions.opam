@@ -7,7 +7,7 @@ license: "LICENSE"
 homepage: "https://github.com/slotThe/advent"
 bug-reports: "https://github.com/slotThe/advent/issues"
 depends: [
-  "core" {<= "v0.15.0"}
+  "core"
   "stdio"
   "ocaml"
   "dune" {>= "3.7"}

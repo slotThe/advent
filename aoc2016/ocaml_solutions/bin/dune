@@ -1,5 +1,55 @@
 (executable
- (public_name ocaml_solutions)
- (name main)
+ (public_name day01)
+ (name day01)
+ (libraries core re angstrom ocaml_solutions))
+
+(executable
+ (public_name day02)
+ (name day02)
+ (libraries core re angstrom ocaml_solutions))
+
+(executable
+ (public_name day03)
+ (name day03)
+ (libraries core re angstrom ocaml_solutions))
+
+(executable
+ (public_name day04)
+ (name day04)
+ (libraries core re angstrom ocaml_solutions))
+
+(executable
+ (public_name day05)
+ (name day05)
+ (libraries core re angstrom ocaml_solutions))
+
+(executable
+ (public_name day06)
+ (name day06)
+ (libraries core re angstrom ocaml_solutions))
+
+(executable
+ (public_name day07)
+ (name day07)
+ (libraries core re angstrom ocaml_solutions))
+
+(executable
+ (public_name day08)
+ (name day08)
+ (libraries core re angstrom ocaml_solutions))
+
+(executable
+ (public_name day09)
+ (name day09)
+ (libraries core re angstrom ocaml_solutions))
+
+(executable
+ (public_name day10)
+ (name day10)
  (preprocess (pps ppx_jane))
+ (libraries core re angstrom ocaml_solutions))
+
+(executable
+ (public_name day12)
+ (name day12)
  (libraries core re angstrom ocaml_solutions))
