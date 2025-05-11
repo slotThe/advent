@@ -395,6 +395,7 @@ This was me basically learning Haskell.
   - Day 4  : [Python][2018:day04:python]
   - Day 5  : [Python][2018:day05:python]
   - Day 6  : [Python][2018:day06:python]
+  - Day 7  : [Python][2018:day07:python]
 
 [2018:day01:python]: ./aoc2018/python-solutions/day01.py
 [2018:day01:bqn]: ./aoc2018/bqn-solutions/day01.bqn
@@ -404,6 +405,7 @@ This was me basically learning Haskell.
 [2018:day04:python]: ./aoc2018/python-solutions/day04.py
 [2018:day05:python]: ./aoc2018/python-solutions/day05.py
 [2018:day06:python]: ./aoc2018/python-solutions/day06.py
+[2018:day07:python]: ./aoc2018/python-solutions/day07.py
 
 ## 2017
 
