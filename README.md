@@ -389,15 +389,17 @@ This was me basically learning Haskell.
 
 ## 2018
 
-  - Day 1  : [Python][2018:day01:python]
-  - Day 2  : [Python][2018:day02:python]
+  - Day 1  : [Python][2018:day01:python], [BQN][2018:day01:bqn]
+  - Day 2  : [Python][2018:day02:python], [BQN][2018:day02:bqn]
   - Day 3  : [Python][2018:day03:python]
   - Day 4  : [Python][2018:day04:python]
   - Day 5  : [Python][2018:day05:python]
   - Day 6  : [Python][2018:day06:python]
 
 [2018:day01:python]: ./aoc2018/python-solutions/day01.py
+[2018:day01:bqn]: ./aoc2018/bqn-solutions/day01.bqn
 [2018:day02:python]: ./aoc2018/python-solutions/day02.py
+[2018:day02:bqn]: ./aoc2018/bqn-solutions/day02.bqn
 [2018:day03:python]: ./aoc2018/python-solutions/day03.py
 [2018:day04:python]: ./aoc2018/python-solutions/day04.py
 [2018:day05:python]: ./aoc2018/python-solutions/day05.py
