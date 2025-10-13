@@ -397,6 +397,7 @@ This was me basically learning Haskell.
   - Day 6  : [Python][2018:day06:python]
   - Day 7  : [Python][2018:day07:python]
   - Day 8  : [Python][2018:day08:python]
+  - Day 9  : [BQN][2018:day09:bqn]
 
 [2018:day01:python]: ./aoc2018/python-solutions/day01.py
 [2018:day01:bqn]: ./aoc2018/bqn-solutions/day01.bqn
@@ -408,6 +409,7 @@ This was me basically learning Haskell.
 [2018:day06:python]: ./aoc2018/python-solutions/day06.py
 [2018:day07:python]: ./aoc2018/python-solutions/day07.py
 [2018:day08:python]: ./aoc2018/python-solutions/day08.py
+[2018:day09:bqn]: ./aoc2018/bqn-solutions/day09.bqn
 
 ## 2017
 
