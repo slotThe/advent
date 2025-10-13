@@ -479,18 +479,18 @@ This was me basically learning Haskell.
   - Day 10 : [OCaml][2016:day10:ocaml], [Haskell][2016:day10:haskell]
   - Day 12 : [OCaml][2016:day12:ocaml]
 
-[2016:day1:ocaml]: ./aoc2016/ocaml_solutions/lib/day1.ml
-[2016:day2:ocaml]: ./aoc2016/ocaml_solutions/lib/day2.ml
-[2016:day3:ocaml]: ./aoc2016/ocaml_solutions/lib/day3.ml
-[2016:day4:ocaml]: ./aoc2016/ocaml_solutions/lib/day4.ml
-[2016:day5:ocaml]: ./aoc2016/ocaml_solutions/lib/day5.ml
-[2016:day6:ocaml]: ./aoc2016/ocaml_solutions/lib/day6.ml
-[2016:day7:ocaml]: ./aoc2016/ocaml_solutions/lib/day7.ml
-[2016:day8:ocaml]: ./aoc2016/ocaml_solutions/lib/day8.ml
-[2016:day9:ocaml]: ./aoc2016/ocaml_solutions/lib/day9.ml
-[2016:day10:ocaml]: ./aoc2016/ocaml_solutions/lib/day10.ml
+[2016:day1:ocaml]: ./aoc2016/ocaml_solutions/bin/day1.ml
+[2016:day2:ocaml]: ./aoc2016/ocaml_solutions/bin/day2.ml
+[2016:day3:ocaml]: ./aoc2016/ocaml_solutions/bin/day3.ml
+[2016:day4:ocaml]: ./aoc2016/ocaml_solutions/bin/day4.ml
+[2016:day5:ocaml]: ./aoc2016/ocaml_solutions/bin/day5.ml
+[2016:day6:ocaml]: ./aoc2016/ocaml_solutions/bin/day6.ml
+[2016:day7:ocaml]: ./aoc2016/ocaml_solutions/bin/day7.ml
+[2016:day8:ocaml]: ./aoc2016/ocaml_solutions/bin/day8.ml
+[2016:day9:ocaml]: ./aoc2016/ocaml_solutions/bin/day9.ml
+[2016:day10:ocaml]: ./aoc2016/ocaml_solutions/bin/day10.ml
 [2016:day10:haskell]: ./aoc2016/haskell-solutions/src/Day10.hs
-[2016:day12:ocaml]: ./aoc2016/ocaml_solutions/lib/day12.ml
+[2016:day12:ocaml]: ./aoc2016/ocaml_solutions/bin/day12.ml
 
 ## 2015
 
