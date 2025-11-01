@@ -390,6 +390,7 @@ This was me basically learning Haskell.
 ## 2019
 
   - Day 1  : [C](./aoc2019/c_solutions/day01.c)
+  - Day 2  : [C](./aoc2019/c_solutions/day02.c)
 
 ## 2018
 
