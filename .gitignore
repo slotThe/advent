@@ -12,3 +12,4 @@ dist-newstyle
 result
 __pycache__
 .nix-venv
+a.out
