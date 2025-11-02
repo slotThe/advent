@@ -4,10 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int *read_ints(char const *const pth, size_t *out_n) {
-    size_t max = 16;
-    int *ns = calloc(max, sizeof(int));
-
+char* readf(char const *const pth) {
     FILE *file = fopen(pth, "r");
     fseek(file, 0, SEEK_END);
     long len = ftell(file);
@@ -18,8 +15,15 @@ int *read_ints(char const *const pth, size_t *out_n) {
         buffer[len] = '\0';
     }
     fclose(file);
+    return buffer;
+}
+
+int *read_ints(char const *const pth, size_t *out_n) {
+    size_t max = 16;
+    int *ns = calloc(max, sizeof(int));
 
     size_t n = 0;
+    char *buffer = readf(pth);
     char *p = buffer;
     while (*p) {
         if (n >= max) {
@@ -44,10 +48,9 @@ int *read_ints(char const *const pth, size_t *out_n) {
 
 // :]
 
-#define DO(n, x)                                                               \
-    {                                                                          \
-        int i = 0, $n = (n);                                                   \
-        for (; i < $n; ++i) {                                                  \
-            x;                                                                 \
-        }                                                                      \
-    }
+#define DO(n, x)         {int $n=(n),i=0;for(;i<$n;++i){x;}}
+#define DO2(n,m,x){DO(n,({int $m=(m),j=0;for(;j<$m;++j){x;}}))}
+
+#define P printf
+#define R return
+#define _(e...) ({e;})
