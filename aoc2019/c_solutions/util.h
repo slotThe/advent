@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* readf(char const *const pth) {
+static inline char* readf(char const *const pth) {
     FILE *file = fopen(pth, "r");
     fseek(file, 0, SEEK_END);
     long len = ftell(file);
@@ -18,11 +18,11 @@ char* readf(char const *const pth) {
     return buffer;
 }
 
-int *read_ints(char const *const pth, size_t *out_n) {
-    size_t max = 16;
+static inline int *read_ints(char const *const pth, int *out_n) {
+    int max = 16;
     int *ns = calloc(max, sizeof(int));
 
-    size_t n = 0;
+    int n = 0;
     char *buffer = readf(pth);
     char *p = buffer;
     while (*p) {
@@ -53,4 +53,5 @@ int *read_ints(char const *const pth, size_t *out_n) {
 
 #define P printf
 #define R return
-#define _(e...) ({e;})
+#define _(e...) ({e;})     // turn e into an r-value
+#define $(p,n) if(p)n;else // if-then-else

@@ -1,11 +1,8 @@
 #include "util.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 int main() {
-    size_t n = 0;
-    int *ns = read_ints("../inputs/day01.txt", &n);
+    int n=0, *ns=read_ints("../inputs/day01.txt", &n);
 
     int one=0,two=0;
     DO(n, ({ one+=ns[i]/3-2;
