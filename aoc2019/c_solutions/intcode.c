@@ -7,7 +7,7 @@
 
 intcode *ic_new(int const *const ins, int const n, int const inp) {
     intcode *ic = malloc(sizeof(*ic));
-    ic->ins=calloc(n+3, sizeof(int)); *ic->ins++=0; *ic->ins++=inp; *ic->ins++=n;
+    ic->ins=M(n+3,int); *ic->ins++=0; *ic->ins++=inp; *ic->ins++=n;
     memcpy(ic->ins, ins, n * sizeof(int));
     return ic;
 }
@@ -21,7 +21,7 @@ void ic_set(intcode *ic, int n, ...) {
 }
 
 int *opcode(int n) { // 1234 -> 34,2,1,0,0,0,0,0,0
-    int *r = calloc(9, sizeof(int));
+    int *r = M(9,int);
     int op,k=n; op=k%10;k/=10;op+=k%10*10;k/=10;r[0]=op; DO(8,r[i+1]=k%10;k/=10);
     return r;
 }
