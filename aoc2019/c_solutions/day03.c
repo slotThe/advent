@@ -75,8 +75,8 @@ int main() {
 
     double one = 10e6;
 
-    DO2(an, bn, { coord c=isect(a[i],b[j]); double mh=fabs(c.x)+fabs(c.y);
-	          if (mh > 0 && mh < one) one = mh; })
+    DO2(an, bn, coord c=isect(a[i],b[j]); double mh=fabs(c.x)+fabs(c.y);
+                $(mh>0 && mh<one, one=mh) )
     CHECK("%i\n", (int)one, 232);
 
     double two = 10e6;
@@ -87,7 +87,7 @@ int main() {
                 size_t la=l_len(l_new(a[i].beg,c)); DO(i,la+=l_len(a[i]));
                 size_t lb=l_len(l_new(b[j].beg,c)); DO(j,lb+=l_len(b[i]));
                 double mh = la + lb;
-                if (mh > 0 && mh < two) two = mh;
+                $(mh>0 && mh<two, two=mh);
             }
         }
     }

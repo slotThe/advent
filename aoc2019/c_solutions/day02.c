@@ -1,8 +1,6 @@
 #include "intcode.h"
 #include "util.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 int main() {
     int n=0, *ns = read_ints("../inputs/day02.txt", &n);
