@@ -1,0 +1,17 @@
+(lang dune 3.20)
+
+(name ocaml_solutions)
+
+(generate_opam_files true)
+
+(source
+ (github slotThe/advent))
+
+(authors "Tony Zorman <mail@tony-zorman.com>")
+
+(maintainers "Tony Zorman <mail@tony-zorman.com>")
+
+(package
+ (name ocaml_solutions)
+ (synopsis "OCaml solutions for AoC2025")
+ (depends (ocaml (>= 5.4))))
