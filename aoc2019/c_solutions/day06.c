@@ -4,8 +4,8 @@ int main() {
   int n=0;
   char **inp = read_lines("../inputs/day06.txt", &n);
   char *l[n], *r[n];
-  DO(n, l[i]=M(4,char);DOJ(3,l[i][j]=inp[i][  j]);l[i][3]='\0';
-        r[i]=M(4,char);DOJ(3,r[i][j]=inp[i][4+j]);l[i][3]='\0');
+  DO(n, l[i]=calloc(4,sizeof(char));DOJ(3,l[i][j]=inp[i][  j]);l[i][3]='\0';
+        r[i]=calloc(4,sizeof(char));DOJ(3,r[i][j]=inp[i][4+j]);l[i][3]='\0');
 
   // ix[i]=j means l[i] is connected with r[j], so starting with some s and
   // repeatedly doing s=ix[s] lets us walk a path backwards.
