@@ -396,6 +396,7 @@ This was me basically learning Haskell.
   - Day 5  : [C](./aoc2019/c_solutions/day05.c)
   - Day 6  : [C](./aoc2019/c_solutions/day06.c)
   - Day 7  : [C](./aoc2019/c_solutions/day07.c)
+  - Day 8  : [C](./aoc2019/c_solutions/day08.c)
 
 ## 2018
 

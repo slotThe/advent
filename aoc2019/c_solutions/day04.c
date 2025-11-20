@@ -10,7 +10,7 @@ bool two_adj2(int xs[6]) { // ∨´·0‿1‿0⊸⍷«⊸=
 }
 
 int main() {
-    char *buffer = readf("../inputs/day04.txt"); char *p = buffer;
+    int _; char *buffer = readf("../inputs/day04.txt",&_); char *p = buffer;
     int beg = strtol(p, &p, 10); ++p; int end = strtol(p, &p, 10);
     free(buffer);
     int one=0, two=0;

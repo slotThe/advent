@@ -55,7 +55,7 @@ coord isect(line a, line b) {
 }
 
 int main() {
-    char *buffer = readf("../inputs/day03.txt");
+    int _; char *buffer = readf("../inputs/day03.txt",&_);
     char *p = buffer;
     line a[999], b[999], *cur=a;
     int an=0, bn=0, k=0;
