@@ -1,4 +1,3 @@
-#include "util.h"
 #include "intcode.h"
 
 int main() {

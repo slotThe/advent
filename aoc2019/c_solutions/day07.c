@@ -1,5 +1,4 @@
 #include "intcode.h"
-#include "util.h"
 
 // Generate next permutation: https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
 sz gen_perm(sz *p) {
@@ -30,7 +29,7 @@ int main() {
             EC r=ic_execute(ic);
             on=io[-1]; C(o,io,on); po=lout;                  // copy output
             DO(128,io[i]=0);io[-1]=0;                        // zero output
-            $(a==4&&r==succ,DO(5,ic_free(&ics[i]));break) else a=(a+1)%5;
+            $(a==4&&r==succ,DO(5,ic_free(&ics[i]));break)E(a=(a+1)%5);
         };
         $(po>mx,mx=po);
     } while (gen_perm(q));

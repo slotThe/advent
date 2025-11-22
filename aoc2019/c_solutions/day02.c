@@ -1,26 +1,16 @@
 #include "intcode.h"
-#include "util.h"
-#include <stdlib.h>
 
 int main() {
     sz n=0, *ns = read_ints("../inputs/day02.txt", &n);
 
-    IC *ic = ic_new(ns, n, NULL, 0); ic_set(ic,4, 1,12, 2,2); ic_execute(ic);
+    IC *ic = ic_new(ns, n, NULL, 0); it[1]=12;it[2]=2; ic_execute(ic);
     CHECK(it[0],4570637); ic_kill(ic);
 
-    for (int noun = 0; noun < 100; ++noun) {
-        for (int verb = 0; verb < 100; ++verb) {
-            IC *ic = ic_new(ns, n, NULL, 0);
-            ic_set(ic,4, 1,noun, 2,verb);
-            ic_execute(ic);
-            if (it[0] == 19690720) {
-                CHECK((sz)100 * noun + verb, 5485);
-                ic_kill(ic);
-                goto haha;
-            }
-            ic_kill(ic);
-        }
-    }
+    DO2(100, 100, {
+        IC *ic = ic_new(ns, n, NULL, 0); it[1]=i;it[2]=j; ic_execute(ic);
+        $(it[0] == 19690720, CHECK((sz)100*i+j,5485); ic_kill(ic); goto haha);
+        ic_kill(ic);
+      });
 haha:
     free(ns);
     return 0;

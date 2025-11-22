@@ -1,5 +1,4 @@
 #include "util.h"
-#include <stdlib.h>
 
 int main() {
     sz n=0,o=0,t=0,*ns=read_ints("../inputs/day01.txt", &n);

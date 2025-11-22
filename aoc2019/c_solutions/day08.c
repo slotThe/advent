@@ -10,5 +10,5 @@ int main() {
 
     sz im[150];DO(150,im[i]=2);
     DO(150,$(im[i]==2,DOj(nl,$(ls[j][i]!=2,im[i]=ls[j][i];break))));
-    DO(6,DOj(25,$(im[i*25+j],P("█"))else P(" "));P("\n"));P("\n"); // JAFRA
+    DO(6,DOj(25,$(im[i*25+j],P("█"))E(P(" ")));P("\n")); // JAFRA
 }

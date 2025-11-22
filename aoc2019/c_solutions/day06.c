@@ -10,13 +10,13 @@ int main() {
   // repeatedly doing s=ix[s] lets us walk a path backwards.
   int ix[n];DO(n,ix[i]=n);DO2(n,n,if(!strcmp(l[i],r[j]))ix[i]=j);
 
-  #define W(st,d) j=ix[st];(d);while(j<n){j=ix[j];(d);} // Walk
-  sz c=0,j=0; DO(n, W(i,++c));
+  #define W(x,d) p=ix[x];(d);while(p<n){p=ix[p];(d);} // Walk
+  sz c=0,p=0; DO(n, W(i,++c));
   CHECK(c, 186597);
 
-  sz y=0,s=0; DO(n,if(!strcmp("YOU",r[i]))y=i); DO(n,if(!strcmp("SAN",r[i]))s=i);
-  sz yc[n],yi=0;W(y,yc[yi++]=j);rev(yc,yi);
-  sz sc[n],si=0;W(s,sc[si++]=j);rev(sc,si);
+  sz y=0,s=0; DO(n,$(!strcmp("YOU",r[i]),y=i)); DO(n,$(!strcmp("SAN",r[i]),s=i));
+  sz yc[n],yi=0;W(y,yc[yi++]=p);rev(yc,yi);
+  sz sc[n],si=0;W(s,sc[si++]=p);rev(sc,si);
   sz *yp=yc,*sp=sc,i=0;while(*yp++==*sp++){++i;}
   CHECK(yi-i+si-i, 412);
 
