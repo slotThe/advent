@@ -10,16 +10,16 @@ bool two_adj2(int xs[6]) { // ∨´·0‿1‿0⊸⍷«⊸=
 }
 
 int main() {
-    int _; char *buffer = readf("../inputs/day04.txt",&_); char *p = buffer;
+    sz _; char *buffer = readf("../inputs/day04.txt",&_); char *p = buffer;
     int beg = strtol(p, &p, 10); ++p; int end = strtol(p, &p, 10);
     free(buffer);
-    int one=0, two=0;
+    sz one=0, two=0;
     for (int n = beg; n < end; ++n) {
         int xs[6], k=n; DO(6, xs[5-i] = k % 10; k /= 10);
         bool nd =    _(bool x=1; DO(5, x = x && xs[i] <= xs[i+1]); x);
         one += nd && _(bool x=0; DO(5, x = x || xs[i] == xs[i+1]); x);
         two += nd && two_adj2(xs);
     }
-    CHECK("%i\n", one, 979);
-    CHECK("%i\n", two, 635);
+    CHECK(one, 979);
+    CHECK(two, 635);
 }

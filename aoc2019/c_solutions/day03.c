@@ -55,7 +55,7 @@ coord isect(line a, line b) {
 }
 
 int main() {
-    int _; char *buffer = readf("../inputs/day03.txt",&_);
+    sz _; char *buffer = readf("../inputs/day03.txt",&_);
     char *p = buffer;
     line a[999], b[999], *cur=a;
     int an=0, bn=0, k=0;
@@ -77,7 +77,7 @@ int main() {
 
     DO2(an, bn, coord c=isect(a[i],b[j]); double mh=fabs(c.x)+fabs(c.y);
                 $(mh>0 && mh<one, one=mh) )
-    CHECK("%i\n", (int)one, 232);
+    CHECK((sz)one, 232);
 
     double two = 10e6;
     for (int i = 0; i < an; ++i) {
@@ -91,5 +91,5 @@ int main() {
             }
         }
     }
-    CHECK("%i\n", (int)two, 6084);
+    CHECK((sz)two, 6084);
 }
