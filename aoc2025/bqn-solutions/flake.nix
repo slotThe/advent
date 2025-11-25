@@ -6,12 +6,12 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       cbqn = pkgs.cbqn.overrideAttrs(old: rec {
-        version = "d2ef23631ab5da5c662dd2307a804db7b46cc82b";
+        version = "v0.10.0";
         src = pkgs.fetchFromGitHub {
           owner = "dzaima";
           repo = "CBQN";
           rev = version;
-          hash = "sha256-cRaXw7DKGj26VR2mg8qYkl9udQaXg6/e0m138SUTJvI=";
+          hash = "sha256-RZIxIRlx1SSYP+WrMRvg6nUqqs4zqEaGPvFyY3WFgbU=";
         };
         doInstallCheck = false;
       });
