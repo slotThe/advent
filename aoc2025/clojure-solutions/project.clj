@@ -3,8 +3,11 @@
   :url "https://github.com/slotThe/advent"
   :license {:name "GPL-3.0"
             :url "https://www.gnu.org/licenses/gpl-3.0.en.html"}
-  :dependencies [[org.clojure/clojure "1.12.3"]]
+  :dependencies [[org.clojure/clojure "1.12.3"]
+                 [clojure-aoc-util "0.1.0-SNAPSHOT"]]
   :main ^:skip-aot clojure-solutions.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all
-                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
+  :profiles {:day01 {:main ^:skip-aot clojure-solutions.day01}
+             :uberjar {:aot :all
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}
+  :aliases {"day01" ["with-profile" "day01" "run"]})
