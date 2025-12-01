@@ -13,7 +13,7 @@
 
 ## 2025
 
-  - Day 1  : [BQN](./aoc2025/bqn-solutions/day01.bqn)
+  - Day 1  : [BQN](./aoc2025/bqn-solutions/day01.bqn), [Haskell](./aoc2025/haskell-solutions/app/Day01.hs)
 
 ## 2024
 

@@ -9,11 +9,33 @@ maintainer:         mail@tony-zorman.com
 build-type:         Simple
 
 common warnings
-    ghc-options: -Wall
+    ghc-options:
+        -Weverything
+        -Wno-implicit-prelude
+        -Wno-missing-import-lists
+        -Wno-unused-packages
+        -Wno-missing-safe-haskell-mode
+        -Wno-all-missed-specialisations
+        -Wno-unsafe
+        -Wno-prepositive-qualified-module
+        -Wno-name-shadowing
+        -Wno-missing-kind-signatures
+        -O2
+    default-extensions:
+        StrictData
+        NoImplicitPrelude
+        OverloadedStrings
+        LambdaCase
+        ScopedTypeVariables
 
-executable haskell-solutions
+common day
     import:           warnings
-    main-is:          Main.hs
-    build-depends:    base
+    build-depends:
+        base,
+        haskell-aoc-util,
     hs-source-dirs:   app
-    default-language: GHC2024
+    default-language: GHC2021
+
+executable day01
+    import:           day
+    main-is:          Day01.hs
