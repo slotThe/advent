@@ -1,22 +1,17 @@
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 import Util
 
-type Dir = Either Int Int
-
-parse :: String -> Dir
+parse :: String -> Int
 parse = \case
-  ('L':s) -> Left  (read s)
-  ('R':s) -> Right (read s)
+  ('L':s) -> - read s
+  ('R':s) ->   read s
 
-one :: [Dir] -> Int
-one = length . filter (== 0) . scanl' (\x ey -> (x + d ey) `mod` 100) 50
- where d :: Dir -> Int = \case Left y -> -y; Right y -> y
+one :: [Int] -> Int
+one = length . filter (== 0) . scanl' (\x y -> (x + y) `mod` 100) 50
 
-two :: (Int, Int) -> Dir -> (Int, Int)
-two (z, d) = \case
-  Left  n -> let d' = ((-d)`mod`100) in
-            (z + ((d' + n) `div` 100), (d - n) `mod` 100)
-  Right n -> (z + ((d  + n) `div` 100), (d + n) `mod` 100)
+two :: (Int, Int) -> Int -> (Int, Int)
+two (z, d) n = (z + ((d' + abs n) `div` 100), (d + n) `mod` 100)
+ where d' = ((signum n * d) `mod` 100)
 
 main :: IO ()
 main = do

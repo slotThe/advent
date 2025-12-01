@@ -1,31 +1,32 @@
 (ns clojure-solutions.day01
   (:require [clojure.string :as str]
-            [clojure-aoc-util.util :as util])
+            [clojure-aoc-util.util :as util]
+            [clojure.math :as m])
   (:gen-class))
 
 (defn- parse []
   (->> (slurp "../inputs/day01.txt")
        str/split-lines
-       (map (fn [l] [(first l) (read-string (str/join (rest l)))]))))
+       (map (fn [l]
+              (read-string
+               (str/replace l
+                            #"(L)|(R)"
+                            (fn [m] (if (= (first m) "L") "-" ""))))))))
 
 (defn- one [xs]
-  (count
-   (filter #(= 0 %)
-           (reductions (fn [d [dir n]]
-                         (mod (+ d (case dir \L (- n), n))
-                              100))
-                       50
-                       xs))))
+  (->> (reductions (fn [d n] (mod (+ d n) 100)) 50 xs)
+       (filter #(= 0 %))
+       count))
 
 (defn- two [xs]
-  (first
-   (reduce
-    (fn [[z d] [dir n]]
-      ;; Use symmetry to only handle the positive case.
-      [(+ z (quot (+ n (case dir \R d, \L (mod (- d) 100))) 100))
-       (mod (+ d (case dir \L (- n), n)) 100)])
-    [0 50]
-    xs)))
+  (->> xs
+       (reduce
+        (fn [[z d] n]
+          [(+ z (quot (+ (abs n) (mod (* (m/signum n) d) 100)) 100))
+           (mod (+ d n) 100)])
+        [0 50])
+       first
+       int))
 
 (defn -main [& _args]
   (let [inp (parse), f (one inp), s (two inp)]
