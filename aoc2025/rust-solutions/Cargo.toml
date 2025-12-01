@@ -4,3 +4,4 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+rust-aoc-util = { path = "../../util/rust-aoc-util/" }
