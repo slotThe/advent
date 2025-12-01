@@ -11,6 +11,10 @@
 - This code is not well documented, pretty, fast, or even particularly readable.
   I'm just having fun (and learning lots of languages) :)
 
+## 2025
+
+  - Day 1  : [BQN](./aoc2025/bqn-solutions/day01.bqn)
+
 ## 2024
 
   - Day 1  : [BQN][2024:day01:bqn], [Clojure][2024:day01:clojure], [OCaml][2024:day01:ocaml], [Haskell][2024:day01:haskell], [Python][2024:day01:python], [Rust][2024:day01:rust]
