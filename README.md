@@ -13,7 +13,7 @@
 
 ## 2025
 
-  - Day 1  : [BQN](./aoc2025/bqn-solutions/day01.bqn), [Haskell](./aoc2025/haskell-solutions/app/Day01.hs), [Clojure](./aoc2025/clojure-solutions/src/clojure_solutions/day01.clj)
+  - Day 1  : [BQN](./aoc2025/bqn-solutions/day01.bqn), [Haskell](./aoc2025/haskell-solutions/app/Day01.hs), [Clojure](./aoc2025/clojure-solutions/src/clojure_solutions/day01.clj), [C](./aoc2025/c-solutions/day01.c)
 
 ## 2024
 
