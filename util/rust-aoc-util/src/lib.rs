@@ -172,6 +172,10 @@ where
 ///////////////////////////////////////////////////////////////////////
 // Pretty printing
 
+#[macro_export] macro_rules! check {
+    ($x:expr, $n:expr) => {{ assert_eq!($n, $x); println!("{}", $x); }};
+}
+
 pub fn print_day<A, B>(num: usize, solutions: (A, B))
 where
   A: AdventString,

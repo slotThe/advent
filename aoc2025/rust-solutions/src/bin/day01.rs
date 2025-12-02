@@ -1,3 +1,5 @@
+use rust_aoc_util::check;
+
 fn main() {
     let inp: Vec<i32> = std::fs::read_to_string("../inputs/day01.txt")
         .unwrap()
@@ -16,8 +18,7 @@ fn main() {
         })
         .filter(|x| *x == 0)
         .count();
-    assert_eq!(1011, one);
-    println!("{one}");
+    check!(one, 1011);
 
     let two = inp
         .iter()
@@ -28,6 +29,5 @@ fn main() {
             )
         })
         .0;
-    assert_eq!(5937, two);
-    println!("{:?}", two);
+    check!(two, 5937);
 }
