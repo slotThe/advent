@@ -7,6 +7,7 @@ homepage: "https://github.com/slotThe/advent"
 bug-reports: "https://github.com/slotThe/advent/issues"
 depends: [
   "dune" {>= "3.20"}
+  "core"
   "ocaml" {>= "5.4"}
   "odoc" {with-doc}
 ]

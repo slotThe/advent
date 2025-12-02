@@ -14,4 +14,4 @@
 (package
  (name ocaml_solutions)
  (synopsis "OCaml solutions for AoC2025")
- (depends (ocaml (>= 5.4))))
+ (depends core (ocaml (>= 5.4))))
