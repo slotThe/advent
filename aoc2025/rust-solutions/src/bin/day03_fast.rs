@@ -1,3 +1,4 @@
+use itertools::Itertools;
 use rust_aoc_util::check;
 
 fn jolts(mut xs: Vec<isize>, n: usize) -> isize {
@@ -10,8 +11,7 @@ fn jolts(mut xs: Vec<isize>, n: usize) -> isize {
         while f[fi] >= b {
             fi = 1.max(fi) - 1; // rewind
         }
-        let mx = xs[f[fi]..].iter().max().unwrap();
-        let p = f[fi] + xs[f[fi]..].iter().position(|x| x == mx).unwrap();
+        let p = xs.len() - 1 - xs[f[fi]..].iter().rev().position_max().unwrap();
         if m[p] != -1 {
             b = m.iter().rposition(|x| *x == -1).unwrap(); // already full -> rewind
             continue;

@@ -1,14 +1,14 @@
-use itertools::concat;
+use itertools::{concat, Itertools};
 use rust_aoc_util::check;
 
 fn jolts(xs: &[isize], n: usize) -> isize {
-    xs.iter().fold(vec![0; n], |p, k| {
-        p.iter()
-            .cloned()
-            .zip(concat([vec![0], p.clone()]))
-            .map(|(a, b)| a.max(b * 10 + k))
-            .collect()
-    })[n - 1]
+    let mut r = 0;
+    (0..n).rev().fold(xs, |ys, m| {
+        let m = ys.iter().dropping_back(m).max().unwrap();
+        r = m + r * 10;
+        &ys[ys.iter().position(|x| x == m).unwrap() + 1..]
+    });
+    r
 }
 
 fn main() {
