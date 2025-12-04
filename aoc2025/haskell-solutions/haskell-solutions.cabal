@@ -20,6 +20,7 @@ common warnings
         -Wno-prepositive-qualified-module
         -Wno-name-shadowing
         -Wno-missing-kind-signatures
+        -Wno-compat-unqualified-imports
         -O2
     default-extensions:
         StrictData
@@ -28,10 +29,22 @@ common warnings
         LambdaCase
         ScopedTypeVariables
 
+library
+    import:           warnings
+    build-depends:
+        base,
+        vector,
+        containers,
+        haskell-aoc-util,
+    hs-source-dirs:   lib
+    default-language: GHC2021
+
 common day
     import:           warnings
     build-depends:
         base,
+        vector,
+        containers,
         haskell-aoc-util,
     hs-source-dirs:   app
     default-language: GHC2021
@@ -43,3 +56,7 @@ executable day01
 executable day02
     import:           day
     main-is:          Day02.hs
+
+executable day04
+    import:           day
+    main-is:          Day04.hs
