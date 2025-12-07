@@ -19,7 +19,7 @@
   - Day 4  : [BQN](./aoc2025/bqn-solutions/day04.bqn), [Haskell](./aoc2025/haskell-solutions/app/Day04.hs)
   - Day 5  : [BQN](./aoc2025/bqn-solutions/day05.bqn), [Rust](./aoc2025/rust-solutions/src/bin/day05.rs), [Haskell](./aoc2025/haskell-solutions/app/Day05.hs)
   - Day 6  : [BQN](./aoc2025/bqn-solutions/day06.bqn)
-  - Day 7  : [Clojure](./aoc2025/clojure-solutions/src/clojure_solutions/day07.clj), [BQN](./aoc2025/bqn-solutions/day07.bqn)
+  - Day 7  : [Clojure](./aoc2025/clojure-solutions/src/clojure_solutions/day07.clj), [BQN](./aoc2025/bqn-solutions/day07.bqn), [C](./aoc2025/c-solutions/day07.c)
 
 ## 2024
 
