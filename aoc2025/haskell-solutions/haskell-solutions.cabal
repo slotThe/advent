@@ -35,7 +35,9 @@ library
         base,
         vector,
         containers,
+        unordered-containers,
         haskell-aoc-util,
+        hashable,
     hs-source-dirs:   lib
     default-language: GHC2021
 
@@ -45,7 +47,9 @@ common day
         base,
         vector,
         containers,
+        unordered-containers,
         haskell-aoc-util,
+        hashable,
     hs-source-dirs:   app
     default-language: GHC2021
 
@@ -60,3 +64,11 @@ executable day02
 executable day04
     import:           day
     main-is:          Day04.hs
+
+executable day05
+    import:           day
+    main-is:          Day05.hs
+
+executable day08
+    import:           day
+    main-is:          Day08.hs
