@@ -21,6 +21,7 @@
   - Day 6  : [BQN](./aoc2025/bqn-solutions/day06.bqn)
   - Day 7  : [Clojure](./aoc2025/clojure-solutions/src/clojure_solutions/day07.clj), [BQN](./aoc2025/bqn-solutions/day07.bqn), [C](./aoc2025/c-solutions/day07.c)
   - Day 8  : [Haskell](./aoc2025/haskell-solutions/app/Day08.hs), [BQN](./aoc2025/bqn-solutions/day08.bqn)
+  - Day 9  : [BQN](./aoc2025/bqn-solutions/day09.bqn)
 
 ## 2024
 
