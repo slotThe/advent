@@ -9,6 +9,10 @@
       overlay = final: prev: {
         main = prev.callCabal2nix package ./. { };
         haskell-aoc-util = prev.callCabal2nix "haskell-aoc-util" ../../util/haskell-aoc-util { };
+        sbv = pkgs.haskell.lib.dontCheck (prev.callCabal2nix "sbv" (builtins.fetchGit {
+          url = "http://github.com/LeventErkok/sbv";
+          rev = "c5fa5fbd60d822d52cf111d4bb62490220268f84";
+        }) {});
       };
       haskellPackages = pkgs.haskellPackages.extend overlay;
     in {
@@ -22,6 +26,7 @@
           ghc
           cabal-install
           haskell-language-server
+          pkgs.z3
         ];
       };
     };
