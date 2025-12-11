@@ -5,16 +5,16 @@ import Data.HashMap.Strict qualified as M
 import Data.HashMap.Strict (HashMap)
 import Data.MemoTrie
 
-type Search = ([(String, Bool)], Int, String)
+type Search = ([(String, Bool)], String)
 
 paths :: String -> String -> [String] -> HashMap String [String] -> Int
-paths s e incls hm = memoFix go ([(i, False) | i <- incls], 0, s)
+paths s e incls hm = memoFix go ([(i, False) | i <- incls], s)
  where -- HashMap as no instance for MemoTrie and I cba to write one.
   go :: (Search -> Int) -> Search -> Int
-  go go (is, c, s)
-    | s == e && all snd is = c
+  go go (is, s)
+    | s == e && all snd is = 1
     | otherwise = let is' = map (\(i, x) -> (i, x||(i==s))) is
-                  in sum [ go (is', 1, n) | n <- fromMaybe [] (hm M.!? s) ]
+                  in sum [ go (is', n) | n <- fromMaybe [] (hm M.!? s) ]
 
 main :: IO ()
 main = do
