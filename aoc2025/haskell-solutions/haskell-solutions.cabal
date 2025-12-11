@@ -21,6 +21,7 @@ common warnings
         -Wno-name-shadowing
         -Wno-missing-kind-signatures
         -Wno-compat-unqualified-imports
+        -Wno-operator-whitespace
         -O2
     default-extensions:
         StrictData
@@ -29,6 +30,7 @@ common warnings
         LambdaCase
         ScopedTypeVariables
         BlockArguments
+        ViewPatterns
 
 library
     import:           warnings
@@ -41,6 +43,7 @@ library
         hashable,
         text,
         sbv,
+        MemoTrie,
     hs-source-dirs:   lib
     default-language: GHC2021
 
@@ -55,6 +58,7 @@ common day
         hashable,
         text,
         sbv,
+        MemoTrie,
     hs-source-dirs:   app
     default-language: GHC2021
 
@@ -81,3 +85,7 @@ executable day08
 executable day10
     import:           day
     main-is:          Day10.hs
+
+executable day11
+    import:           day
+    main-is:          Day11.hs
