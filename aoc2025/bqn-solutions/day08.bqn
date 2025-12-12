@@ -1,5 +1,5 @@
 ⟨Ints⟩←•Import"../../util/bqn_util/util.bqn"
-inp ← Ints¨ •FLines "../inputs/day08.txt" ⋄ D←{⟨+´⋆⟜2¨(⊑𝕨)-⊑𝕩, 𝕨, 𝕩⟩}
+inp ← Ints¨ •FLines "../inputs/day08.txt" ⋄ D←{⟨+´×˜(⊑𝕨)-⊑𝕩, 𝕨, 𝕩⟩}
 
 set ← ↕≠inp # The simplest disjoint set implementation possible
 R ← { 𝕩=(𝕩⊑set)? 𝕩; 𝕊𝕩⊑set } # Representative of a cycle
