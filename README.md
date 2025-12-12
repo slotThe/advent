@@ -24,6 +24,7 @@
   - Day 9  : [BQN](./aoc2025/bqn-solutions/day09.bqn)
   - Day 10 : [Haskell](./aoc2025/haskell-solutions/app/Day10.hs), [BQN](./aoc2025/bqn-solutions/day10.bqn)
   - Day 11 : [BQN](./aoc2025/bqn-solutions/day11.bqn), [Haskell](./aoc2025/haskell-solutions/app/Day11.hs)
+  - Day 12 : [BQN](./aoc2025/bqn-solutions/day12.bqn)
 
 ## 2024
 
