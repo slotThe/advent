@@ -40,3 +40,9 @@ _merge ⇐ { W _𝕣 hms:
 
 tab ⇐ @+9
 lf  ⇐ @+10
+
+_showgrid ⇐ { # Visualise a Boolean matrix, optimised for loops.
+  •Out˘ ⊑⟜' '‿'█'¨r←𝕨𝔽𝕩 ⋄ •Out""
+  •Out 1⊑•SH ⟨"printf","\033["∾(•Repr 4+≠r)∾"A"⟩ ⋄ •Delay 0.25
+  r
+}
