@@ -27,24 +27,22 @@ sz *opcode(sz n) { // 1234 -> 34,2,1,0,0,0,0,0,0
 #define z      ixr(3)
 #define zw     ixw(3)
 
-EC ic_execute(IC *ic) {
-    while (tp < tl) {
-        sz *op = opcode(it[tp]);
-        switch (op[0]) {
-        case ADD: it[zw]=x+y                               ; tp+=4; break; // 1,x,y,z
-        case MUL: it[zw]=x*y                               ; tp+=4; break; // 2,x,y,z
-        case INP: it[xw]=_($(ip>=il,RE(need_inp));ii[ip++]); tp+=2; break; // 3,x
-        case OUT: io[ol++]=x;                              ; tp+=2; break; // 4,x
-        case JIT: $( x, tp=y)E(tp+=3)                             ; break; // 5,x,y
-        case JIF: $(!x, tp=y)E(tp+=3)                             ; break; // 6,x,y
-        case LT : it[zw]=x<y                               ; tp+=4; break; // 7,x,y,z
-        case EQ : it[zw]=x==y                              ; tp+=4; break; // 8,x,y,z
-        case RB : rb+=x                                    ; tp+=2; break; // 9,x
-        case HALT_AND_CATCH_FIRE: RE(succ);                                // 99
-        }
-        free(op);
-    }
-}
+#define TCP sz *op, IC *ic /* tail call params */
+typedef EC (*TCF)(TCP);    /* tail call function */
+static TCF ops[];          /* function array */
+#define TC(n) free(op); op=opcode(it[tp+=(n)]); [[clang::musttail]] return ops[op[0]](op,ic); /* tail call */
+EC op_add(TCP) { it[zw]=x+y; TC(4) }                                // 1,x,y,z
+EC op_mul(TCP) { it[zw]=x*y; TC(4) }                                // 2,x,y,z
+EC op_inp(TCP) { it[xw]=_($(ip>=il,RE(need_inp));ii[ip++]); TC(2) } // 3,x
+EC op_out(TCP) { io[ol++]=x; TC(2) }                                // 4,x
+EC op_jit(TCP) { TC(x?-tp+y:3    ) }                                // 5,x,y
+EC op_jif(TCP) { TC(x?3    :-tp+y) }                                // 6,x,y
+EC op_lt (TCP) { it[zw]=x<y; TC(4) }                                // 7,x,y,z
+EC op_eq (TCP) { it[zw]=x==y; TC(4) }                               // 8,x,y,z
+EC op_rb (TCP) { rb+=x; TC(2) }                                     // 9,x
+EC op_die(TCP) { RE(succ) }                                         // 99
+EC ic_execute(IC *ic) { sz *op=opcode(it[tp]); return (ops[op[0]])(op,ic); }
+static TCF ops[128]={ [ADD]=&op_add, [MUL]=&op_mul, [INP]=&op_inp, [OUT]=&op_out, [JIT]=&op_jit, [JIF]=&op_jif, [LT]=&op_lt, [EQ]=&op_eq, [RB]=&op_rb, [HALT_AND_CATCH_FIRE]=&op_die, };
 
 sz ic_run_util_fire(sz *tape, sz n, sz in) {
     sz a[1]={in};
