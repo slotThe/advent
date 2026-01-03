@@ -1,5 +1,5 @@
-CC := gcc intcode.c
-FILES := day01 day02 day03 day04 day05 day06 day07 day08 day09
+CC := gcc -O2 intcode.c -lm
+FILES := day01 day02 day03 day04 day05 day06 day07 day08 day09 day10
 
 PHONY: all clean time run
 
